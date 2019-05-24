@@ -27,12 +27,12 @@ public class Sprite {
 	public void imageName(String imageName) {
 		this.imageName = imageName;
 	}
-	
+
 	public Image getImage() {
 		return image;
 	}
 
 	private void loadImage(String name) {
-		//name + Model.STYLE + ".jpg"
+		// name + Model.STYLE + ".jpg"
 	}
 }
