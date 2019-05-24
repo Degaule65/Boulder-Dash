@@ -1,11 +1,13 @@
 package model;
 
-public interface IElement {
-	
-	public Sprite getSprite();
-	public Permeability getPermeability();
-	public Image getImage();
-	
+import java.awt.Image;
 
+public interface IElement {
+
+	public Sprite getSprite();
+
+	public ObjectType getObjectType();
+
+	public Image getImage();
 
 }

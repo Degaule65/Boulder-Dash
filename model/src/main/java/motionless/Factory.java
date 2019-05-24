@@ -2,14 +2,14 @@ package motionless;
 
 public abstract class Factory {
 	
-	public MotionlessElement createBackground() {
-		
+	public static MotionlessElement createBackground() {
+		return null;
 	}
-	public MotionlessElement createDirt() {
-		
+	public static MotionlessElement createDirt() {
+		return null;
 	}
-	public MotionlessElement createWall() {
-		
+	public static MotionlessElement createWall() {
+		return null;
 	}
 
 }
