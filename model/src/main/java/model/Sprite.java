@@ -4,16 +4,16 @@ import java.awt.Image;
 
 public class Sprite {
 
-	public Sprite(String name) {
-		loadImage(name);
-	}
-
 	private char strImage;
 	private String imageName;
 	private Image image;
 
+	public Sprite(String name) {
+		this.loadImage(name);
+	}
+
 	public char getStrImage() {
-		return strImage;
+		return this.strImage;
 	}
 
 	public void setStrImage(char strImage) {
@@ -24,12 +24,12 @@ public class Sprite {
 		return imageName;
 	}
 
-	public void imageName(String imageName) {
+	public void setImageName(String imageName) {
 		this.imageName = imageName;
 	}
 
 	public Image getImage() {
-		return image;
+		return this.image;
 	}
 
 	private void loadImage(String name) {
