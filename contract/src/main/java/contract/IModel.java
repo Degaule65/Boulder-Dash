@@ -7,6 +7,7 @@ package contract;
  */
 public interface IModel {
 
-	public IMap getMap();	
+	public IMap getMap();
+
 	public IHero getHero();
-}	
+}

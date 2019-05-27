@@ -16,7 +16,7 @@ public class Mobile {
 		this.position.x = x;
 
 	}
-	
+
 	public int getY() {
 		return (int) this.position.getY();
 	}
@@ -25,16 +25,16 @@ public class Mobile {
 		this.position.y = y;
 
 	}
-	
+
 	public Point getPosition() {
 		return null;
 	}
-	
+
 	public void setPosition(Point position) {
-		
+
 	}
-	
+
 	public void Mobile(Sprite sprite, Map map) {
-		
+
 	}
 }

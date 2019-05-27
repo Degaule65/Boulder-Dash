@@ -3,7 +3,7 @@ package model.motionless;
 import model.ObjectType;
 import model.Sprite;
 
-public class Wall extends MotionlessElement{
+public class Wall extends MotionlessElement {
 
 	Wall(Sprite sprite) {
 		super(sprite);
@@ -12,9 +12,9 @@ public class Wall extends MotionlessElement{
 
 	// private static final Sprite SPRITE = new Sprite(' ', "/image/wall.jpg");
 
-	    /**
-	     * Instantiates a new ditchLeft.
-	     */
-	       // super(SPRITE, ObjectType.DIRT);
+	/**
+	 * Instantiates a new ditchLeft.
+	 */
+	// super(SPRITE, ObjectType.DIRT);
 
 }

@@ -12,7 +12,6 @@ public class Sprite {
 	private String imageName;
 	private Image image;
 	private boolean loadImage;
-	
 
 	public Sprite(final char character, final String imageName) {
 		this.setStrImage(character);
@@ -38,16 +37,18 @@ public class Sprite {
 	public Image getImage() {
 		return this.image;
 	}
+
 	@SuppressWarnings("unused")
-	private final void loadImage(String name)throws IOException {
+	private final void loadImage(String name) throws IOException {
 		// name + Model.STYLE + ".jpg"
 		this.setStrImage(ImageIO.read(new File("images/" + this.getImageName())));
 	}
 
 	private void setStrImage(BufferedImage read) {
 		// TODO Auto-generated method stub
-		
+
 	}
+
 	public final boolean isImageLoaded() {
 		return this.loadImage;
 	}
