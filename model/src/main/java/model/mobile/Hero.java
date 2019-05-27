@@ -1,6 +1,16 @@
 package model.mobile;
 
-public class Hero {
+import model.ObjectType;
+import model.Sprite;
+
+public class Hero extends Mobile {
+	
+	private static final Sprite sprite = new Sprite('R', "Hero.gif");
+
+	public Hero() {
+		super(sprite, ObjectType.HERO);
+	}
+
 	public void moveUp() {
 
 	}

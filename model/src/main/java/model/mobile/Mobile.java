@@ -1,12 +1,17 @@
 package model.mobile;
 
 import java.awt.Point;
-import model.Map;
+
+import model.Element;
+import model.ObjectType;
 import model.Sprite;
 
-public class Mobile {
-
+public class Mobile extends Element {
 	private Point position;
+
+	public Mobile(Sprite sprite, ObjectType objectType) {
+		super(sprite, objectType);
+	}
 
 	public int getX() {
 		return (int) this.position.getX();
@@ -27,14 +32,11 @@ public class Mobile {
 	}
 
 	public Point getPosition() {
-		return null;
+		return this.getPosition();
 	}
 
 	public void setPosition(Point position) {
-
+		this.position = position;
 	}
 
-	public void Mobile(Sprite sprite, Map map) {
-
-	}
 }

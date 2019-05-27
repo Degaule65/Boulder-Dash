@@ -5,35 +5,34 @@ import java.awt.Image;
 public class Element implements IElement {
 
 	private Sprite sprite;
+	private ObjectType objectType;
 
-	public Element(Sprite sprite2, ObjectType objectType) {
-		// TODO Auto-generated constructor stub
+	public Element(Sprite sprite, ObjectType objectType) {
+		this.setObjectType(objectType);
+		this.setSprite(sprite);
 	}
-
-	public Sprite sprite() {
-		return sprite;
-	}
-
-	public void sprite(Sprite sprite) {
-		this.sprite = sprite;
+	
+	public void setObjectType(ObjectType objectType) {
+		this.objectType = objectType;
 	}
 
 	@Override
 	public Sprite getSprite() {
-		// TODO Auto-generated method stub
-		return null;
+		return sprite;
 	}
 
-	@Override
-	public ObjectType getObjectType() {
-		// TODO Auto-generated method stub
-		return null;
+	protected void setSprite(Sprite sprite) {
+		this.sprite = sprite;
 	}
 
 	@Override
 	public Image getImage() {
-		// TODO Auto-generated method stub
-		return null;
+		return sprite.getImage();
+	}
+
+	@Override
+	public ObjectType getObjectType() {
+		return this.objectType;
 	}
 
 }

@@ -1,9 +1,23 @@
 package model.mobile;
 
-public class NonHeroMobile {
+import model.ObjectType;
+import model.Sprite;
 
-	private Boolean isFalling() {
-		return null;
+public class NonHeroMobile extends Mobile {
+	
+
+	public NonHeroMobile(Sprite sprite, ObjectType objectType) {
+		super(sprite, objectType);
+	}
+
+	private Boolean isFalling;
+
+	public Boolean getIsFalling() {
+		return isFalling;
+	}
+
+	public void setIsFalling(Boolean isFalling) {
+		this.isFalling = isFalling;
 	}
 
 	public void moveDown() {

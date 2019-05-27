@@ -38,7 +38,6 @@ public class Sprite {
 		return this.image;
 	}
 
-	@SuppressWarnings("unused")
 	private final void loadImage(String name) throws IOException {
 		// name + Model.STYLE + ".jpg"
 		this.setStrImage(ImageIO.read(new File("images/" + this.getImageName())));
