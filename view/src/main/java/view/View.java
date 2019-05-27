@@ -9,15 +9,12 @@ import contract.IModel;
 import contract.IView;
 
 
-/**
- * The Class View.
- *
- * @author Jean-Aymeric Diet
- */
+
+
 public final class View implements IView, Runnable {
 
 	private IMap map;
-	private Mobile Hero
+	private Mobile Hero;
 	private int View;
 	private IOrderPerformer orderPerformer;
 	private Mobile Boulder;
