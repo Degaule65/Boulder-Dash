@@ -4,121 +4,108 @@ import java.awt.event.KeyEvent;
 
 import contract.ControllerOrder;
 import contract.IController;
+import contract.IHero;
 import contract.IMap;
 import contract.IModel;
+import contract.INonHeroMobile;
 import contract.IView;
-
-
-
 
 public final class View implements IView, Runnable {
 
 	private IMap map;
-	private Mobile Hero;
+	private IHero Hero;
 	private int View;
-	private IOrderPerformer orderPerformer;
-	private Mobile Boulder;
-	private Mobile Diamond;
-	
+	private INonHeroMobile Boulder;
+	private INonHeroMobile Diamond;
+
 	public void View(IModel model) {
-		
+
 	}
-	
+
 	/**
 	 * Key code to controller order.
 	 *
-	 * @param keyCode
-	 *          the key code
+	 * @param keyCode the key code
 	 * @return the controller order
 	 */
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
-			case KeyEvent.VK_G:
-				return ControllerOrder.English;
-			case KeyEvent.VK_F:
-				return ControllerOrder.Francais;
-			case KeyEvent.VK_D:
-				return ControllerOrder.Deutsch;
-			case KeyEvent.VK_I:
-				return ControllerOrder.Indonesia;
-			default:
-				return ControllerOrder.English;
+		default:
+			return ControllerOrder.NONE;
 		}
 	}
-	
+
 	/**
 	 * Sets the controller.
 	 *
-	 * @param controller
-	 *          the new controller
+	 * @param controller the new controller
 	 */
 	public void setController(final IController controller) {
-		this.viewFrame.setController(controller);
+
 	}
-	
+
 	public void run() {
-		this.viewFrame.setVisible(true);
+
 	}
-	
-	public void boulderView(IMap Map, Mobile Hero) {
-		
+
+	public void boulderView(IMap Map, IHero Hero) {
+
 	}
-	
+
 	public void followHero() {
-		
+
 	}
-	
+
 	public void displayMessage(String message) {
-		
+
 	}
-	
+
 	public int getView() {
 		return 0;
 	}
-	
+
 	public int setView() {
 		return 0;
 	}
+
 	public void getMap() {
-		
+
 	}
-	
-	public void keyTyped(keyEvent keyEvent) {
-		
+
+	public void keyTyped(KeyEvent keyEvent) {
+
 	}
-	
-	public void keyPressed(keyEvent keyEvent) {
-		
+
+	public void keyPressed(KeyEvent keyEvent) {
+
 	}
-	
-	public void keyReleased(keyEvent keyEvent) {
-		
+
+	public void keyReleased(KeyEvent keyEvent) {
+
 	}
-	public IOrderPerformer setOrderPerformer() {
-		
-	}
-	public IOrderPerformer getOrderPerformer() {
-		
-	}
-	public Mobile getHero() {
+
+	public IHero getHero() {
 		return null;
 	}
-	public Mobile setHero() {
+
+	public void setHero(IHero hero) {
+
+	}
+
+	public void setBoulder(INonHeroMobile boulder) {
+
+	}
+
+	public INonHeroMobile getBoulder() {
 		return null;
 	}
-	public Mobile setBoulder() {
+
+	public void setDiamond(INonHeroMobile diamond) {
+
+	}
+
+	public INonHeroMobile getDiamond() {
 		return null;
 	}
-	public Mobile getBoulder() {
-		return null;
-	}
-	public Mobile setDiamond() {
-		return null;
-	}
-	public Mobile getDiamond() {
-		return null;
-	}
-	
-	
-	
+
 }
