@@ -1,27 +1,34 @@
 package model;
 
 import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class Sprite {
 
 	private char strImage;
 	private String imageName;
 	private Image image;
+	private boolean loadImage;
+	
 
-	public Sprite(String name) {
-		this.loadImage(name);
+	public Sprite(final char character, final String imageName) {
+		this.setStrImage(character);
+		this.setImageName(imageName);
 	}
 
 	public char getStrImage() {
 		return this.strImage;
 	}
 
-	public void setStrImage(char strImage) {
-		this.strImage = strImage;
+	public void setStrImage(char bufferedImage) {
+		this.strImage = bufferedImage;
 	}
 
-	public String getImageName() {
-		return imageName;
+	public final String getImageName() {
+		return this.imageName;
 	}
 
 	public void setImageName(String imageName) {
@@ -31,8 +38,17 @@ public class Sprite {
 	public Image getImage() {
 		return this.image;
 	}
-
-	private void loadImage(String name) {
+	@SuppressWarnings("unused")
+	private final void loadImage(String name)throws IOException {
 		// name + Model.STYLE + ".jpg"
+		this.setStrImage(ImageIO.read(new File("images/" + this.getImageName())));
+	}
+
+	private void setStrImage(BufferedImage read) {
+		// TODO Auto-generated method stub
+		
+	}
+	public final boolean isImageLoaded() {
+		return this.loadImage;
 	}
 }
