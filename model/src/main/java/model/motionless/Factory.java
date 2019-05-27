@@ -9,8 +9,8 @@ public abstract class Factory {
 	public static MotionlessElement createDirt() {
 		return null;
 	}
-
-	public static MotionlessElement createWall() {
+	
+	public static MotionlessElement createWalle() {
 		return null;
 	}
 
