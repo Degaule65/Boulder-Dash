@@ -1,3 +1,5 @@
-# JPU-BlankProject
+# Boulder dash
 
-Base de démarrage pour le projet Jave/POO/UML des 1ières années Exia-Cesi
+Projet Java du groupe 1 du centre CESI de Pau
+
+(Année 2018/2019)
