@@ -1,18 +1,12 @@
 package contract;
 
-import java.util.Observable;
-
 /**
  * The Interface IModel.
  *
- * @author Jean-Aymeric Diet
+ * @author Tanguy
  */
 public interface IModel {
 
-	/**
-	 * Gets the observable.
-	 *
-	 * @return the observable
-	 */
-	Observable getObservable();
-}
+	public IMap getMap();	
+	public IHero getHero();
+}	
