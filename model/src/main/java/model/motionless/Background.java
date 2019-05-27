@@ -1,8 +1,16 @@
 package model.motionless;
 
-public class Background {
+import model.ObjectType;
+import model.Sprite;
 
-	Background() {
+public class Background extends MotionlessElement {
 
-	}
+@SuppressWarnings("unused")
+private static final Sprite SPRITE = new Sprite(' ', "/image/wall.jpg");
+
+	Background(Sprite sprite) {
+		
+		super(sprite,ObjectType.BACKGROUND); 
+
+}
 }

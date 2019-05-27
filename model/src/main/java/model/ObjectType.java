@@ -1,5 +1,5 @@
 package model;
 
 public enum ObjectType {
-	DIRT, WALL, HERO, BOULDER, DIAMOND, EXIT
+	DIRT, WALL,BACKGROUND, HERO, BOULDER, DIAMOND, EXIT
 }

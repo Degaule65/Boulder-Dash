@@ -6,6 +6,10 @@ public class Element implements IElement {
 
 	private Sprite sprite;
 
+	public Element(Sprite sprite2, ObjectType objectType) {
+		// TODO Auto-generated constructor stub
+	}
+
 	public Sprite sprite() {
 		return sprite;
 	}

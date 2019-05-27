@@ -1,9 +1,15 @@
 package model.motionless;
 
-public class Dirt {
+import model.ObjectType;
+import model.Sprite;
 
-	Dirt() {
+public class Dirt extends MotionlessElement {
 
+	@SuppressWarnings("unused")
+	private static final Sprite SPRITE = new Sprite('/', "/image/rock.png");
+	
+	Dirt(Sprite sprite) {
+		super(sprite,ObjectType.DIRT);
+		// TODO Auto-generated constructor stub
 	}
-
 }
