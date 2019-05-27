@@ -16,7 +16,7 @@ public class Map extends Observable implements IMap {
 	private IElement[][] onMap;
 
 	public Map(final String content) {
-		this.loadFile(content);
+		this.buildMap(content);
 	}
 	
 	@Override
@@ -30,14 +30,13 @@ public class Map extends Observable implements IMap {
 		return this;
 	}
 	
-	private void loadFile(String content) {
+	private void buildMap(String content) {
 		
 	}
 
 	@Override
 	public IElement getOnTheMapXY(int x, int y) {
-		// TODO Auto-generated method stub
-		return null;
+		return onMap[x][y];
 	}
 	
 	private void setOnTheMapXY(final IElement element, final int x, final int y) {
