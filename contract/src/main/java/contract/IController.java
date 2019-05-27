@@ -3,14 +3,14 @@ package contract;
 /**
  * The Interface IController.
  *
- * @author Jean-Aymeric Diet
+ * @author Tanguy
  */
 public interface IController {
 
 	/**
-	 * Control.
+	 * Play.
 	 */
-	public void control();
+	public void play();
 
 	/**
 	 * Order perform.

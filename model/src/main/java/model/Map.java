@@ -1,5 +1,7 @@
 package model;
 
+import contract.IMap;
+
 /**
  * The Class Map.
  *

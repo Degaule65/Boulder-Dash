@@ -2,8 +2,9 @@ package model;
 
 import java.util.Observable;
 
+import contract.IHero;
+import contract.IMap;
 import contract.IModel;
-import model.mobile.IHero;
 
 /**
  * The Class Model.
@@ -37,11 +38,5 @@ public class Model extends Observable implements IModel {
 	public void setMap(IMap Map) {
 
 	}
-
-	@Override
-	public Observable getObservable() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
+
