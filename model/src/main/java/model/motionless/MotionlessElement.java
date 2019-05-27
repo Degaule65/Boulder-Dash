@@ -7,5 +7,6 @@ import model.Sprite;
 public class MotionlessElement extends Element {
 
 	MotionlessElement(final Sprite sprite, final ObjectType ObjectType) {
-        super(sprite, ObjectType);
-}}
+		super(sprite, ObjectType);
+	}
+}
