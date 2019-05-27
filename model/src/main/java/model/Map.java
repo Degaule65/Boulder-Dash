@@ -1,6 +1,6 @@
 package model;
 
-import contract.IMap;
+import java.util.Observable;
 
 /**
  * The Class Map.
@@ -8,34 +8,32 @@ import contract.IMap;
  * @author [enter name]
  */
 
-public class Map implements IMap {
+public class Map extends Observable implements IMap {
 
-	private int width;
-	private int heigth;
+	public static int width;
+	public static int heigth;
+	public static int STYLE = 1;
 	private IElement[][] onMap;
-
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeigth() {
-		return heigth;
-	}
-
-	public void setHeigth(int heigth) {
-		this.heigth = heigth;
-	}
-
-	public IElement[][] getOnMap() {
-		return onMap;
-	}
 
 	public void setOnMap(IElement[][] onMap) {
 		this.onMap = onMap;
+	}
+
+	@Override
+	public void setMobileHasChanged() {
+		this.setChanged();
+		this.notifyObservers();
+	}
+
+	@Override
+	public Observable getObservable() {
+		return this;
+	}
+
+	@Override
+	public IElement getOnTheMapXY(int x, int y) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -5,10 +5,10 @@ import java.awt.event.KeyEvent;
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IHero;
-import contract.IMap;
-import contract.IModel;
 import contract.INonHeroMobile;
 import contract.IView;
+import model.IMap;
+import model.IModel;
 
 public final class View implements IView, Runnable {
 

@@ -1,4 +1,6 @@
-package contract;
+package model;
+
+import contract.IHero;
 
 /**
  * The Interface IModel.
