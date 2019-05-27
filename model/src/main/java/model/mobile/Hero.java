@@ -8,11 +8,11 @@ import model.Sprite;
 
 public class Hero extends Mobile implements IHero {
 
-	private static final Sprite sprite = new Sprite('H', "main/images/droite/Hero.gif");
-	private static final Sprite spriteDown = new Sprite('H', "main/images/droite/HeroDown.gif");
-	private static final Sprite spriteTurnLeft = new Sprite('H', "main/images/droite/HeroLeft.gif");
-	private static final Sprite spriteTurnRight = new Sprite('H', "main/images/droite/HeroRight.gif");
-	private static final Sprite spriteUP = new Sprite('H', "main/images/droite/HeroRight.gif");
+	private static final Sprite sprite = new Sprite('H', "main/images/héro_basique/Hero.gif");
+	private static final Sprite spriteDown = new Sprite('H', "main/images/DOWN/DOWN.gif");
+	private static final Sprite spriteTurnLeft = new Sprite('H', "main/images/gauche/HeroLeft.gif");
+	private static final Sprite spriteTurnRight = new Sprite('H', "main/images/droite/RIGHT.gif");
+	private static final Sprite spriteUP = new Sprite('H', "main/images/UP/UP.gif");
 
 	public Hero(final int x, final int y, final IMap map) throws IOException {
 		super(sprite, ObjectType.HERO);
