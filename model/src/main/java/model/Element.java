@@ -2,7 +2,7 @@ package model;
 
 import java.awt.Image;
 
-public class Element implements IElement {
+public abstract class Element implements IElement {
 
 	private Sprite sprite;
 	private ObjectType objectType;
@@ -27,7 +27,7 @@ public class Element implements IElement {
 
 	@Override
 	public Image getImage() {
-		return sprite.getImage();
+		return this.sprite.getImage();
 	}
 
 	@Override
