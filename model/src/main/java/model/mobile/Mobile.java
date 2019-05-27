@@ -6,7 +6,7 @@ import model.Element;
 import model.ObjectType;
 import model.Sprite;
 
-public class Mobile extends Element {
+public class Mobile extends Element implements IMobile {
 	private Point position;
 
 	public Mobile(Sprite sprite, ObjectType objectType) {
