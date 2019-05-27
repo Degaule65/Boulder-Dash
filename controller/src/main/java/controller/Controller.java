@@ -2,8 +2,8 @@ package controller;
 
 import contract.ControllerOrder;
 import contract.IController;
-import contract.IModel;
 import contract.IView;
+import model.IModel;
 
 /**
  * The Class Controller.

@@ -1,22 +1,16 @@
 package model;
 
-import java.util.Observable;
-
 import contract.IHero;
-import contract.IMap;
-import contract.IModel;
 
 /**
  * The Class Model.
  *
  * @author [enter name]
  */
-public class Model extends Observable implements IModel {
+public abstract class Model implements IModel {
 
 	private IHero hero;
-	public static int width;
-	public static int heigth;
-	public static int STYLE = 1;
+	private IMap map;
 
 	public Model() {
 
@@ -31,7 +25,7 @@ public class Model extends Observable implements IModel {
 	}
 
 	public IMap getMap() {
-		return null;
+		return this.map;
 
 	}
 
