@@ -97,9 +97,30 @@ public final class View implements IView, Runnable {
 	public void keyReleased(keyEvent keyEvent) {
 		
 	}
-
-	
-	
+	public IOrderPerformer setOrderPerformer() {
+		
+	}
+	public IOrderPerformer getOrderPerformer() {
+		
+	}
+	public Mobile getHero() {
+		return null;
+	}
+	public Mobile setHero() {
+		return null;
+	}
+	public Mobile setBoulder() {
+		return null;
+	}
+	public Mobile getBoulder() {
+		return null;
+	}
+	public Mobile setDiamond() {
+		return null;
+	}
+	public Mobile getDiamond() {
+		return null;
+	}
 	
 	
 	
