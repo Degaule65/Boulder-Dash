@@ -1,4 +1,4 @@
-package motionless;
+package model.motionless;
 
 public abstract class Factory {
 

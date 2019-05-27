@@ -1,4 +1,4 @@
-package motionless;
+package model.motionless;
 
 import model.Element;
 import model.Sprite;
