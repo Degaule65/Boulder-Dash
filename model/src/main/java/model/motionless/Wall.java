@@ -5,9 +5,10 @@ import contract.Sprite;
 
 public class Wall extends MotionlessElement {
 
-	private static final Sprite SPRITE = new Sprite(':', "/image/wall.png");
-	
+	public static final char fileSym = ':';
+	private static final Sprite SPRITE = new Sprite(Wall.fileSym, "/image/wall.png");
+
 	public Wall() {
-		super(SPRITE ,ObjectType.WALL);
+		super(SPRITE, ObjectType.WALL);
 	}
 }

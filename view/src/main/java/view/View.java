@@ -6,28 +6,20 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JOptionPane;
-import java.util.LinkedList;
+
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IHero;
-import contract.INonHeroMobile;
 import contract.IView;
-import contract.ObjectType;
 import fr.exia.showboard.BoardFrame;
 import model.IMap;
-import model.IModel;
 import model.Map;
-import model.Model;
-import model.mobile.Hero;
-import model.mobile.Mobile;
 
 public final class View implements IView, Runnable, KeyListener {
 
 	private IMap map;
 	private IHero hero;
 	private int view;
-	private INonHeroMobile boulder;
-	private INonHeroMobile diamond;
 	private Rectangle closeView;
 
 	public View(IMap map, IHero hero) {
@@ -58,7 +50,8 @@ public final class View implements IView, Runnable, KeyListener {
 	public void setController(final IController controller) {
 
 	}
-@Override
+
+	@Override
 	public void run() {
 
 		final BoardFrame boardFrame = new BoardFrame("coucou");
@@ -75,8 +68,9 @@ public final class View implements IView, Runnable, KeyListener {
 				boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
 			}
 		}
+
 		boardFrame.addPawn(this.getHero());
-		boardFrame.addPawn(this.getBoulders());
+		// add pawn as boulder
 
 		this.getMap().getObservable().addObserver(boardFrame.getObserver());
 		this.followHero();
@@ -108,7 +102,7 @@ public final class View implements IView, Runnable, KeyListener {
 	public IMap getMap() {
 		return this.map;
 	}
-	
+
 	private void setMap(IMap map) {
 		this.map = map;
 	}
@@ -129,27 +123,11 @@ public final class View implements IView, Runnable, KeyListener {
 	}
 
 	public IHero getHero() {
-		return null;
+		return this.hero;
 	}
 
 	public void setHero(IHero hero) {
-
-	}
-
-	public void setBoulders(INonHeroMobile boulder) {
-
-	}
-
-	public INonHeroMobile getBoulders() {
-		return null;
-	}
-
-	public void setDiamond(INonHeroMobile diamond) {
-
-	}
-
-	public INonHeroMobile getDiamond() {
-		return null;
+		this.hero = hero;
 	}
 
 	public Rectangle getCloseView() {

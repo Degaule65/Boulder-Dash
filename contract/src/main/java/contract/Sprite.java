@@ -38,9 +38,14 @@ public class Sprite {
 		return this.image;
 	}
 
-	public final void loadImage() throws IOException {
+	public final void loadImage() {
 		// name + Model.STYLE + ".jpg"
-		this.setStrImage(ImageIO.read(new File("images/" + this.getImageName())));
+		try {
+			this.setStrImage(ImageIO.read(new File("images/" + this.getImageName())));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	private void setStrImage(BufferedImage read) {

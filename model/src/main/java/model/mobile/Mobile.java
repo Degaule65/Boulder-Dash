@@ -10,8 +10,10 @@ import model.Element;
 public class Mobile extends Element implements IMobile {
 	private Point position;
 
-	public Mobile(Sprite sprite, ObjectType objectType) {
+	public Mobile(Sprite sprite, ObjectType objectType, int x, int y) {
 		super(sprite, objectType);
+		this.setX(x);
+		this.setY(y);
 	}
 
 	public int getX() {

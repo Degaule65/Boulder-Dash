@@ -5,7 +5,8 @@ import contract.Sprite;
 
 public class Dirt extends MotionlessElement {
 
-	private static final Sprite SPRITE = new Sprite('/', "/image/rock.png");
+	public static final char fileSym = '/';
+	private static final Sprite SPRITE = new Sprite(Dirt.fileSym, "/image/rock.png");
 
 	public Dirt() {
 		super(SPRITE, ObjectType.DIRT);

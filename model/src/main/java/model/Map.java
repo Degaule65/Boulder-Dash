@@ -6,7 +6,7 @@ import java.util.Observable;
 
 import contract.IElement;
 import model.mobile.Mobile;
-import model.motionless.Factory;
+import model.motionless.MotionlessFactory;
 import model.motionless.MotionlessElement;
 
 /**
@@ -43,11 +43,12 @@ public class Map extends Observable implements IMap {
 		int y = 0;
 		for (String row : rows) {
 			for (char symbol : row.toCharArray()) {
-				Element element = Factory.getFromFileSymbole(symbol);
+				Element element = AbstractFactory.getFactory(symbol).getFromFileSymbole(symbol, x, y);
 				if (element instanceof MotionlessElement) {
 					this.setOnTheMapXY(element, x, y);
 				} else if (element instanceof Mobile) {
-					this.setOnTheMapXY(Factory.createBackground(), x, y);
+					this.setOnTheMapXY(MotionlessFactory.createBackground(), x, y);
+					
 				}
 				x = x + 1;
 			}
