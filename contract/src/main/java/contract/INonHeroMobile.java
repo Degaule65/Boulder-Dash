@@ -1,5 +1,5 @@
 package contract;
 
-public interface INonHeroMobile {
+public interface INonHeroMobile extends IMobile {
 
 }

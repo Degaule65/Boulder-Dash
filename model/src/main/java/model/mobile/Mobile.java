@@ -2,6 +2,7 @@ package model.mobile;
 
 import java.awt.Point;
 
+import contract.IMobile;
 import model.Element;
 import model.ObjectType;
 import model.Sprite;
