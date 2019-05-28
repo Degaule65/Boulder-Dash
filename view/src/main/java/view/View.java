@@ -72,10 +72,10 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 	public void run() {
 
 		final BoardFrame boardFrame = new BoardFrame("coucou");
-		boardFrame.setDimension(new Dimension(Map.width,Map.heigth));
+		boardFrame.setDimension(new Dimension(Map.width, Map.heigth));
 		boardFrame.setDisplayFrame(this.closeView);
 
-		boardFrame.setSize(this.closeView.width * view,this.closeView.height * view);
+		boardFrame.setSize(this.closeView.width * view, this.closeView.height * view);
 		boardFrame.setHeightLooped(true);
 		boardFrame.addKeyListener(this);
 		boardFrame.setFocusable(true);
