@@ -34,8 +34,10 @@ public class Map extends Observable implements IMap {
 
 	private void buildMap(String content) {
 		List<String> rows = Arrays.asList(content.split(";"));
-		for (int i = 0; i < rows.size(); i++) {
-			System.out.println(rows.get(i));
+		for (String row : rows) {
+			for(char symbole : row.toCharArray()) {
+				 
+			}
 		}
 	}
 
