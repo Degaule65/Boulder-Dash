@@ -8,7 +8,6 @@ public class Connexion {
 	public static void main(String[] args) {
 		connecterDB();
 	}
-	
 
 	Connection cnx = connecterDB();
 
