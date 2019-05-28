@@ -1,10 +1,14 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 
 import contract.IElement;
+import contract.IHero;
+import contract.INonHeroMobile;
+import model.mobile.Hero;
 import model.mobile.Mobile;
 import model.motionless.MotionlessFactory;
 import model.motionless.MotionlessElement;
@@ -21,9 +25,12 @@ public class Map extends Observable implements IMap {
 	public static final int heigth = 30;
 	public static final int STYLE = 1;
 	private IElement[][] onMap = new IElement[width][heigth];
+	private List<INonHeroMobile> boulAndDia = new ArrayList<INonHeroMobile>();
+	private Model model;
 
-	public Map(final String content) {
+	public Map(final String content, Model model) {
 		this.buildMap(content);
+		this.model = model;
 	}
 
 	@Override
@@ -48,7 +55,11 @@ public class Map extends Observable implements IMap {
 					this.setOnTheMapXY(element, x, y);
 				} else if (element instanceof Mobile) {
 					this.setOnTheMapXY(MotionlessFactory.createBackground(), x, y);
-					
+					if (element instanceof Hero) {
+						this.model.setHero((Hero) element);
+					} else {
+						boulAndDia.add((INonHeroMobile) element);
+					}
 				}
 				x = x + 1;
 			}
@@ -70,4 +81,7 @@ public class Map extends Observable implements IMap {
 		return onMap;
 	}
 
+	public List<INonHeroMobile> getBoulAndDia() {
+		return boulAndDia;
+	}
 }

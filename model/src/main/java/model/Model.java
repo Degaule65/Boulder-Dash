@@ -13,7 +13,7 @@ public class Model implements IModel {
 	private IMap map;
 
 	public Model() {
-
+		this.setMap(new Map(" /;H/", this));
 	}
 
 	public IHero getHero() {

@@ -4,9 +4,7 @@
  */
 package main;
 
-import contract.ControllerOrder;
-import contract.ObjectType;
-import contract.Sprite;
+import contract.IController;
 import controller.Controller;
 import model.IModel;
 import model.Model;
@@ -16,7 +14,9 @@ public abstract class Main {
 	public static void main(final String[] args) {
 		final IModel model = new Model();
 		final View view = new View(model.getMap(), model.getHero());
-		final Controller controller = new Controller(view, model);
+		final IController controller = new Controller(view, model);
 		view.setController(controller);
+		
+		controller.play();
 	}
 }

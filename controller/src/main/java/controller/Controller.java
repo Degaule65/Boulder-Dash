@@ -92,5 +92,9 @@ public final class Controller implements IController {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public IController getOrderPerformer() {
+		return this;
+	}
 
 }

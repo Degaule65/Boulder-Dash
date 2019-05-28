@@ -8,7 +8,7 @@ import contract.Sprite;
 import model.Element;
 
 public class Mobile extends Element implements IMobile {
-	private Point position;
+	private Point position = new Point();
 
 	public Mobile(Sprite sprite, ObjectType objectType, int x, int y) {
 		super(sprite, objectType);
@@ -22,7 +22,6 @@ public class Mobile extends Element implements IMobile {
 
 	public void setX(final int x) {
 		this.position.x = x;
-
 	}
 
 	public int getY() {
@@ -31,7 +30,6 @@ public class Mobile extends Element implements IMobile {
 
 	public void setY(final int y) {
 		this.position.y = y;
-
 	}
 
 	public Point getPosition() {

@@ -41,7 +41,7 @@ public class Sprite {
 	public final void loadImage() {
 		// name + Model.STYLE + ".jpg"
 		try {
-			this.setStrImage(ImageIO.read(new File("images/" + this.getImageName())));
+			this.setStrImage(ImageIO.read(new File("/images/" + this.getImageName())));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

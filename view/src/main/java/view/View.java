@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IHero;
+import contract.INonHeroMobile;
 import contract.IView;
 import fr.exia.showboard.BoardFrame;
 import model.IMap;
@@ -21,6 +22,7 @@ public final class View implements IView, Runnable, KeyListener {
 	private IHero hero;
 	private int view;
 	private Rectangle closeView;
+	private IController orderPerformer;
 
 	public View(IMap map, IHero hero) {
 		// TODO Auto-generated constructor stub
@@ -70,7 +72,9 @@ public final class View implements IView, Runnable, KeyListener {
 		}
 
 		boardFrame.addPawn(this.getHero());
-		// add pawn as boulder
+		for (INonHeroMobile pawn : map.getBoulAndDia()) {
+			boardFrame.addPawn(pawn);
+		}
 
 		this.getMap().getObservable().addObserver(boardFrame.getObserver());
 		this.followHero();
@@ -105,6 +109,11 @@ public final class View implements IView, Runnable, KeyListener {
 
 	private void setMap(IMap map) {
 		this.map = map;
+		for (int x = 0; x < Map.width; x++) {
+			for (int y = 0; y < Map.heigth; y++) {
+				this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
+			}
+		}
 	}
 
 	public void keyTyped(KeyEvent keyEvent) {
@@ -116,7 +125,7 @@ public final class View implements IView, Runnable, KeyListener {
 	}
 
 	private IController getOrderPerformer() {
-		return null;
+		return this.orderPerformer;
 	}
 
 	public void keyReleased(KeyEvent keyEvent) {
