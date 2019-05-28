@@ -9,15 +9,15 @@ public abstract class Factory {
 	private static MotionlessElement[] motionlessElements = {background, dirt, wall};
 
 	public static MotionlessElement createBackground() {
-		return null;
+		return background;
 	}
 
 	public static MotionlessElement createDirt() {
-		return null;
+		return dirt;
 	}
 	
-	public static MotionlessElement createWalle() {
-		return null;
+	public static MotionlessElement createWall() {
+		return wall;
 	}
 	
 	public static MotionlessElement getFromFileSymbole(final char symbol) {
