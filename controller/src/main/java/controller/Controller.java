@@ -70,8 +70,20 @@ public final class Controller implements IController {
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 		// move
-		default:
+		case RIGHT:
+			this.model.getHero().moveRight();
 			break;
+		case LEFT:
+			this.model.getHero().moveLeft();
+			break;
+		case UP:
+			this.model.getHero().moveUp();
+			break;
+		case DOWN:
+			this.model.getHero().moveDown();
+			break;
+		default:
+			return;
 		}
 	}
 

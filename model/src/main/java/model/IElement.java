@@ -2,7 +2,9 @@ package model;
 
 import java.awt.Image;
 
-public interface IElement {
+import fr.exia.showboard.ISquare;
+
+public interface IElement extends ISquare{
 
 	public Sprite getSprite();
 
