@@ -16,8 +16,8 @@ import model.motionless.MotionlessElement;
 
 public class Map extends Observable implements IMap {
 
-	public static final int width = 2;
-	public static final int heigth = 2;
+	public static final int width = 40;
+	public static final int heigth = 30;
 	public static final int STYLE = 1;
 	private IElement[][] onMap = new IElement[width][heigth];
 
