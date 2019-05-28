@@ -22,12 +22,7 @@ import model.Sprite;
 import model.mobile.Hero;
 import model.mobile.Mobile;
 
-public final class View extends Hero implements IView, Runnable, KeyListener {
-
-	public View(Sprite sprite, ObjectType objectType) {
-		super(sprite, objectType);
-		// TODO Auto-generated constructor stub
-	}
+public final class View implements IView, Runnable, KeyListener {
 
 	private IMap map;
 	private IHero hero;
@@ -36,12 +31,13 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 	private INonHeroMobile diamond;
 	private Rectangle closeView;
 
-	public void view(IModel model) {
-		return;
+	public View(IMap map, IHero hero) {
+		// TODO Auto-generated constructor stub
+		this.setHero(hero);
+		this.setMap(map);
 	}
 
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
-
 		switch (keyCode) {
 		case KeyEvent.VK_RIGHT:
 			return ControllerOrder.RIGHT;
@@ -75,8 +71,8 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 		boardFrame.setFocusable(true);
 		boardFrame.setFocusTraversalKeysEnabled(false);
 
-		for (int x = 0; x < this.getMap().width(); x++) {
-			for (int y = 0; y < this.getMap().height(); y++) {
+		for (int x = 0; x < Map.width; x++) {
+			for (int y = 0; y < Map.heigth; y++) {
 				boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
 			}
 		}
@@ -102,7 +98,6 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 		JOptionPane.showMessageDialog(null, message);
 	}
 
-//
 	public int getView() {
 		return this.view;
 	}
@@ -113,6 +108,10 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 
 	public IMap getMap() {
 		return this.map;
+	}
+	
+	private void setMap(IMap map) {
+		this.map = map;
 	}
 
 	public void keyTyped(KeyEvent keyEvent) {

@@ -9,7 +9,4 @@ public interface IMap {
 	void setMobileHasChanged();
 
 	Observable getObservable();
-
-	int height();
-	int width();
 }

@@ -14,8 +14,8 @@ import view.View;
 public abstract class Main {
 
 	public static void main(final String[] args) {
-		final IModel model = new IModel();
-		final View view = new View(Sprite sprite, ObjectType objectType);
+		final IModel model = new Model();
+		final View view = new View(model.getMap(), model.getHero());
 		final Controller controller = new Controller(view, model);
 		view.setController(controller);
 	}

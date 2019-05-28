@@ -7,7 +7,7 @@ import contract.IHero;
  *
  * @author [enter name]
  */
-public abstract class Model implements IModel {
+public class Model implements IModel {
 
 	private IHero hero;
 	private IMap map;
