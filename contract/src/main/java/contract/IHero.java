@@ -5,5 +5,7 @@ public interface IHero {
 	void moveLeft();
 	void moveUp();
 	void moveDown();
+	int getY();
+	int getX();
 	
 }

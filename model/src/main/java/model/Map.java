@@ -43,4 +43,12 @@ public class Map extends Observable implements IMap {
 		this.onMap[x][y] = element;
 	}
 
+	public int height() {
+		return heigth;
+	}
+
+	public int width() {
+		return width;
+	}
+
 }
