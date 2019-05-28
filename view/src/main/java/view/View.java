@@ -16,6 +16,7 @@ import fr.exia.showboard.BoardFrame;
 import model.IMap;
 import model.IModel;
 import model.Map;
+import model.Model;
 import model.ObjectType;
 import model.Sprite;
 import model.mobile.Hero;
@@ -35,16 +36,10 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 	private INonHeroMobile diamond;
 	private Rectangle closeView;
 
-	public void View(IModel model) {
-
+	public void view(IModel model) {
+		return;
 	}
 
-	/**
-	 * Key code to controller order.
-	 *
-	 * @param keyCode the key code
-	 * @return the controller order
-	 */
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 
 		switch (keyCode) {
@@ -74,12 +69,25 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 		final BoardFrame boardFrame = new BoardFrame("coucou");
 		boardFrame.setDimension(new Dimension(Map.width, Map.heigth));
 		boardFrame.setDisplayFrame(this.closeView);
-
 		boardFrame.setSize(this.closeView.width * view, this.closeView.height * view);
 		boardFrame.setHeightLooped(true);
 		boardFrame.addKeyListener(this);
 		boardFrame.setFocusable(true);
 		boardFrame.setFocusTraversalKeysEnabled(false);
+
+		for (int x = 0; x < this.getMap().width(); x++) {
+			for (int y = 0; y < this.getMap().height(); y++) {
+				boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
+			}
+		}
+		boardFrame.addPawn(this.getHero());
+		boardFrame.addPawn(this.getDiamond());
+		boardFrame.addPawn(this.getBoulder());
+
+		this.getMap().getObservable().addObserver(boardFrame.getObserver());
+		this.followHero();
+
+		boardFrame.setVisible(true);
 
 	}
 
@@ -95,6 +103,7 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 		JOptionPane.showMessageDialog(null, message);
 	}
 
+//
 	public int getView() {
 		return this.view;
 	}
