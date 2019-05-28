@@ -146,6 +146,16 @@ class BoardPanel extends JPanel implements Observer {
     public final void addPawn(final IPawn pawn) {
         this.getPawns().add(pawn);
     }
+    
+    /**
+     * Remove the pawn.
+     *
+     * @param pawn
+     *            the pawn
+     */
+    public final void removePawn(final IPawn pawn) {
+    	this.getPawns().remove(pawn);
+    }
 
     /**
      * Gets the image XY.
@@ -208,7 +218,7 @@ class BoardPanel extends JPanel implements Observer {
      *
      * @return the pawns
      */
-    private List<IPawn> getPawns() {
+    public List<IPawn> getPawns() {
         return this.pawns;
     }
 
