@@ -1,9 +1,9 @@
 package model.motionless;
 
+import contract.ObjectType;
+import contract.Sprite;
 import fr.exia.showboard.ISquare;
 import model.Element;
-import model.ObjectType;
-import model.Sprite;
 
 public class MotionlessElement extends Element implements ISquare{
 

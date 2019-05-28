@@ -1,6 +1,6 @@
 package contract;
 
-public interface IHero {
+public interface IHero extends IMobile {
 	void moveRight();
 	void moveLeft();
 	void moveUp();

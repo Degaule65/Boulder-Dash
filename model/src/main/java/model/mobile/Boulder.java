@@ -2,8 +2,8 @@ package model.mobile;
 
 import java.io.IOException;
 
-import model.ObjectType;
-import model.Sprite;
+import contract.ObjectType;
+import contract.Sprite;
 
 public class Boulder extends NonHeroMobile {
 

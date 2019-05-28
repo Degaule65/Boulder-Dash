@@ -2,6 +2,10 @@ package model;
 
 import java.awt.Image;
 
+import contract.IElement;
+import contract.ObjectType;
+import contract.Sprite;
+
 public abstract class Element implements IElement {
 
 	private Sprite sprite;

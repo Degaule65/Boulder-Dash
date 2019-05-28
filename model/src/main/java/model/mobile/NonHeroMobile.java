@@ -1,7 +1,7 @@
 package model.mobile;
 
-import model.ObjectType;
-import model.Sprite;
+import contract.ObjectType;
+import contract.Sprite;
 
 public class NonHeroMobile extends Mobile {
 	

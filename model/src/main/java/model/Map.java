@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Observable;
 
+import contract.IElement;
 import model.mobile.Mobile;
 import model.motionless.Factory;
 import model.motionless.MotionlessElement;
