@@ -1,6 +1,11 @@
 package view;
 
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import contract.ControllerOrder;
 import contract.IController;
@@ -9,17 +14,29 @@ import contract.INonHeroMobile;
 import contract.IView;
 import model.IMap;
 import model.IModel;
+import model.ObjectType;
+import model.Sprite;
+import model.mobile.Hero;
+import model.mobile.Mobile;
 
-public final class View implements IView, Runnable {
+public final class View extends Hero implements IView, Runnable, KeyListener {
+
+	public View(Sprite sprite, ObjectType objectType) {
+		super(sprite, objectType);
+		// TODO Auto-generated constructor stub
+	}
 
 	private IMap map;
 	private IHero Hero;
 	private int View;
 	private INonHeroMobile Boulder;
 	private INonHeroMobile Diamond;
+	private Rectangle closeView;
 
-	public void View(IModel model) {
+	
 
+	public void View (IModel model) {
+		
 	}
 
 	/**
@@ -31,8 +48,9 @@ public final class View implements IView, Runnable {
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
 		default:
-			return ControllerOrder.NONE;
+			break;
 		}
+		return ControllerOrder.NONE;
 	}
 
 	/**
@@ -53,19 +71,19 @@ public final class View implements IView, Runnable {
 	}
 
 	public void followHero() {
-
+		this.getView().y = ((Mobile) this.getHero()).getY() - 1;
 	}
 
 	public void displayMessage(String message) {
-
+		JOptionPane.showMessageDialog(null, message);
 	}
 
 	public int getView() {
-		return 0;
+		return this.View;
 	}
 
-	public int setView() {
-		return 0;
+	public void setView() {
+		this.View = View;
 	}
 
 	public void getMap() {
@@ -77,11 +95,14 @@ public final class View implements IView, Runnable {
 	}
 
 	public void keyPressed(KeyEvent keyEvent) {
+		this.getOrderPerformer().orderPerform(keyCodeToControllerOrder(keyEvent.getKeyCode()));
+	}
 
+	private IController getOrderPerformer() {
+		return null;
 	}
 
 	public void keyReleased(KeyEvent keyEvent) {
-
 	}
 
 	public IHero getHero() {
@@ -108,4 +129,11 @@ public final class View implements IView, Runnable {
 		return null;
 	}
 
+	public Rectangle getCloseView() {
+		return this.closeView;
+	}
+	public void setCloseView(final Rectangle closeView) {
+		this.closeView = closeView;
+	}
+	
 }
