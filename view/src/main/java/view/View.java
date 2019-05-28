@@ -3,10 +3,7 @@ package view;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IHero;
@@ -47,7 +44,17 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 	 */
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
-		default:
+		case KeyEvent.VK_RIGHT:
+			ControllerOrder = ControllerOrder.RIGHT;
+			break;
+		case KeyEvent.VK_LEFT:
+			ControllerOrder = ControllerOrder.LEFT;
+			break;
+		case KeyEvent.VK_UP:
+			ControllerOrder = ControllerOrder.UP;
+			break;
+		case KeyEvent.VK_DOWN:
+			ControllerOrder = ControllerOrder.DOWN;
 			break;
 		}
 		return ControllerOrder.NONE;
