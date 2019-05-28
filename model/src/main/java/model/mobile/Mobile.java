@@ -3,9 +3,9 @@ package model.mobile;
 import java.awt.Point;
 
 import contract.IMobile;
+import contract.ObjectType;
+import contract.Sprite;
 import model.Element;
-import model.ObjectType;
-import model.Sprite;
 
 public class Mobile extends Element implements IMobile {
 	private Point position;

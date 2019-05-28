@@ -1,7 +1,7 @@
 package model.motionless;
 
-import model.ObjectType;
-import model.Sprite;
+import contract.ObjectType;
+import contract.Sprite;
 
 public class Dirt extends MotionlessElement {
 

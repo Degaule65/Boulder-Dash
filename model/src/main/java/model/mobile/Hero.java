@@ -2,9 +2,9 @@ package model.mobile;
 
 import java.io.IOException;
 import contract.IHero;
+import contract.ObjectType;
+import contract.Sprite;
 import model.IMap;
-import model.ObjectType;
-import model.Sprite;
 
 public class Hero extends Mobile implements IHero {
 	

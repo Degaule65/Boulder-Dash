@@ -12,13 +12,12 @@ import contract.IController;
 import contract.IHero;
 import contract.INonHeroMobile;
 import contract.IView;
+import contract.ObjectType;
 import fr.exia.showboard.BoardFrame;
 import model.IMap;
 import model.IModel;
 import model.Map;
 import model.Model;
-import model.ObjectType;
-import model.Sprite;
 import model.mobile.Hero;
 import model.mobile.Mobile;
 

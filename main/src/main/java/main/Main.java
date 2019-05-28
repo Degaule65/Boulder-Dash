@@ -5,11 +5,11 @@
 package main;
 
 import contract.ControllerOrder;
+import contract.ObjectType;
+import contract.Sprite;
 import controller.Controller;
 import model.IModel;
 import model.Model;
-import model.ObjectType;
-import model.Sprite;
 import view.View;
 public abstract class Main {
 

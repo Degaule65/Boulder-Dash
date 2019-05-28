@@ -1,4 +1,4 @@
-package model;
+package contract;
 
 import java.awt.Image;
 
