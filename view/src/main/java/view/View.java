@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JOptionPane;
-
+import java.util.LinkedList;
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IHero;
@@ -63,7 +63,7 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 	public void setController(final IController controller) {
 
 	}
-
+@Override
 	public void run() {
 
 		final BoardFrame boardFrame = new BoardFrame("coucou");
@@ -81,8 +81,7 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 			}
 		}
 		boardFrame.addPawn(this.getHero());
-		boardFrame.addPawn(this.getDiamond());
-		boardFrame.addPawn(this.getBoulder());
+		boardFrame.addPawn(this.getBoulders());
 
 		this.getMap().getObservable().addObserver(boardFrame.getObserver());
 		this.followHero();
@@ -139,11 +138,11 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 
 	}
 
-	public void setBoulder(INonHeroMobile boulder) {
+	public void setBoulders(INonHeroMobile boulder) {
 
 	}
 
-	public INonHeroMobile getBoulder() {
+	public INonHeroMobile getBoulders() {
 		return null;
 	}
 
