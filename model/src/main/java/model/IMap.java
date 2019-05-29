@@ -18,4 +18,8 @@ public interface IMap {
 	IHero getHero();
 
 	Observable getObservable();
+
+	int getWidth();
+
+	int getHeigth();
 }

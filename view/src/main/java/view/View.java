@@ -15,7 +15,6 @@ import contract.IMobile;
 import contract.IView;
 import fr.exia.showboard.BoardFrame;
 import model.IMap;
-import model.Map;
 
 public final class View implements IView, Runnable, KeyListener {
 
@@ -25,10 +24,10 @@ public final class View implements IView, Runnable, KeyListener {
 	private Rectangle closeView;
 	private IController orderPerformer;
 
-	public View(IMap map, IHero hero) {
+	public View(IMap map) {
 		this.setView(1);
-		this.setHero(hero); 
 		this.setMap(map);
+		this.setHero(map.getHero());
 		this.setCloseView(new Rectangle(0, 0, 11, 11));
 		SwingUtilities.invokeLater(this);
 	}
@@ -59,7 +58,7 @@ public final class View implements IView, Runnable, KeyListener {
 	@Override
 	public void run() {
 		final BoardFrame boardFrame = new BoardFrame("Rockford CESI version (free trial) (alpha)");
-		boardFrame.setDimension(new Dimension(Map.width, Map.heigth));
+		boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeigth()));
 		boardFrame.setDisplayFrame(this.closeView);
 		boardFrame.setSize(this.closeView.width * 32, this.closeView.height * 32);
 		boardFrame.setHeightLooped(false);
@@ -67,8 +66,8 @@ public final class View implements IView, Runnable, KeyListener {
 		boardFrame.setFocusable(true);
 		boardFrame.setFocusTraversalKeysEnabled(false);
 
-		for (int x = 0; x < Map.width; x++) {
-			for (int y = 0; y < Map.heigth; y++) {
+		for (int x = 0; x < this.getMap().getWidth(); x++) {
+			for (int y = 0; y < this.getMap().getHeigth(); y++) {
 				boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
 			}
 		}

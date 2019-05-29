@@ -8,17 +8,18 @@ import model.IMap;
 
 public class Hero extends Mobile implements IHero {
 
-	static String imageUP = "images/UP/UP.gif";
-	static String imageDown = "images/DOWN/DOWN.gif";
-	static String imageTurnLeft = "images/gauche/LEFT.gif";
-	static String imageTurnRight = "images/droite/RIGHT.gif";
-	static String imageNone = "images/héro_basique/Hero.gif";
+	private final static String imageUp = "images/hero/heroUp.gif";
+	private final static String imageDown = "images/hero/heroDown.gif";
+	private final static String imageLeft = "images/hero/heroLeft.gif";
+	private final static String imageRight = "images/hero/heroRight.gif";
+	private final static String imageNone = "images/hero/heroStandby.gif";
 	public static final char fileSym = 'H';
+
 	private static final Sprite sprite = new Sprite(Hero.fileSym, imageNone);
 	private static final Sprite spriteDown = new Sprite(Hero.fileSym, imageDown);
-	private static final Sprite spriteTurnLeft = new Sprite(Hero.fileSym, imageTurnLeft);
-	private static final Sprite spriteTurnRight = new Sprite(Hero.fileSym, imageTurnRight);
-	private static final Sprite spriteUP = new Sprite(Hero.fileSym, imageUP);
+	private static final Sprite spriteTurnLeft = new Sprite(Hero.fileSym, imageLeft);
+	private static final Sprite spriteTurnRight = new Sprite(Hero.fileSym, imageRight);
+	private static final Sprite spriteUP = new Sprite(Hero.fileSym, imageUp);
 
 	public Hero(final int x, final int y, final IMap map) {
 		super(sprite, ObjectType.HERO, x, y, map);

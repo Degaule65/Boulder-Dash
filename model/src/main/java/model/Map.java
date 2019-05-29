@@ -21,14 +21,18 @@ import model.motionless.MotionlessFactory;
 
 public class Map extends Observable implements IMap {
 
-	public static final int width = 6;
-	public static final int heigth = 4;
-	public static final int STYLE = 1;
+	private int width;
+	private int heigth;
+	private static int style;
 	private IElement[][] onMap = new IElement[width][heigth];
 	private List<IMobile> boulAndDia = new ArrayList<IMobile>();
 	private IHero hero;
 
-	public Map(final String content) {
+	public Map(final String content, final int width, final int heigth, final int style) {
+		this.setWidth(width);
+		this.setHeigth(heigth);
+		Map.setStyle(style);
+		this.onMap = new IElement[width][heigth];
 		this.buildMap(content);
 	}
 
@@ -95,4 +99,29 @@ public class Map extends Observable implements IMap {
 	public void setHero(IHero hero) {
 		this.hero = hero;
 	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeigth() {
+		return heigth;
+	}
+
+	public void setHeigth(int heigth) {
+		this.heigth = heigth;
+	}
+
+	public static int getStyle() {
+		return style;
+	}
+
+	public static void setStyle(int style) {
+		Map.style = style;
+	}
+
 }
