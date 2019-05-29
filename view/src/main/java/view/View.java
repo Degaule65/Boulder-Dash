@@ -59,7 +59,7 @@ public final class View implements IView, Runnable, KeyListener {
 
 	@Override
 	public void run() {
-		final BoardFrame boardFrame = new BoardFrame("coucou");
+		final BoardFrame boardFrame = new BoardFrame("Rockford CESI version (free trial) (alpha)");
 		boardFrame.setDimension(new Dimension(Map.width, Map.heigth));
 		boardFrame.setDisplayFrame(this.closeView);
 		boardFrame.setSize(this.closeView.width * 32, this.closeView.height * 32);
