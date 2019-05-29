@@ -8,11 +8,11 @@ import model.IMap;
 
 public class Hero extends Mobile implements IHero {
 
-	private final static String imageUp = "images/hero/heroUp.gif";
-	private final static String imageDown = "images/hero/heroDown.gif";
-	private final static String imageLeft = "images/hero/heroLeft.gif";
-	private final static String imageRight = "images/hero/heroRight.gif";
-	private final static String imageNone = "images/hero/heroStandby.gif";
+	private final static String imageUp = "images/Hero/heroUp.gif";
+	private final static String imageDown = "images/Hero/heroDown.gif";
+	private final static String imageLeft = "images/Hero/heroLeft.gif";
+	private final static String imageRight = "images/Hero/heroRight.gif";
+	private final static String imageNone = "images/Hero/heroStandby.gif";
 	public static final char fileSym = 'H';
 
 	private static final Sprite sprite = new Sprite(Hero.fileSym, imageNone);
