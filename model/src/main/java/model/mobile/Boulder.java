@@ -14,5 +14,9 @@ public class Boulder extends NonHeroMobile {
 		this.setX(x);
 		this.setY(y);
 	}
-
+	
+	public void falling() {
+		this.setY(this.getY()+1);
+		this.setHasMoved();
+	}
 }
