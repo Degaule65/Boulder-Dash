@@ -49,7 +49,7 @@ public class Map extends Observable implements IMap {
 		int y = 0;
 		for (String row : rows) {
 			for (char symbol : row.toCharArray()) {
-				Element element = AbstractFactory.getFactory(symbol).getFromFileSymbole(symbol, x, y);
+				Element element = AbstractFactory.getFactory(symbol).getFromFileSymbole(symbol, x, y, this.getMap());
 				if (element instanceof MotionlessElement) {
 					this.setOnTheMapXY(element, x, y);
 				} else if (element instanceof Mobile) {
@@ -82,5 +82,9 @@ public class Map extends Observable implements IMap {
 
 	public List<IMobile> getBoulAndDia() {
 		return boulAndDia;
+	}
+
+	public IMap getMap() {
+		return this;
 	}
 }

@@ -1,6 +1,7 @@
 package model.motionless;
 
 import model.IFactory;
+import model.IMap;
 
 public class MotionlessFactory implements IFactory {
 
@@ -22,7 +23,7 @@ public class MotionlessFactory implements IFactory {
 		return wall;
 	}
 
-	public MotionlessElement getFromFileSymbole(final char symbol, final int x, final int y) {
+	public MotionlessElement getFromFileSymbole(final char symbol, final int x, final int y, final IMap map) {
 		for (final MotionlessElement motionlessElement : motionlessElements) {
 			if (motionlessElement.getSprite().getStrImage() == symbol) {
 				return motionlessElement;

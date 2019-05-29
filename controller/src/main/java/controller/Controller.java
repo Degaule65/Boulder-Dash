@@ -57,7 +57,6 @@ public final class Controller implements IController {
 	 */
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
-		// move
 		case RIGHT:
 			this.model.getHero().moveRight();
 			break;
@@ -71,7 +70,7 @@ public final class Controller implements IController {
 			this.model.getHero().moveDown();
 			break;
 		default:
-			return;
+			break;
 		}
 	}
 

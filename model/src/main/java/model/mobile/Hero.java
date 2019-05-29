@@ -3,6 +3,7 @@ package model.mobile;
 import contract.IHero;
 import contract.ObjectType;
 import contract.Sprite;
+import model.IMap;
 
 public class Hero extends Mobile implements IHero {
 
@@ -19,8 +20,8 @@ public class Hero extends Mobile implements IHero {
 	private static final Sprite spriteTurnRight = new Sprite(Hero.fileSym, imageTurnRight);
 	private static final Sprite spriteUP = new Sprite(Hero.fileSym, imageUP);
 
-	public Hero(final int x, final int y) {
-		super(sprite, ObjectType.HERO, x, y);
+	public Hero(final int x, final int y, final IMap map) {
+		super(sprite, ObjectType.HERO, x, y, map);
 		spriteTurnLeft.loadImage();
 		spriteTurnRight.loadImage();
 		spriteUP.loadImage();
@@ -29,22 +30,26 @@ public class Hero extends Mobile implements IHero {
 
 	public void moveUp() {
 		this.setSprite(spriteUP);
-		this.setY(-1);
+		this.setY(this.getY()-1);
+		this.setHasMoved();
 	}
 
 	public void moveDown() {
 		this.setSprite(spriteDown);
-		this.setY(+1);
+		this.setY(this.getY()+1);
+		this.setHasMoved();
 	}
 
 	public void moveRight() {
 		this.setSprite(spriteTurnRight);
-		this.setX(+1);
+		this.setX(this.getX()+1);
+		this.setHasMoved();
 	}
 
 	public void moveLeft() {
 		this.setSprite(spriteTurnLeft);
-		this.setX(-1);
+		this.setX(this.getX()-1);
+		this.setHasMoved();
 	}
 
 }

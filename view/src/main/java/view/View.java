@@ -30,7 +30,7 @@ public final class View implements IView, Runnable, KeyListener {
 		this.setHero(hero);
 		this.setMap(map);
 		this.getHero().getSprite().loadImage();
-		this.setCloseView(new Rectangle(0, this.getHero().getY(), Map.width, 500));
+		this.setCloseView(new Rectangle(0, 0, Map.width * 16, Map.heigth * 16));
 		SwingUtilities.invokeLater(this);
 	}
 
@@ -62,8 +62,8 @@ public final class View implements IView, Runnable, KeyListener {
 		final BoardFrame boardFrame = new BoardFrame("coucou");
 		boardFrame.setDimension(new Dimension(Map.width, Map.heigth));
 		boardFrame.setDisplayFrame(this.closeView);
-		boardFrame.setSize(this.closeView.width * view, this.closeView.height * view);
-		boardFrame.setHeightLooped(true);
+		boardFrame.setSize(this.closeView.width * 32, this.closeView.height * 32);
+		boardFrame.setHeightLooped(false);
 		boardFrame.addKeyListener(this);
 		boardFrame.setFocusable(true);
 		boardFrame.setFocusTraversalKeysEnabled(false);
@@ -74,10 +74,10 @@ public final class View implements IView, Runnable, KeyListener {
 			}
 		}
 
-		boardFrame.addPawn(this.getHero());
 		for (IMobile pawn : map.getBoulAndDia()) {
 			boardFrame.addPawn(pawn);
 		}
+		boardFrame.addPawn(this.getHero());
 
 		this.getMap().getObservable().addObserver(boardFrame.getObserver());
 		this.followHero();
@@ -86,8 +86,8 @@ public final class View implements IView, Runnable, KeyListener {
 	}
 
 	public void followHero() {
-		this.getCloseView().y = this.getHero().getY() - 1;
-		this.getCloseView().x = this.getHero().getX() - 1;
+		this.getCloseView().y = this.getHero().getY() - 5;
+		this.getCloseView().x = this.getHero().getX() - 5;
 	}
 
 	public void displayMessage(String message) {
