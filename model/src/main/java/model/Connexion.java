@@ -25,6 +25,8 @@ public class Connexion {
 			while (resultset.next()) {
 				System.out.println(resultset.getString("Content"));
 				System.out.println(resultset.getInt("IDMap"));
+				System.out.println(resultset.getInt("Width"));
+				System.out.println(resultset.getInt("height"));
 				System.out.println();
 			}
 
@@ -36,12 +38,12 @@ public class Connexion {
 	public static Connection connecterDB() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			System.out.println("Driver is loaded");
+			System.out.println("~Driver is loaded~");
 			String url = "jdbc:mysql://localhost:3306/jpublankproject?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
 			String user = "root";
 			String password = "";
 			Connection connection = DriverManager.getConnection(url, user, password);
-			System.out.println("You are now connected to the DataBase");
+			System.out.println("~You are now connected to the DataBase~");
 			return connection;
 		} catch (Exception e) {
 			e.printStackTrace();
