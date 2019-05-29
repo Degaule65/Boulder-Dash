@@ -30,7 +30,7 @@ public final class View implements IView, Runnable, KeyListener {
 		this.setHero(hero);
 		this.setMap(map);
 		this.getHero().getSprite().loadImage();
-		this.setCloseView(new Rectangle(0, 0, Map.width * 16, Map.heigth * 16));
+		this.setCloseView(new Rectangle(0, 0, 10, 10));
 		SwingUtilities.invokeLater(this);
 	}
 
@@ -86,8 +86,8 @@ public final class View implements IView, Runnable, KeyListener {
 	}
 
 	public void followHero() {
-		this.getCloseView().y = this.getHero().getY() - 5;
-		this.getCloseView().x = this.getHero().getX() - 5;
+		this.getCloseView().y = this.getHero().getY()-5;
+		this.getCloseView().x = this.getHero().getX()-5;
 	}
 
 	public void displayMessage(String message) {
