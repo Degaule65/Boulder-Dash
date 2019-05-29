@@ -29,8 +29,8 @@ public class Map extends Observable implements IMap {
 	private Model model;
 
 	public Map(final String content, Model model) {
-		this.buildMap(content);
 		this.model = model;
+		this.buildMap(content);
 	}
 
 	@Override

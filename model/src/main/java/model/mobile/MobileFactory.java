@@ -17,11 +17,11 @@ public class MobileFactory implements IFactory {
 	}
 
 	public Mobile getFromFileSymbole(final char symbol, final int x, final int y) {
-		final Hero hero = new Hero(x, y);
-		final Boulder boulder = new Boulder(x, y);
-		final Diamond diamond = new Diamond(x, y);
+		Hero hero = new Hero(x, y);
+		Boulder boulder = new Boulder(x, y);
+		Diamond diamond = new Diamond(x, y);
 		Mobile[] mobile = { hero, boulder, diamond };
-		for (final Mobile mobileElement : mobile) {
+		for (Mobile mobileElement : mobile) {
 			if (mobileElement.getSprite().getStrImage() == symbol) {
 				return mobileElement;
 			}

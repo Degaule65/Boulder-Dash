@@ -28,18 +28,6 @@ public final class Controller implements IController {
 	}
 
 	/**
-	 * Control.
-	 */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IController#control()
-	 */
-	public void control() {
-
-	}
-
-	/**
 	 * Sets the view.
 	 *
 	 * @param pview the new view
@@ -92,7 +80,7 @@ public final class Controller implements IController {
 		// TODO Auto-generated method stub
 
 	}
-	
+
 	public IController getOrderPerformer() {
 		return this;
 	}

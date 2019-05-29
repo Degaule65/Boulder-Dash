@@ -6,6 +6,9 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
+
+import org.hamcrest.core.IsNull;
 
 import contract.ControllerOrder;
 import contract.IController;
@@ -25,9 +28,11 @@ public final class View implements IView, Runnable, KeyListener {
 	private IController orderPerformer;
 
 	public View(IMap map, IHero hero) {
-		// TODO Auto-generated constructor stub
 		this.setHero(hero);
 		this.setMap(map);
+		this.getHero().getSprite().loadImage();
+		this.setCloseView(new Rectangle(0, this.getHero().getY(), Map.width, 1000));
+		SwingUtilities.invokeLater(this);
 	}
 
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
@@ -55,7 +60,6 @@ public final class View implements IView, Runnable, KeyListener {
 
 	@Override
 	public void run() {
-
 		final BoardFrame boardFrame = new BoardFrame("coucou");
 		boardFrame.setDimension(new Dimension(Map.width, Map.heigth));
 		boardFrame.setDisplayFrame(this.closeView);
@@ -80,15 +84,11 @@ public final class View implements IView, Runnable, KeyListener {
 		this.followHero();
 
 		boardFrame.setVisible(true);
-
-	}
-
-	public void boulderView(IMap Map, IHero Hero) {
-
 	}
 
 	public void followHero() {
-		this.view = (this.getHero()).getY() - 1;
+		this.getCloseView().y = this.getHero().getY() - 1;
+		this.getCloseView().x = this.getHero().getX() - 1;
 	}
 
 	public void displayMessage(String message) {
@@ -111,6 +111,9 @@ public final class View implements IView, Runnable, KeyListener {
 		this.map = map;
 		for (int x = 0; x < Map.width; x++) {
 			for (int y = 0; y < Map.heigth; y++) {
+				if (this.getMap().getOnTheMapXY(x, y) == null) {
+					break;
+				}
 				this.getMap().getOnTheMapXY(x, y).getSprite().loadImage();
 			}
 		}
