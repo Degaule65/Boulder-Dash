@@ -16,6 +16,7 @@ public class Sprite {
 	public Sprite(final char character, final String imageName) {
 		this.setStrImage(character);
 		this.setImageName(imageName);
+		this.loadImage();
 	}
 
 	public char getStrImage() {
@@ -43,7 +44,7 @@ public class Sprite {
 		try {
 			this.image = (ImageIO.read(new File(this.getImageName())));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			//TODO Mettre image base
 			e.printStackTrace();
 		}
 	}

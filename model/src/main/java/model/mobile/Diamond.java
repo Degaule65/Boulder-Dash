@@ -11,7 +11,6 @@ public class Diamond extends NonHeroMobile {
 
 	public Diamond(final int x, final int y, final IMap map) {
 		super(SPRITE, ObjectType.DIAMOND, x, y, map);
-		SPRITE.loadImage();
 	}
 
 }

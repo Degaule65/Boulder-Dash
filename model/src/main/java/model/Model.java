@@ -8,7 +8,7 @@ import contract.IHero;
  * @author [enter name]
  */
 public class Model implements IModel {
-
+	//TODO move to map and remove model and IModel
 	private IHero hero;
 	private IMap map;
 

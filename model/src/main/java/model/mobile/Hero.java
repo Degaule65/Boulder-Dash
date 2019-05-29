@@ -22,10 +22,6 @@ public class Hero extends Mobile implements IHero {
 
 	public Hero(final int x, final int y, final IMap map) {
 		super(sprite, ObjectType.HERO, x, y, map);
-		spriteTurnLeft.loadImage();
-		spriteTurnRight.loadImage();
-		spriteUP.loadImage();
-		spriteDown.loadImage();
 	}
 
 	public void moveUp() {
