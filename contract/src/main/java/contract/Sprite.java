@@ -1,17 +1,13 @@
 package contract;
 
 import java.awt.Image;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 public class Sprite {
 
 	private char strImage;
 	private String imageName;
 	private Image image;
-	private boolean loadImage;
 
 	public Sprite(final char character, final String imageName) {
 		this.setStrImage(character);
@@ -40,16 +36,6 @@ public class Sprite {
 	}
 
 	public final void loadImage() {
-		// name + Model.STYLE + ".jpg"
-		try {
-			this.image = (ImageIO.read(new File(this.getImageName())));
-		} catch (IOException e) {
-			//TODO Mettre image base
-			e.printStackTrace();
-		}
-	}
-
-	public final boolean isImageLoaded() {
-		return this.loadImage;
+		this.image = (new ImageIcon(this.getImageName())).getImage();
 	}
 }

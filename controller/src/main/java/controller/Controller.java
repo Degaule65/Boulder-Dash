@@ -3,7 +3,7 @@ package controller;
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IView;
-import model.IModel;
+import model.IMap;
 
 /**
  * The Class Controller.
@@ -14,7 +14,7 @@ public final class Controller implements IController {
 	private IView view;
 
 	/** The model. */
-	private IModel model;
+	private IMap map;
 
 	/**
 	 * Instantiates a new controller.
@@ -22,9 +22,9 @@ public final class Controller implements IController {
 	 * @param view  the view
 	 * @param model the model
 	 */
-	public Controller(final IView view, final IModel model) {
+	public Controller(final IView view, final IMap map) {
 		this.setView(view);
-		this.setModel(model);
+		this.setModel(map);
 	}
 
 	/**
@@ -41,8 +41,8 @@ public final class Controller implements IController {
 	 *
 	 * @param model the new model
 	 */
-	private void setModel(final IModel model) {
-		this.model = model;
+	private void setModel(final IMap map) {
+		this.map = map;
 	}
 
 	/**
@@ -58,16 +58,16 @@ public final class Controller implements IController {
 	public void orderPerform(final ControllerOrder controllerOrder) {
 		switch (controllerOrder) {
 		case RIGHT:
-			this.model.getHero().moveRight();
+			this.map.getHero().moveRight();
 			break;
 		case LEFT:
-			this.model.getHero().moveLeft();
+			this.map.getHero().moveLeft();
 			break;
 		case UP:
-			this.model.getHero().moveUp();
+			this.map.getHero().moveUp();
 			break;
 		case DOWN:
-			this.model.getHero().moveDown();
+			this.map.getHero().moveDown();
 			break;
 		default:
 			break;

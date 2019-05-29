@@ -29,7 +29,7 @@ public final class View implements IView, Runnable, KeyListener {
 		this.setView(1);
 		this.setHero(hero);
 		this.setMap(map);
-		this.setCloseView(new Rectangle(0, 0, 10, 10));
+		this.setCloseView(new Rectangle(0, 0, 11, 11));
 		SwingUtilities.invokeLater(this);
 	}
 

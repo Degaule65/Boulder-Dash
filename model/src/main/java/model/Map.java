@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Observable;
 
 import contract.IElement;
+import contract.IHero;
 import contract.IMobile;
 import model.mobile.Hero;
 import model.mobile.Mobile;
@@ -20,15 +21,14 @@ import model.motionless.MotionlessFactory;
 
 public class Map extends Observable implements IMap {
 
-	public static final int width = 3;
-	public static final int heigth = 2;
+	public static final int width = 6;
+	public static final int heigth = 4;
 	public static final int STYLE = 1;
 	private IElement[][] onMap = new IElement[width][heigth];
 	private List<IMobile> boulAndDia = new ArrayList<IMobile>();
-	private Model model;
+	private IHero hero;
 
-	public Map(final String content, Model model) {
-		this.model = model;
+	public Map(final String content) {
 		this.buildMap(content);
 	}
 
@@ -55,7 +55,7 @@ public class Map extends Observable implements IMap {
 				} else if (element instanceof Mobile) {
 					this.setOnTheMapXY(MotionlessFactory.createBackground(), x, y);
 					if (element instanceof Hero) {
-						this.model.setHero((Hero) element);
+						this.setHero((Hero) element);
 					} else {
 						boulAndDia.add((IMobile) element);
 					}
@@ -86,5 +86,13 @@ public class Map extends Observable implements IMap {
 
 	public IMap getMap() {
 		return this;
+	}
+
+	public IHero getHero() {
+		return hero;
+	}
+
+	public void setHero(IHero hero) {
+		this.hero = hero;
 	}
 }

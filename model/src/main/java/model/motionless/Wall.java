@@ -5,7 +5,7 @@ import contract.Sprite;
 
 public class Wall extends MotionlessElement {
 
-	public static final char fileSym = ':';
+	public static final char fileSym = '=';
 	private static final Sprite SPRITE = new Sprite(Wall.fileSym, "images/wall.png");
 
 	public Wall() {
