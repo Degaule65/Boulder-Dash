@@ -9,7 +9,7 @@ public class Hero extends Mobile implements IHero {
 
 	static String imageUP = "images/UP/UP.gif";
 	static String imageDown = "images/DOWN/DOWN.gif";
-	static String imageTurnLeft = "images/gauche/HeroLeft.gif";
+	static String imageTurnLeft = "images/gauche/LEFT.gif";
 	static String imageTurnRight = "images/droite/RIGHT.gif";
 	static String imageNone = "images/héro_basique/Hero.gif";
 	public static final char fileSym = 'H';
