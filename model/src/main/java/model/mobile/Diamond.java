@@ -11,6 +11,12 @@ public class Diamond extends NonHeroMobile {
 
 	public Diamond(final int x, final int y, final IMap map) {
 		super(SPRITE, ObjectType.DIAMOND, x, y, map);
+		this.setX(x);
+		this.setY(y);
+	}
+
+	public static void setVisible(boolean b) {
+		return;
 	}
 
 }

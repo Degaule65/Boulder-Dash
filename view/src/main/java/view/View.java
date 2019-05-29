@@ -27,7 +27,7 @@ public final class View implements IView, Runnable, KeyListener {
 
 	public View(IMap map, IHero hero) {
 		this.setView(1);
-		this.setHero(hero);
+		this.setHero(hero); 
 		this.setMap(map);
 		this.setCloseView(new Rectangle(0, 0, 11, 11));
 		SwingUtilities.invokeLater(this);
