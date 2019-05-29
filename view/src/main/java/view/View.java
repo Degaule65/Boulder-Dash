@@ -8,12 +8,10 @@ import java.awt.event.KeyListener;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-import org.hamcrest.core.IsNull;
-
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IHero;
-import contract.INonHeroMobile;
+import contract.IMobile;
 import contract.IView;
 import fr.exia.showboard.BoardFrame;
 import model.IMap;
@@ -28,10 +26,11 @@ public final class View implements IView, Runnable, KeyListener {
 	private IController orderPerformer;
 
 	public View(IMap map, IHero hero) {
+		this.setView(1);
 		this.setHero(hero);
 		this.setMap(map);
 		this.getHero().getSprite().loadImage();
-		this.setCloseView(new Rectangle(0, this.getHero().getY(), Map.width, 1000));
+		this.setCloseView(new Rectangle(0, this.getHero().getY(), Map.width, 500));
 		SwingUtilities.invokeLater(this);
 	}
 
@@ -55,7 +54,7 @@ public final class View implements IView, Runnable, KeyListener {
 	 * @param controller the new controller
 	 */
 	public void setController(final IController controller) {
-
+		this.orderPerformer = controller;
 	}
 
 	@Override
@@ -76,7 +75,7 @@ public final class View implements IView, Runnable, KeyListener {
 		}
 
 		boardFrame.addPawn(this.getHero());
-		for (INonHeroMobile pawn : map.getBoulAndDia()) {
+		for (IMobile pawn : map.getBoulAndDia()) {
 			boardFrame.addPawn(pawn);
 		}
 

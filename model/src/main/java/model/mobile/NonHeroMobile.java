@@ -1,10 +1,9 @@
 package model.mobile;
 
-import contract.INonHeroMobile;
 import contract.ObjectType;
 import contract.Sprite;
 
-public class NonHeroMobile extends Mobile implements INonHeroMobile {
+public class NonHeroMobile extends Mobile {
 
 	public NonHeroMobile(Sprite sprite, ObjectType objectType, final int x, final int y) {
 		super(sprite, objectType, x, y);
