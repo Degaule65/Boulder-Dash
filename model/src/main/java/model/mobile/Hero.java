@@ -7,6 +7,8 @@ import contract.Sprite;
 import model.IMap;
 
 public class Hero extends Mobile implements IHero {
+	
+	
 
 	private final static String imageUp = "images/Hero/heroUp.gif";
 	private final static String imageDown = "images/Hero/heroDown.gif";
