@@ -4,10 +4,8 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IHero;
@@ -138,5 +136,5 @@ public final class View implements IView, Runnable, KeyListener {
 	public void setCloseView(final Rectangle closeView) {
 		this.closeView = closeView;
 	}
-
+	
 }
