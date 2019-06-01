@@ -90,18 +90,7 @@ public final class Controller implements IController {
 		IElement caseDownLeft = this.getMap().getOnTheMapXY(element.getX() + 1, element.getY() + 1);
 		IElement caseLeft = this.getMap().getOnTheMapXY(element.getX() + 1, element.getY());
 		IElement caseRight = this.getMap().getOnTheMapXY(element.getX() - 1, element.getY());
-		/*
-		 * if (elementdown.getObjectType() == ObjectType.DIAMOND ||
-		 * elementdown.getObjectType() == ObjectType.BOULDER ||
-		 * elementdown.getObjectType() == ObjectType.WALL) { element.setIsFalling(true);
-		 * if (elementdownright.getObjectType() == ObjectType.BACKGROUND &&
-		 * elementright.getObjectType() == ObjectType.BACKGROUND) { element.moveRight();
-		 * 
-		 * } else if (elementdownleft.getObjectType() == ObjectType.BACKGROUND &&
-		 * elementleft.getObjectType() == ObjectType.BACKGROUND) { element.moveLeft(); }
-		 * } else if (elementdown.getObjectType() == ObjectType.BACKGROUND) {
-		 * element.moveDown(); }
-		 */
+		
 		if (caseDown.getObjectType() == ObjectType.BACKGROUND) {
 			Mobile pawnDown = pawns[element.getX()][element.getY() + 1];
 			if (pawnDown == null) {

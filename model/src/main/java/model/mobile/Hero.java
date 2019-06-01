@@ -28,74 +28,23 @@ public class Hero extends Mobile implements IHero {
 	}
 
 	public void moveUp() {
-		IElement element = this.getMap().getOnTheMapXY(this.getX(), this.getY() - 1);
-
-		if (element.getObjectType() == ObjectType.DIAMOND) {
-			this.setSprite(spriteUp);
-			this.setY(this.getY() + 1);
-			this.setHasMoved();
-		} else if (element.getObjectType() == ObjectType.BOULDER) {
-			this.setSprite(spriteUp);
-		} else if (element.getObjectType() == ObjectType.WALL) {
-			this.setSprite(spriteUp);
-		} else {
-			this.setSprite(spriteUp);
 			this.setY(this.getY() - 1);
 			this.setHasMoved();
-		}
 	}
 
 	public void moveDown() {
-		IElement element = this.getMap().getOnTheMapXY(this.getX(), this.getY() + 1);
-
-		if (element.getObjectType() == ObjectType.DIAMOND) {
-			this.setSprite(spriteDown);
-			Diamond.setVisible(false);
-		} else if (element.getObjectType() == ObjectType.BOULDER) {
-			this.setSprite(spriteDown);
-		} else if (element.getObjectType() == ObjectType.WALL) {
-			this.setSprite(spriteDown);
-		} else {
-			this.setSprite(spriteDown);
 			this.setY(this.getY() + 1);
 			this.setHasMoved();
-		}
-
 	}
 
 	public void moveRight() {
-		IElement element = this.getMap().getOnTheMapXY(this.getX() + 1, this.getY());
-
-		if (element.getObjectType() == ObjectType.DIAMOND) {
-			this.setSprite(spriteTurnRight);
-			Diamond.setVisible(false);
-		} else if (element.getObjectType() == ObjectType.BOULDER) {
-			this.setSprite(spriteTurnRight);
-		} else if (element.getObjectType() == ObjectType.WALL) {
-			this.setSprite(spriteTurnRight);
-		} else {
-			this.setSprite(spriteTurnRight);
 			this.setX(this.getX() + 1);
 			this.setHasMoved();
-		}
 	}
 
 	public void moveLeft() {
-		IElement element = this.getMap().getOnTheMapXY(this.getX() - 1, this.getY());
-
-		if (element.getObjectType() == ObjectType.DIAMOND) {
-			this.setSprite(spriteTurnLeft);
-
-		} else if (element.getObjectType() == ObjectType.BOULDER) {
-			this.setSprite(spriteTurnLeft);
-		} else if (element.getObjectType() == ObjectType.WALL) {
-			this.setSprite(spriteTurnLeft);
-		} else {
-			this.setSprite(spriteTurnLeft);
 			this.setX(this.getX() - 1);
 			this.setHasMoved();
-		}
-
 	}
 
 	public void changeSprite(ControllerOrder order) {
