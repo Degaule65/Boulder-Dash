@@ -117,8 +117,8 @@ public class Hero extends Mobile implements IHero {
 		}
 	}
 
-	public void setAlive(boolean state) {
-		this.alive = state;
+	public void setAlive(boolean alive) {
+		this.alive = alive;
 	}
 
 	@Override

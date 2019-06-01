@@ -2,10 +2,14 @@ package controller;
 
 import contract.ControllerOrder;
 import contract.IController;
+import contract.IElement;
 import contract.IView;
+import contract.ObjectType;
 import fr.exia.showboard.BoardFrame;
 import fr.exia.showboard.IPawn;
 import model.IMap;
+import model.mobile.Hero;
+import model.mobile.Mobile;
 import model.mobile.NonHeroMobile;
 
 /**
@@ -41,6 +45,12 @@ public final class Controller implements IController {
 	public void play() {
 		// TODO Auto-generated method stub
 		while (this.getMap().getHero().isAlive()) {
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			this.getMap().getHero().changeSprite(this.getOrder());
 			switch (this.getOrder()) {
 			case RIGHT:
@@ -57,12 +67,79 @@ public final class Controller implements IController {
 			default:
 				break;
 			}
+			Mobile[][] pawns = new Mobile[this.getMap().getWidth()][this.getMap().getHeigth()];
 			for (IPawn pawn : this.getBoardFrame().getPawns()) {
 				if (pawn instanceof NonHeroMobile) {
-					this.gravity((NonHeroMobile) pawn);
+					pawns[pawn.getX()][pawn.getY()] = (NonHeroMobile) pawn;
+				}
+				if (pawn instanceof Hero) {
+					pawns[pawn.getX()][pawn.getY()] = (Hero) pawn;
+				}
+			}
+			for (IPawn pawn : this.getBoardFrame().getPawns()) {
+				if (pawn instanceof NonHeroMobile) {
+					this.gravity((NonHeroMobile) pawn, pawns);
 				}
 			}
 		}
+	}
+
+	private void gravity(NonHeroMobile element, Mobile[][] pawns) {
+		IElement caseDown = this.getMap().getOnTheMapXY(element.getX(), element.getY() + 1);
+		IElement caseDownRight = this.getMap().getOnTheMapXY(element.getX() - 1, element.getY() + 1);
+		IElement caseDownLeft = this.getMap().getOnTheMapXY(element.getX() + 1, element.getY() + 1);
+		IElement caseLeft = this.getMap().getOnTheMapXY(element.getX() + 1, element.getY());
+		IElement caseRight = this.getMap().getOnTheMapXY(element.getX() - 1, element.getY());
+		/*
+		 * if (elementdown.getObjectType() == ObjectType.DIAMOND ||
+		 * elementdown.getObjectType() == ObjectType.BOULDER ||
+		 * elementdown.getObjectType() == ObjectType.WALL) { element.setIsFalling(true);
+		 * if (elementdownright.getObjectType() == ObjectType.BACKGROUND &&
+		 * elementright.getObjectType() == ObjectType.BACKGROUND) { element.moveRight();
+		 * 
+		 * } else if (elementdownleft.getObjectType() == ObjectType.BACKGROUND &&
+		 * elementleft.getObjectType() == ObjectType.BACKGROUND) { element.moveLeft(); }
+		 * } else if (elementdown.getObjectType() == ObjectType.BACKGROUND) {
+		 * element.moveDown(); }
+		 */
+		if (caseDown.getObjectType() == ObjectType.BACKGROUND) {
+			Mobile pawnDown = pawns[element.getX()][element.getY() + 1];
+			if (pawnDown == null) {
+				element.moveDown();
+				pawns[element.getX()][element.getY()] = null;
+				pawns[element.getX()][element.getY() - 1] = element;
+				return;
+			} else if (element.getIsFalling() && pawnDown instanceof Hero) {
+				element.moveDown();
+				pawns[element.getX()][element.getY()] = null;
+				pawns[element.getX()][element.getY() - 1] = element;
+				this.getMap().getHero().setIsAlive(false);
+				return;
+			}
+			else if (pawnDown.getObjectType() == ObjectType.DIAMOND || pawnDown.getObjectType() == ObjectType.BOULDER
+					|| pawnDown.getObjectType() == ObjectType.WALL) {
+				Mobile pawnLeft = pawns[element.getX() - 1][element.getY()];
+				Mobile pawnDownLeft = pawns[element.getX() - 1][element.getY() + 1];
+				Mobile pawnRight = pawns[element.getX() + 1][element.getY()];
+				Mobile pawnDownRight = pawns[element.getX() + 1][element.getY() + 1];
+				if (caseDownLeft.getObjectType() == ObjectType.BACKGROUND
+						&& caseLeft.getObjectType() == ObjectType.BACKGROUND && pawnLeft == null
+						&& pawnDownLeft == null) {
+					element.moveLeft();
+					pawns[element.getX()][element.getY()] = null;
+					pawns[element.getX() - 1][element.getY()] = element;
+					return;
+				} else if (caseDownRight.getObjectType() == ObjectType.BACKGROUND
+						&& caseRight.getObjectType() == ObjectType.BACKGROUND && pawnRight == null
+						&& pawnDownRight == null) {
+					element.moveRight();
+					pawns[element.getX()][element.getY()] = null;
+					pawns[element.getX() + 1][element.getY()] = element;
+					return;
+				}
+			}
+		}
+		element.setIsFalling(false);
 	}
 
 	/**
@@ -119,10 +196,6 @@ public final class Controller implements IController {
 
 	public void setBoardFrame(BoardFrame boardFrame) {
 		this.boardFrame = boardFrame;
-	}
-	
-	private void gravity(NonHeroMobile element) {
-		
 	}
 
 }
