@@ -7,6 +7,7 @@ import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
+import java.io.Closeable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -436,5 +437,12 @@ class BoardPanel extends JPanel implements Observer {
 	private int getSquareSizeHeight() {
 		return this.getHeight() / this.getDisplayFrame().height;
 	}
+	
 
+	
+	
+
+	
+	
+	
 }

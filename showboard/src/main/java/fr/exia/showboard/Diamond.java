@@ -29,7 +29,6 @@ public void run() {
 	while(true){
 		try {Thread.sleep(STOP);}
 		catch (InterruptedException e) {}
-		
 		this.str="Remaining diament :"+this.nbrDiamond;
 		}
 }}
