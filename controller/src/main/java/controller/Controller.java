@@ -4,7 +4,9 @@ import contract.ControllerOrder;
 import contract.IController;
 import contract.IView;
 import fr.exia.showboard.BoardFrame;
+import fr.exia.showboard.IPawn;
 import model.IMap;
+import model.mobile.NonHeroMobile;
 
 /**
  * The Class Controller.
@@ -54,6 +56,11 @@ public final class Controller implements IController {
 				this.getMap().getHero().moveDown();
 			default:
 				break;
+			}
+			for (IPawn pawn : this.getBoardFrame().getPawns()) {
+				if (pawn instanceof NonHeroMobile) {
+					this.gravity((NonHeroMobile) pawn);
+				}
 			}
 		}
 	}
@@ -112,6 +119,10 @@ public final class Controller implements IController {
 
 	public void setBoardFrame(BoardFrame boardFrame) {
 		this.boardFrame = boardFrame;
+	}
+	
+	private void gravity(NonHeroMobile element) {
+		
 	}
 
 }
