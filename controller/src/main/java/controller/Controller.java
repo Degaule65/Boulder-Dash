@@ -3,6 +3,7 @@ package controller;
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IView;
+import fr.exia.showboard.BoardFrame;
 import model.IMap;
 
 /**
@@ -16,6 +17,9 @@ public final class Controller implements IController {
 
 	/** The model. */
 	private IMap map;
+	
+	/** The BoardFrame */
+	private BoardFrame boardFrame;
 
 	/**
 	 * Instantiates a new controller.
@@ -25,6 +29,7 @@ public final class Controller implements IController {
 	 */
 	public Controller(final IView view, final IMap map) {
 		this.setView(view);
+		this.setBoardFrame(view.getBoardFrame());
 		this.setModel(map);
 	}
 
@@ -83,6 +88,14 @@ public final class Controller implements IController {
 
 	public IController getOrderPerformer() {
 		return this;
+	}
+
+	public BoardFrame getBoardFrame() {
+		return boardFrame;
+	}
+
+	public void setBoardFrame(BoardFrame boardFrame) {
+		this.boardFrame = boardFrame;
 	}
 
 }

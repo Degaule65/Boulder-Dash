@@ -137,7 +137,8 @@ public final class View implements IView, Runnable, KeyListener {
 	public void setCloseView(final Rectangle closeView) {
 		this.closeView = closeView;
 	}
-
+	
+	@Override
 	public BoardFrame getBoardFrame() {
 		return boardFrame;
 	}
