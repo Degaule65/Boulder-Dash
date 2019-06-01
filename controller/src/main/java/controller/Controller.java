@@ -113,7 +113,7 @@ public final class Controller implements IController {
 				element.moveDown();
 				pawns[element.getX()][element.getY()] = null;
 				pawns[element.getX()][element.getY() - 1] = element;
-				this.getMap().getHero().setIsAlive(false);
+				this.getMap().getHero().setAlive(false);
 				return;
 			}
 			else if (pawnDown.getObjectType() == ObjectType.DIAMOND || pawnDown.getObjectType() == ObjectType.BOULDER
