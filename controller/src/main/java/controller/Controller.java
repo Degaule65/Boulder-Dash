@@ -17,10 +17,10 @@ public final class Controller implements IController {
 
 	/** The model. */
 	private IMap map;
-	
+
 	/** The BoardFrame */
 	private BoardFrame boardFrame;
-	
+
 	private ControllerOrder order;
 
 	/**
@@ -32,7 +32,30 @@ public final class Controller implements IController {
 	public Controller(final IView view, final IMap map) {
 		this.setView(view);
 		this.setBoardFrame(view.getBoardFrame());
-		this.setModel(map);
+		this.setMap(map);
+	}
+
+	@Override
+	public void play() {
+		// TODO Auto-generated method stub
+		while (this.getMap().getHero().isAlive()) {
+			this.getMap().getHero().changeSprite(this.getOrder());
+			switch (this.getOrder()) {
+			case RIGHT:
+				this.getMap().getHero().moveRight();
+				break;
+			case LEFT:
+				this.getMap().getHero().moveLeft();
+				break;
+			case UP:
+				this.getMap().getHero().moveUp();
+				break;
+			case DOWN:
+				this.getMap().getHero().moveDown();
+			default:
+				break;
+			}
+		}
 	}
 
 	/**
@@ -45,59 +68,34 @@ public final class Controller implements IController {
 	}
 
 	/**
-	 * Sets the model.
+	 * Return the view.
+	 *
+	 * @param pview the new view
+	 */
+	public IView getView() {
+		return this.view;
+	}
+
+	/**
+	 * Sets the map.
 	 *
 	 * @param model the new model
 	 */
-	private void setModel(final IMap map) {
+	private void setMap(final IMap map) {
 		this.map = map;
 	}
 
 	/**
-	 * Order perform.
+	 * Return the map.
 	 *
-	 * @param controllerOrder the controller order
+	 * @param pview the new view
 	 */
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see contract.IController#orderPerform(contract.ControllerOrder)
-	 */
-	public void orderPerform(final ControllerOrder controllerOrder) {
-		switch (controllerOrder) {
-		case RIGHT:
-			this.map.getHero().moveRight();
-			break;
-		case LEFT:
-			this.map.getHero().moveLeft();
-			break;
-		case UP:
-			this.map.getHero().moveUp();
-			break;
-		case DOWN:
-			this.map.getHero().moveDown();
-			break;
-		default:
-			break;
-		}
-	}
-
-	@Override
-	public void play() {
-		// TODO Auto-generated method stub
-		
+	private IMap getMap() {
+		return this.map;
 	}
 
 	public IController getOrderPerformer() {
 		return this;
-	}
-
-	public BoardFrame getBoardFrame() {
-		return boardFrame;
-	}
-
-	public void setBoardFrame(BoardFrame boardFrame) {
-		this.boardFrame = boardFrame;
 	}
 
 	public ControllerOrder getOrder() {
@@ -106,6 +104,14 @@ public final class Controller implements IController {
 
 	public void setOrder(ControllerOrder order) {
 		this.order = order;
+	}
+
+	public BoardFrame getBoardFrame() {
+		return boardFrame;
+	}
+
+	public void setBoardFrame(BoardFrame boardFrame) {
+		this.boardFrame = boardFrame;
 	}
 
 }

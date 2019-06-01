@@ -9,18 +9,19 @@ import model.IMap;
 
 public class Hero extends Mobile implements IHero {
 
-	private final static String imageUp = "images/Hero/heroUp.gif";
-	private final static String imageDown = "images/Hero/heroDown.gif";
-	private final static String imageLeft = "images/Hero/heroLeft.gif";
-	private final static String imageRight = "images/Hero/heroRight.gif";
+	private final String imageUp = "images/Hero/heroUp.gif";
+	private final String imageDown = "images/Hero/heroDown.gif";
+	private final String imageLeft = "images/Hero/heroLeft.gif";
+	private final String imageRight = "images/Hero/heroRight.gif";
 	private final static String imageNone = "images/Hero/heroStandby.gif";
 	public static final char fileSym = 'H';
+	private boolean alive = true;
 
-	private static final Sprite sprite = new Sprite(Hero.fileSym, imageNone);
-	private static final Sprite spriteDown = new Sprite(Hero.fileSym, imageDown);
-	private static final Sprite spriteTurnLeft = new Sprite(Hero.fileSym, imageLeft);
-	private static final Sprite spriteTurnRight = new Sprite(Hero.fileSym, imageRight);
-	private static final Sprite spriteUp = new Sprite(Hero.fileSym, imageUp);
+	private final static Sprite sprite = new Sprite(Hero.fileSym, imageNone);
+	private final Sprite spriteDown = new Sprite(Hero.fileSym, imageDown);
+	private final Sprite spriteTurnLeft = new Sprite(Hero.fileSym, imageLeft);
+	private final Sprite spriteTurnRight = new Sprite(Hero.fileSym, imageRight);
+	private final Sprite spriteUp = new Sprite(Hero.fileSym, imageUp);
 
 	public Hero(final int x, final int y, final IMap map) {
 		super(sprite, ObjectType.HERO, x, y, map);
@@ -114,5 +115,14 @@ public class Hero extends Mobile implements IHero {
 		default:
 			break;
 		}
+	}
+
+	public void setAlive(boolean state) {
+		this.alive = state;
+	}
+
+	@Override
+	public boolean isAlive() {
+		return this.alive;
 	}
 }

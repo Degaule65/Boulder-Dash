@@ -7,5 +7,6 @@ public interface IHero extends IMobile {
 	void moveDown();
 	int getY();
 	int getX();
-	
+	boolean isAlive();
+	void changeSprite(ControllerOrder order);
 }
