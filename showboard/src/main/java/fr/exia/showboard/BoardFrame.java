@@ -2,6 +2,7 @@ package fr.exia.showboard;
 
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.util.List;
 import java.util.Observer;
 
 import javax.swing.JFrame;
@@ -193,4 +194,13 @@ public class BoardFrame extends JFrame implements IBoard {
     public final void setHeightLooped(final Boolean heightLooped) {
         this.getBoardPanel().setHeightLooped(heightLooped);
     }
+    
+    /**
+	 * Gets the boardframe's pawns.
+	 *
+	 * @return the pawns
+	 */
+	public List<IPawn> getPawns() {
+		return this.getBoardPanel().getPawns();
+	}
 }

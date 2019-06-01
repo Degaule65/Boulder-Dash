@@ -21,6 +21,7 @@ public final class View implements IView, Runnable, KeyListener {
 	private int view;
 	private Rectangle closeView;
 	private IController orderPerformer;
+	private BoardFrame boardFrame;
 
 	public View(IMap map) {
 		this.setView(1);
@@ -55,30 +56,30 @@ public final class View implements IView, Runnable, KeyListener {
 
 	@Override
 	public void run() {
-		final BoardFrame boardFrame = new BoardFrame("Rockford CESI version (free trial) (alpha)");
-		boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeigth()));
-		boardFrame.setDisplayFrame(this.closeView);
-		boardFrame.setSize(this.closeView.width * 32, this.closeView.height * 32);
-		boardFrame.setHeightLooped(false);
-		boardFrame.addKeyListener(this);
-		boardFrame.setFocusable(true);
-		boardFrame.setFocusTraversalKeysEnabled(false);
+		this.setBoardFrame(new BoardFrame("Rockford CESI version (free trial) (alpha)"));
+		this.boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeigth()));
+		this.boardFrame.setDisplayFrame(this.closeView);
+		this.boardFrame.setSize(this.closeView.width * 32, this.closeView.height * 32);
+		this.boardFrame.setHeightLooped(false);
+		this.boardFrame.addKeyListener(this);
+		this.boardFrame.setFocusable(true);
+		this.boardFrame.setFocusTraversalKeysEnabled(false);
 
 		for (int x = 0; x < this.getMap().getWidth(); x++) {
 			for (int y = 0; y < this.getMap().getHeigth(); y++) {
-				boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
+				this.boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
 			}
 		}
 
 		for (IMobile pawn : map.getBoulAndDia()) {
-			boardFrame.addPawn(pawn);
+			this.boardFrame.addPawn(pawn);
 		}
-		boardFrame.addPawn(this.getHero());
+		this.boardFrame.addPawn(this.getHero());
 
-		this.getMap().getObservable().addObserver(boardFrame.getObserver());
+		this.getMap().getObservable().addObserver(this.boardFrame.getObserver());
 		this.followHero();
 
-		boardFrame.setVisible(true);
+		this.boardFrame.setVisible(true);
 	}
 
 	public void followHero() {
@@ -135,6 +136,14 @@ public final class View implements IView, Runnable, KeyListener {
 
 	public void setCloseView(final Rectangle closeView) {
 		this.closeView = closeView;
+	}
+
+	public BoardFrame getBoardFrame() {
+		return boardFrame;
+	}
+
+	public void setBoardFrame(BoardFrame boardFrame) {
+		this.boardFrame = boardFrame;
 	}
 	
 }
