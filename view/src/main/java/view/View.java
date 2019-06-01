@@ -22,6 +22,7 @@ public final class View implements IView, Runnable, KeyListener {
 	private Rectangle closeView;
 	private IController orderPerformer;
 	private BoardFrame boardFrame;
+	private int currentKey;
 
 	public View(IMap map) {
 		this.setView(1);
@@ -108,18 +109,23 @@ public final class View implements IView, Runnable, KeyListener {
 	}
 
 	public void keyTyped(KeyEvent keyEvent) {
-
+		
 	}
 
 	public void keyPressed(KeyEvent keyEvent) {
-		this.getOrderPerformer().orderPerform(keyCodeToControllerOrder(keyEvent.getKeyCode()));
+		this.currentKey = keyEvent.getKeyCode();
+		this.getOrderPerformer().setOrder(keyCodeToControllerOrder(keyEvent.getKeyCode()));
+	}
+	
+	public void keyReleased(KeyEvent keyEvent) {
+		if (keyEvent.getKeyCode() == this.currentKey) {
+			this.getOrderPerformer().setOrder(ControllerOrder.NONE);
+			this.currentKey = 0;
+		}
 	}
 
 	private IController getOrderPerformer() {
 		return this.orderPerformer;
-	}
-
-	public void keyReleased(KeyEvent keyEvent) {
 	}
 
 	public IHero getHero() {

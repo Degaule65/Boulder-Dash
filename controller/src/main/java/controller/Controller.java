@@ -20,6 +20,8 @@ public final class Controller implements IController {
 	
 	/** The BoardFrame */
 	private BoardFrame boardFrame;
+	
+	private ControllerOrder order;
 
 	/**
 	 * Instantiates a new controller.
@@ -96,6 +98,14 @@ public final class Controller implements IController {
 
 	public void setBoardFrame(BoardFrame boardFrame) {
 		this.boardFrame = boardFrame;
+	}
+
+	public ControllerOrder getOrder() {
+		return order;
+	}
+
+	public void setOrder(ControllerOrder order) {
+		this.order = order;
 	}
 
 }
