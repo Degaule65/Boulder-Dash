@@ -192,15 +192,21 @@ public final class Controller implements IController {
 						this.getMap().getHero().getY());
 				this.getBoardFrame().addSquare(MotionlessFactory.createBackground(), this.getMap().getHero().getX() + 1,
 						this.getMap().getHero().getY());
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 				this.getMap().getHero().moveRight();
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 				return;
 			} else if (caseRight.getObjectType() == ObjectType.BACKGROUND) {
 				Mobile pawnRight = pawns[this.getMap().getHero().getX() + 1][this.getMap().getHero().getY()];
 				if (pawnRight == null) {
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 					this.getMap().getHero().moveRight();
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 				} else if (pawnRight.getObjectType() == ObjectType.DIAMOND) {
 					this.collectDiamond(pawnRight, pawns);
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 					this.getMap().getHero().moveRight();
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 				} else if (pawnRight.getObjectType() == ObjectType.BOULDER) {
 					IElement caseBehindBoulder = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() + 2,
 							this.getMap().getHero().getY());
@@ -210,11 +216,15 @@ public final class Controller implements IController {
 						pawns[pawnRight.getX()][pawnRight.getY()] = null;
 						((NonHeroMobile) pawnRight).moveRight();
 						pawns[pawnRight.getX()][pawnRight.getY()] = pawnRight;
+						pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 						this.getMap().getHero().moveRight();
+						pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 					}
 				}
 			} else if (caseRight.getObjectType() == ObjectType.EXIT_OPEN) {
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 				this.getMap().getHero().moveRight();
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 			}
 			break;
 		case LEFT:
@@ -223,15 +233,20 @@ public final class Controller implements IController {
 						this.getMap().getHero().getY());
 				this.getBoardFrame().addSquare(MotionlessFactory.createBackground(), this.getMap().getHero().getX() - 1,
 						this.getMap().getHero().getY());
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 				this.getMap().getHero().moveLeft();
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 				return;
 			} else if (caseLeft.getObjectType() == ObjectType.BACKGROUND) {
 				Mobile pawnLeft = pawns[this.getMap().getHero().getX() - 1][this.getMap().getHero().getY()];
 				if (pawnLeft == null) {
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 					this.getMap().getHero().moveLeft();
 				} else if (pawnLeft.getObjectType() == ObjectType.DIAMOND) {
 					this.collectDiamond(pawnLeft, pawns);
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 					this.getMap().getHero().moveLeft();
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 				} else if (pawnLeft.getObjectType() == ObjectType.BOULDER) {
 					IElement caseBehindBoulder = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() - 2,
 							this.getMap().getHero().getY());
@@ -241,11 +256,15 @@ public final class Controller implements IController {
 						pawns[pawnLeft.getX()][pawnLeft.getY()] = null;
 						((NonHeroMobile) pawnLeft).moveLeft();
 						pawns[pawnLeft.getX()][pawnLeft.getY()] = pawnLeft;
+						pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 						this.getMap().getHero().moveLeft();
+						pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 					}
 				}
 			} else if (caseLeft.getObjectType() == ObjectType.EXIT_OPEN) {
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 				this.getMap().getHero().moveLeft();
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 			}
 			break;
 		case DOWN:
@@ -254,18 +273,25 @@ public final class Controller implements IController {
 						this.getMap().getHero().getY() + 1);
 				this.getBoardFrame().addSquare(MotionlessFactory.createBackground(), this.getMap().getHero().getX(),
 						this.getMap().getHero().getY() + 1);
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 				this.getMap().getHero().moveDown();
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 				return;
 			} else if (caseDown.getObjectType() == ObjectType.BACKGROUND) {
 				Mobile pawnDown = pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY() + 1];
 				if (pawnDown == null) {
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 					this.getMap().getHero().moveDown();
 				} else if (pawnDown.getObjectType() == ObjectType.DIAMOND) {
 					this.collectDiamond(pawnDown, pawns);
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 					this.getMap().getHero().moveDown();
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 				}
 			} else if (caseDown.getObjectType() == ObjectType.EXIT_OPEN) {
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 				this.getMap().getHero().moveDown();
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 			}
 			break;
 		case UP:
@@ -274,18 +300,25 @@ public final class Controller implements IController {
 						this.getMap().getHero().getY() - 1);
 				this.getBoardFrame().addSquare(MotionlessFactory.createBackground(), this.getMap().getHero().getX(),
 						this.getMap().getHero().getY() - 1);
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 				this.getMap().getHero().moveUp();
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 				return;
 			} else if (caseUp.getObjectType() == ObjectType.BACKGROUND) {
 				Mobile pawnUp = pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY() - 1];
 				if (pawnUp == null) {
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 					this.getMap().getHero().moveUp();
 				} else if (pawnUp.getObjectType() == ObjectType.DIAMOND) {
 					this.collectDiamond(pawnUp, pawns);
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 					this.getMap().getHero().moveUp();
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 				}
 			} else if (caseUp.getObjectType() == ObjectType.EXIT_OPEN) {
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 				this.getMap().getHero().moveUp();
+				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap().getHero();
 			}
 			break;
 		default:
