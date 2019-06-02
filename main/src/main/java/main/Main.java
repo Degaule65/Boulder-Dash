@@ -13,7 +13,7 @@ import view.View;
 public abstract class Main {
 
 	public static void main(final String[] args) {
-		final IMap map = new Map("======;=/o$/=;=H  /=;======", 6, 4, 1);
+		final IMap map = new Map("======;=/o$/=;=H  E=;======", 6, 4, 1);
 		final View view = new View(map);
 		try {
 			Thread.sleep(1000);

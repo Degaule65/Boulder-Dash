@@ -195,8 +195,6 @@ public final class Controller implements IController {
 						this.getMap().getHero().getY());
 				this.getMap().getHero().moveRight();
 				return;
-			} else if (caseRight.getObjectType() == ObjectType.WALL) {
-				return;
 			} else if (caseRight.getObjectType() == ObjectType.BACKGROUND) {
 				Mobile pawnRight = pawns[this.getMap().getHero().getX() + 1][this.getMap().getHero().getY()];
 				if (pawnRight == null) {
@@ -228,8 +226,6 @@ public final class Controller implements IController {
 				this.getBoardFrame().addSquare(MotionlessFactory.createBackground(), this.getMap().getHero().getX() - 1,
 						this.getMap().getHero().getY());
 				this.getMap().getHero().moveLeft();
-				return;
-			} else if (caseLeft.getObjectType() == ObjectType.WALL) {
 				return;
 			} else if (caseLeft.getObjectType() == ObjectType.BACKGROUND) {
 				Mobile pawnLeft = pawns[this.getMap().getHero().getX() - 1][this.getMap().getHero().getY()];
@@ -263,8 +259,6 @@ public final class Controller implements IController {
 						this.getMap().getHero().getY() + 1);
 				this.getMap().getHero().moveDown();
 				return;
-			} else if (caseDown.getObjectType() == ObjectType.WALL) {
-				return;
 			} else if (caseDown.getObjectType() == ObjectType.BACKGROUND) {
 				Mobile pawnDown = pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY() + 1];
 				if (pawnDown == null) {
@@ -285,8 +279,6 @@ public final class Controller implements IController {
 				this.getBoardFrame().addSquare(MotionlessFactory.createBackground(), this.getMap().getHero().getX(),
 						this.getMap().getHero().getY() - 1);
 				this.getMap().getHero().moveUp();
-				return;
-			} else if (caseUp.getObjectType() == ObjectType.WALL) {
 				return;
 			} else if (caseUp.getObjectType() == ObjectType.BACKGROUND) {
 				Mobile pawnUp = pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY() - 1];

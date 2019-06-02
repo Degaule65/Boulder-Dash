@@ -9,6 +9,7 @@ import model.mobile.Hero;
 import model.mobile.MobileFactory;
 import model.motionless.Background;
 import model.motionless.Dirt;
+import model.motionless.Exit;
 import model.motionless.MotionlessFactory;
 import model.motionless.Wall;
 
@@ -16,7 +17,7 @@ public abstract class AbstractFactory {
 	private static char[] mobile = new char[] { Boulder.fileSym, Diamond.fileSym, Hero.fileSym };
 	private final static IFactory mobileFactory = new MobileFactory();
 
-	private static char[] motionless = { Background.fileSym, Wall.fileSym, Dirt.fileSym };
+	private static char[] motionless = { Background.fileSym, Wall.fileSym, Dirt.fileSym, Exit.fileSym };
 	private final static IFactory motionlessFactory = new MotionlessFactory();
 
 	public static IFactory getFactory(final char symbol) {
