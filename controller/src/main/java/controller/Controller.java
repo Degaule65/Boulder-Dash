@@ -49,7 +49,6 @@ public final class Controller implements IController {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			Mobile[][] pawns = new Mobile[this.getMap().getWidth()][this.getMap().getHeigth()];
@@ -63,6 +62,7 @@ public final class Controller implements IController {
 			}
 			this.getMap().getHero().changeSprite(this.getOrder());
 			this.moveHero(pawns);
+			this.getView().followHero();
 			for (IPawn pawn : this.getBoardFrame().getPawns()) {
 				if (pawn instanceof NonHeroMobile) {
 					this.gravity((NonHeroMobile) pawn, pawns);
