@@ -9,6 +9,6 @@ public class Exit extends MotionlessElement {
 	private static final Sprite SPRITE = new Sprite(Dirt.fileSym, "images/" + Map.getStyle() + "/exit.gif");
 
 	public Exit() {
-		super(SPRITE, ObjectType.DIRT);
+		super(SPRITE, ObjectType.EXIT);
 	}
 }
