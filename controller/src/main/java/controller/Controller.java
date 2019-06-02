@@ -3,11 +3,9 @@ package controller;
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IElement;
-import contract.IHero;
 import contract.IView;
 import contract.ObjectType;
 import fr.exia.showboard.BoardFrame;
-import fr.exia.showboard.CountDiamond;
 import fr.exia.showboard.IPawn;
 import model.IMap;
 import model.mobile.Hero;
@@ -71,6 +69,7 @@ public final class Controller implements IController {
 				}
 			}
 		}
+		System.out.println("crushed");
 	}
 
 	private void gravity(NonHeroMobile element, Mobile[][] pawns) {
@@ -200,10 +199,7 @@ public final class Controller implements IController {
 				if (pawnRight == null) {
 					this.getMap().getHero().moveRight();
 				} else if (pawnRight.getObjectType() == ObjectType.DIAMOND) {
-					this.getBoardFrame().removePawn(pawnRight);
-					pawns[this.getMap().getHero().getX() + 1][this.getMap().getHero().getY()] = null;
-					// TODO update score
-					this.getBoardFrame().getCountDiamond().collectDiamond();
+					this.collectDiamond(pawnRight, pawns);
 					this.getMap().getHero().moveRight();
 				} else if (pawnRight.getObjectType() == ObjectType.BOULDER) {
 					IElement caseBehindBoulder = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() + 2,
@@ -217,6 +213,8 @@ public final class Controller implements IController {
 						this.getMap().getHero().moveRight();
 					}
 				}
+			} else if (caseRight.getObjectType() == ObjectType.EXIT_OPEN) {
+				this.getMap().getHero().moveRight();
 			}
 			break;
 		case LEFT:
@@ -232,10 +230,7 @@ public final class Controller implements IController {
 				if (pawnLeft == null) {
 					this.getMap().getHero().moveLeft();
 				} else if (pawnLeft.getObjectType() == ObjectType.DIAMOND) {
-					this.getBoardFrame().removePawn(pawnLeft);
-					pawns[this.getMap().getHero().getX() - 1][this.getMap().getHero().getY()] = null;
-					// TODO update score
-					this.getBoardFrame().getCountDiamond().collectDiamond();
+					this.collectDiamond(pawnLeft, pawns);
 					this.getMap().getHero().moveLeft();
 				} else if (pawnLeft.getObjectType() == ObjectType.BOULDER) {
 					IElement caseBehindBoulder = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() - 2,
@@ -249,6 +244,8 @@ public final class Controller implements IController {
 						this.getMap().getHero().moveLeft();
 					}
 				}
+			} else if (caseLeft.getObjectType() == ObjectType.EXIT_OPEN) {
+				this.getMap().getHero().moveLeft();
 			}
 			break;
 		case DOWN:
@@ -264,12 +261,11 @@ public final class Controller implements IController {
 				if (pawnDown == null) {
 					this.getMap().getHero().moveDown();
 				} else if (pawnDown.getObjectType() == ObjectType.DIAMOND) {
-					this.getBoardFrame().removePawn(pawnDown);
-					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY() + 1] = null;
-					// TODO update score
-					this.getBoardFrame().getCountDiamond().collectDiamond();
+					this.collectDiamond(pawnDown, pawns);
 					this.getMap().getHero().moveDown();
 				}
+			} else if (caseDown.getObjectType() == ObjectType.EXIT_OPEN) {
+				this.getMap().getHero().moveDown();
 			}
 			break;
 		case UP:
@@ -285,16 +281,24 @@ public final class Controller implements IController {
 				if (pawnUp == null) {
 					this.getMap().getHero().moveUp();
 				} else if (pawnUp.getObjectType() == ObjectType.DIAMOND) {
-					this.getBoardFrame().removePawn(pawnUp);
-					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY() - 1] = null;
-					// TODO update score
-					this.getBoardFrame().getCountDiamond().collectDiamond();
+					this.collectDiamond(pawnUp, pawns);
 					this.getMap().getHero().moveUp();
 				}
+			} else if (caseUp.getObjectType() == ObjectType.EXIT_OPEN) {
+				this.getMap().getHero().moveUp();
 			}
 			break;
 		default:
 			break;
+		}
+	}
+
+	private void collectDiamond(Mobile diamond, IPawn[][] pawns) {
+		this.getBoardFrame().removePawn(diamond);
+		pawns[diamond.getX()][diamond.getY()] = null;
+		this.getBoardFrame().getCountDiamond().collectDiamond();
+		if (this.getBoardFrame().getCountDiamond().getNbrDiamond() == 0) {
+			this.getMap().getExit().open();
 		}
 	}
 }

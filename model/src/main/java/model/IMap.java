@@ -6,6 +6,7 @@ import java.util.Observable;
 import contract.IElement;
 import contract.IHero;
 import contract.IMobile;
+import model.motionless.IExit;
 
 public interface IMap {
 
@@ -24,4 +25,6 @@ public interface IMap {
 	int getWidth();
 
 	int getHeigth();
+
+	IExit getExit();
 }

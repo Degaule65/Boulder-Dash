@@ -10,6 +10,8 @@ import contract.IHero;
 import contract.IMobile;
 import model.mobile.Hero;
 import model.mobile.Mobile;
+import model.motionless.Exit;
+import model.motionless.IExit;
 import model.motionless.MotionlessElement;
 import model.motionless.MotionlessFactory;
 
@@ -27,6 +29,7 @@ public class Map extends Observable implements IMap {
 	private IElement[][] onMap = new IElement[width][heigth];
 	private List<IMobile> boulAndDia = new ArrayList<IMobile>();
 	private IHero hero;
+	private IExit exit;
 
 	public Map(final String content, final int width, final int heigth, final int style) {
 		this.setWidth(width);
@@ -56,6 +59,9 @@ public class Map extends Observable implements IMap {
 				Element element = AbstractFactory.getFactory(symbol).getFromFileSymbole(symbol, x, y, this.getMap());
 				if (element instanceof MotionlessElement) {
 					this.setOnTheMapXY(element, x, y);
+					if (element instanceof Exit) {
+						this.setExit((IExit) element);
+					}
 				} else if (element instanceof Mobile) {
 					this.setOnTheMapXY(MotionlessFactory.createBackground(), x, y);
 					if (element instanceof Hero) {
@@ -122,6 +128,14 @@ public class Map extends Observable implements IMap {
 
 	public static void setStyle(int style) {
 		Map.style = style;
+	}
+
+	public IExit getExit() {
+		return exit;
+	}
+
+	public void setExit(IExit exit) {
+		this.exit = exit;
 	}
 
 }
