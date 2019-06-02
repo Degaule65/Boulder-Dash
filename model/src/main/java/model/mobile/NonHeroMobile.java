@@ -4,6 +4,13 @@ import contract.ObjectType;
 import contract.Sprite;
 import model.IMap;
 
+/**
+ * @author Tanguy
+ * 
+ *  This class contains methods which are functions of diamonds and boulders.
+ *
+ */
+
 public class NonHeroMobile extends Mobile {
 
 	public NonHeroMobile(Sprite sprite, ObjectType objectType, final int x, final int y, final IMap map) {

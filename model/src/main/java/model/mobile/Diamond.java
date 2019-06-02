@@ -5,6 +5,12 @@ import contract.Sprite;
 import model.IMap;
 import model.Map;
 
+/**
+ * @author Tanguy
+ * 
+ * This class initiates the Diamond with is fileSym used to construct the map and it Sprite and initiates the coords of the diamonds.
+ *
+ */
 public class Diamond extends NonHeroMobile {
 
 	public static final char fileSym = '$';

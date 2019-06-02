@@ -8,6 +8,12 @@ import contract.Sprite;
 import model.Element;
 import model.IMap;
 
+/**
+ * @author Tanguy
+ * 
+ * This class initiates mobile elements of the map with their coords and permits to have their position or set their position.
+ *
+ */
 public class Mobile extends Element implements IMobile {
 	private Point position = new Point();
 	private IMap map;

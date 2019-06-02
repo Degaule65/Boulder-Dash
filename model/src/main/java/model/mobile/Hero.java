@@ -7,6 +7,11 @@ import contract.ObjectType;
 import contract.Sprite;
 import model.IMap;
 
+/**
+ * @author Tanguy
+ *
+ *This class associates gif to the direction of the Hero and has the methods to move the Hero and set if is alive or no.
+ */
 public class Hero extends Mobile implements IHero {
 
 	private final String imageUp = "images/Hero/heroUp.gif";
