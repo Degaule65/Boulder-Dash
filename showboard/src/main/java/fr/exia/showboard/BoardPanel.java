@@ -81,8 +81,8 @@ class BoardPanel extends JPanel implements Observer {
 	/** The height looped. */
 	private Boolean heightLooped = false;
 
-	private Compte compte;
-	private Diamond diamond;
+	private CountTime compte;
+	private CountDiamond diamond;
 
 	/**
 	 * Instantiates a new board panel.
@@ -94,8 +94,8 @@ class BoardPanel extends JPanel implements Observer {
 		final Graphics2D graphics = this.noImage.createGraphics();
 		graphics.setColor(Color.darkGray);
 		graphics.fillRect(0, 0, 2, 2);
-		compte = new Compte();
-		diamond = new Diamond();
+		compte = new CountTime();
+		diamond = new CountDiamond();
 
 	}
 
@@ -124,7 +124,7 @@ class BoardPanel extends JPanel implements Observer {
 		graphics.drawString(this.compte.getStr(), 5, 15);
 		graphics.setColor(Color.ORANGE);
 		graphics.drawString(this.diamond.getStr(), 200, 15);
-		
+
 	}
 
 	/*
@@ -438,12 +438,5 @@ class BoardPanel extends JPanel implements Observer {
 	private int getSquareSizeHeight() {
 		return this.getHeight() / this.getDisplayFrame().height;
 	}
-	
 
-	
-	
-
-	
-	
-	
 }

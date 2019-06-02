@@ -7,7 +7,7 @@ import contract.IHero;
 import contract.IView;
 import contract.ObjectType;
 import fr.exia.showboard.BoardFrame;
-import fr.exia.showboard.Diamond;
+import fr.exia.showboard.CountDiamond;
 import fr.exia.showboard.IPawn;
 import model.IMap;
 import model.mobile.Hero;

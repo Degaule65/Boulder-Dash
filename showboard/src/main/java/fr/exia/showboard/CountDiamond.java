@@ -2,13 +2,13 @@ package fr.exia.showboard;
 
 import java.awt.Color;
 
-public class Diamond implements Runnable {
+public class CountDiamond implements Runnable {
 
 	private final int STOP = 1000;
 	private int nbrDiamond;
 	private String str;
 
-	public Diamond() {
+	public CountDiamond() {
 		this.nbrDiamond = 0;
 		this.str = Color.red + "Diamond:";
 

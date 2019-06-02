@@ -2,15 +2,15 @@ package fr.exia.showboard;
 
 import java.awt.Color;
 
-public class Compte implements Runnable {
+public class CountTime implements Runnable {
 
 	private final int STOP = 1000;
 	private int compteurTemps;
 	private String str;
 	private String lose;
 
-	public Compte() {
-		this.compteurTemps = 100;
+	public CountTime() {
+		this.compteurTemps = 10;
 		this.str = Color.red + "temps restant:100";
 
 		Thread Compte = new Thread(this);
@@ -39,6 +39,11 @@ public class Compte implements Runnable {
 			this.compteurTemps--;
 			this.str = "temps restant:" + this.compteurTemps;
 		}
-		this.lose = "Vous avez perdu";
+		this.str = "Vous avez perdu";
+		try {
+			Thread.sleep(STOP);
+		} catch (InterruptedException e) {
+		}
+		System.exit(0);
 	}
 }
