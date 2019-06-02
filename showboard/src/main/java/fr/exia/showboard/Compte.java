@@ -7,6 +7,7 @@ public class Compte implements Runnable {
 	private final int STOP = 1000;
 	private int compteurTemps;
 	private String str;
+	private String lose;
 
 	public Compte() {
 		this.compteurTemps = 100;
@@ -24,15 +25,20 @@ public class Compte implements Runnable {
 		return str;
 	}
 
+	public void setLose(String lose) {
+		this.lose = lose;
+	}
+
 	@Override
 	public void run() {
-		while (true) {
+		while (compteurTemps >= 0) {
 			try {
 				Thread.sleep(STOP);
-			} catch (InterruptedException e) {}
+			} catch (InterruptedException e) {
+			}
 			this.compteurTemps--;
 			this.str = "temps restant:" + this.compteurTemps;
 		}
-		
+		this.lose = "Vous avez perdu";
 	}
 }

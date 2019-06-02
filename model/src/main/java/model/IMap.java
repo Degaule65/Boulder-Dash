@@ -11,6 +11,8 @@ public interface IMap {
 
 	IElement getOnTheMapXY(int x, int y);
 
+	void setOnTheMapXY(final IElement element, final int x, final int y);
+
 	List<IMobile> getBoulAndDia();
 
 	void setMobileHasChanged();

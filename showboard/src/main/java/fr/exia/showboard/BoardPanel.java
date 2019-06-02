@@ -124,6 +124,7 @@ class BoardPanel extends JPanel implements Observer {
 		graphics.drawString(this.compte.getStr(), 5, 15);
 		graphics.setColor(Color.ORANGE);
 		graphics.drawString(this.diamond.getStr(), 200, 15);
+		
 	}
 
 	/*

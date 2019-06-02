@@ -3,14 +3,17 @@ package controller;
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IElement;
+import contract.IHero;
 import contract.IView;
 import contract.ObjectType;
 import fr.exia.showboard.BoardFrame;
+import fr.exia.showboard.Diamond;
 import fr.exia.showboard.IPawn;
 import model.IMap;
 import model.mobile.Hero;
 import model.mobile.Mobile;
 import model.mobile.NonHeroMobile;
+import model.motionless.MotionlessFactory;
 
 /**
  * The Class Controller.
@@ -27,7 +30,7 @@ public final class Controller implements IController {
 	/** The BoardFrame */
 	private BoardFrame boardFrame;
 
-	private ControllerOrder order;
+	private ControllerOrder order = ControllerOrder.NONE;
 
 	/**
 	 * Instantiates a new controller.
@@ -51,22 +54,6 @@ public final class Controller implements IController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			this.getMap().getHero().changeSprite(this.getOrder());
-			switch (this.getOrder()) {
-			case RIGHT:
-				this.getMap().getHero().moveRight();
-				break;
-			case LEFT:
-				this.getMap().getHero().moveLeft();
-				break;
-			case UP:
-				this.getMap().getHero().moveUp();
-				break;
-			case DOWN:
-				this.getMap().getHero().moveDown();
-			default:
-				break;
-			}
 			Mobile[][] pawns = new Mobile[this.getMap().getWidth()][this.getMap().getHeigth()];
 			for (IPawn pawn : this.getBoardFrame().getPawns()) {
 				if (pawn instanceof NonHeroMobile) {
@@ -76,6 +63,8 @@ public final class Controller implements IController {
 					pawns[pawn.getX()][pawn.getY()] = (Hero) pawn;
 				}
 			}
+			this.getMap().getHero().changeSprite(this.getOrder());
+			this.moveHero(pawns);
 			for (IPawn pawn : this.getBoardFrame().getPawns()) {
 				if (pawn instanceof NonHeroMobile) {
 					this.gravity((NonHeroMobile) pawn, pawns);
@@ -86,26 +75,25 @@ public final class Controller implements IController {
 
 	private void gravity(NonHeroMobile element, Mobile[][] pawns) {
 		IElement caseDown = this.getMap().getOnTheMapXY(element.getX(), element.getY() + 1);
-		IElement caseDownRight = this.getMap().getOnTheMapXY(element.getX() - 1, element.getY() + 1);
-		IElement caseDownLeft = this.getMap().getOnTheMapXY(element.getX() + 1, element.getY() + 1);
-		IElement caseLeft = this.getMap().getOnTheMapXY(element.getX() + 1, element.getY());
-		IElement caseRight = this.getMap().getOnTheMapXY(element.getX() - 1, element.getY());
-		
+		IElement caseDownRight = this.getMap().getOnTheMapXY(element.getX() + 1, element.getY() + 1);
+		IElement caseDownLeft = this.getMap().getOnTheMapXY(element.getX() - 1, element.getY() + 1);
+		IElement caseLeft = this.getMap().getOnTheMapXY(element.getX() - 1, element.getY());
+		IElement caseRight = this.getMap().getOnTheMapXY(element.getX() + 1, element.getY());
+
 		if (caseDown.getObjectType() == ObjectType.BACKGROUND) {
 			Mobile pawnDown = pawns[element.getX()][element.getY() + 1];
 			if (pawnDown == null) {
 				element.moveDown();
 				pawns[element.getX()][element.getY()] = null;
-				pawns[element.getX()][element.getY() - 1] = element;
+				pawns[element.getX()][element.getY() + 1] = element;
 				return;
 			} else if (element.getIsFalling() && pawnDown instanceof Hero) {
 				element.moveDown();
 				pawns[element.getX()][element.getY()] = null;
-				pawns[element.getX()][element.getY() - 1] = element;
+				pawns[element.getX()][element.getY() + 1] = element;
 				this.getMap().getHero().setAlive(false);
 				return;
-			}
-			else if (pawnDown.getObjectType() == ObjectType.DIAMOND || pawnDown.getObjectType() == ObjectType.BOULDER
+			} else if (pawnDown.getObjectType() == ObjectType.DIAMOND || pawnDown.getObjectType() == ObjectType.BOULDER
 					|| pawnDown.getObjectType() == ObjectType.WALL) {
 				Mobile pawnLeft = pawns[element.getX() - 1][element.getY()];
 				Mobile pawnDownLeft = pawns[element.getX() - 1][element.getY() + 1];
@@ -187,4 +175,74 @@ public final class Controller implements IController {
 		this.boardFrame = boardFrame;
 	}
 
+	public void moveHero(Mobile[][] pawns) {
+		IElement caseUp = this.getMap().getOnTheMapXY(this.getMap().getHero().getX(),
+				this.getMap().getHero().getY() - 1);
+		IElement caseLeft = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() - 1,
+				this.getMap().getHero().getY());
+		IElement caseRight = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() + 1,
+				this.getMap().getHero().getY());
+		IElement caseDown = this.getMap().getOnTheMapXY(this.getMap().getHero().getX(),
+				this.getMap().getHero().getY() + 1);
+		switch (this.getOrder()) {
+		case RIGHT:
+			if (caseRight.getObjectType() == ObjectType.DIRT) {
+				this.getMap().setOnTheMapXY(MotionlessFactory.createBackground(), this.getMap().getHero().getX() + 1,
+						this.getMap().getHero().getY());
+				this.getBoardFrame().addSquare(MotionlessFactory.createBackground(), this.getMap().getHero().getX() + 1,
+						this.getMap().getHero().getY());
+				this.getMap().getHero().moveRight();
+				return;
+			} else if (caseRight.getObjectType() == ObjectType.WALL) {
+				return;
+			} else {
+				this.getMap().getHero().moveRight();
+			}
+			break;
+		case LEFT:
+			if (caseLeft.getObjectType() == ObjectType.DIRT) {
+				this.getMap().setOnTheMapXY(MotionlessFactory.createBackground(), this.getMap().getHero().getX() - 1,
+						this.getMap().getHero().getY());
+				this.getBoardFrame().addSquare(MotionlessFactory.createBackground(), this.getMap().getHero().getX() - 1,
+						this.getMap().getHero().getY());
+				this.getMap().getHero().moveLeft();
+				return;
+			} else if (caseLeft.getObjectType() == ObjectType.WALL) {
+				return;
+			} else {
+				this.getMap().getHero().moveLeft();
+			}
+			break;
+		case DOWN:
+			if (caseDown.getObjectType() == ObjectType.DIRT) {
+				this.getMap().setOnTheMapXY(MotionlessFactory.createBackground(), this.getMap().getHero().getX(),
+						this.getMap().getHero().getY()+1);
+				this.getBoardFrame().addSquare(MotionlessFactory.createBackground(), this.getMap().getHero().getX(),
+						this.getMap().getHero().getY()+1);
+				this.getMap().getHero().moveDown();
+				return;
+			} else if (caseDown.getObjectType() == ObjectType.WALL) {
+				return;
+			} else {
+				this.getMap().getHero().moveDown();
+			}
+			break;
+		case UP:
+			if (caseUp.getObjectType() == ObjectType.DIRT) {
+				this.getMap().setOnTheMapXY(MotionlessFactory.createBackground(), this.getMap().getHero().getX(),
+						this.getMap().getHero().getY()-1);
+				this.getBoardFrame().addSquare(MotionlessFactory.createBackground(), this.getMap().getHero().getX(),
+						this.getMap().getHero().getY()-1);
+				this.getMap().getHero().moveUp();
+				return;
+			} else if (caseUp.getObjectType() == ObjectType.WALL) {
+				return;
+			} else {
+				this.getMap().getHero().moveUp();
+			}
+			break;
+		default:
+			break;
+		}
+	}
 }
