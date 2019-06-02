@@ -263,8 +263,16 @@ public final class Controller implements IController {
 				return;
 			} else if (caseDown.getObjectType() == ObjectType.WALL) {
 				return;
-			} else {
-				this.getMap().getHero().moveDown();
+			} else if (caseDown.getObjectType() == ObjectType.BACKGROUND) {
+				Mobile pawnDown = pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY() + 1];
+				if (pawnDown == null) {
+					this.getMap().getHero().moveDown();
+				} else if (pawnDown.getObjectType() == ObjectType.DIAMOND) {
+					this.getBoardFrame().removePawn(pawnDown);
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY() + 1] = null;
+					// TODO update score
+					this.getMap().getHero().moveDown();
+				}
 			}
 			break;
 		case UP:
@@ -277,8 +285,16 @@ public final class Controller implements IController {
 				return;
 			} else if (caseUp.getObjectType() == ObjectType.WALL) {
 				return;
-			} else {
-				this.getMap().getHero().moveUp();
+			} else if (caseUp.getObjectType() == ObjectType.BACKGROUND) {
+				Mobile pawnUp = pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY() - 1];
+				if (pawnUp == null) {
+					this.getMap().getHero().moveUp();
+				} else if (pawnUp.getObjectType() == ObjectType.DIAMOND) {
+					this.getBoardFrame().removePawn(pawnUp);
+					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY() - 1] = null;
+					// TODO update score
+					this.getMap().getHero().moveUp();
+				}
 			}
 			break;
 		default:
