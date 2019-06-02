@@ -207,4 +207,8 @@ public class BoardFrame extends JFrame implements IBoard {
 	public void removePawn(IPawn pawn) {
 		this.getBoardPanel().removePawn(pawn);
 	}
+	
+	public CountDiamond getCountDiamond() {
+		return this.getBoardPanel().getCountDiamond();
+	}
 }

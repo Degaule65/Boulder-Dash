@@ -205,6 +205,7 @@ public final class Controller implements IController {
 					this.getBoardFrame().removePawn(pawnRight);
 					pawns[this.getMap().getHero().getX() + 1][this.getMap().getHero().getY()] = null;
 					// TODO update score
+					this.getBoardFrame().getCountDiamond().collectDiamond();
 					this.getMap().getHero().moveRight();
 				} else if (pawnRight.getObjectType() == ObjectType.BOULDER) {
 					IElement caseBehindBoulder = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() + 2,
@@ -238,6 +239,7 @@ public final class Controller implements IController {
 					this.getBoardFrame().removePawn(pawnLeft);
 					pawns[this.getMap().getHero().getX() - 1][this.getMap().getHero().getY()] = null;
 					// TODO update score
+					this.getBoardFrame().getCountDiamond().collectDiamond();
 					this.getMap().getHero().moveLeft();
 				} else if (pawnLeft.getObjectType() == ObjectType.BOULDER) {
 					IElement caseBehindBoulder = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() - 2,
@@ -271,6 +273,7 @@ public final class Controller implements IController {
 					this.getBoardFrame().removePawn(pawnDown);
 					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY() + 1] = null;
 					// TODO update score
+					this.getBoardFrame().getCountDiamond().collectDiamond();
 					this.getMap().getHero().moveDown();
 				}
 			}
@@ -293,6 +296,7 @@ public final class Controller implements IController {
 					this.getBoardFrame().removePawn(pawnUp);
 					pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY() - 1] = null;
 					// TODO update score
+					this.getBoardFrame().getCountDiamond().collectDiamond();
 					this.getMap().getHero().moveUp();
 				}
 			}
