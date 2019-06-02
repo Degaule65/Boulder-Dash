@@ -28,13 +28,11 @@ public class NonHeroMobile extends Mobile {
 
 	public void moveLeft() {
 		this.setX(this.getX() - 1);
-		this.setIsFalling(true);
 		this.setHasMoved();
 	}
 
 	public void moveRight() {
 		this.setX(this.getX() + 1);
-		this.setIsFalling(true);
 		this.setHasMoved();
 	}
 }

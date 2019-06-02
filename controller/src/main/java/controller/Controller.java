@@ -103,6 +103,7 @@ public final class Controller implements IController {
 						&& caseLeft.getObjectType() == ObjectType.BACKGROUND && pawnLeft == null
 						&& pawnDownLeft == null) {
 					element.moveLeft();
+					element.setIsFalling(true);
 					pawns[element.getX()][element.getY()] = null;
 					pawns[element.getX() - 1][element.getY()] = element;
 					return;
@@ -110,6 +111,7 @@ public final class Controller implements IController {
 						&& caseRight.getObjectType() == ObjectType.BACKGROUND && pawnRight == null
 						&& pawnDownRight == null) {
 					element.moveRight();
+					element.setIsFalling(true);
 					pawns[element.getX()][element.getY()] = null;
 					pawns[element.getX() + 1][element.getY()] = element;
 					return;
@@ -195,8 +197,27 @@ public final class Controller implements IController {
 				return;
 			} else if (caseRight.getObjectType() == ObjectType.WALL) {
 				return;
-			} else {
-				this.getMap().getHero().moveRight();
+			} else if (caseRight.getObjectType() == ObjectType.BACKGROUND) {
+				Mobile pawnRight = pawns[this.getMap().getHero().getX() + 1][this.getMap().getHero().getY()];
+				if (pawnRight == null) {
+					this.getMap().getHero().moveRight();
+				} else if (pawnRight.getObjectType() == ObjectType.DIAMOND) {
+					this.getBoardFrame().removePawn(pawnRight);
+					pawns[this.getMap().getHero().getX() + 1][this.getMap().getHero().getY()] = null;
+					// TODO update score
+					this.getMap().getHero().moveRight();
+				} else if (pawnRight.getObjectType() == ObjectType.BOULDER) {
+					IElement caseBehindBoulder = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() + 2,
+							this.getMap().getHero().getY());
+					Mobile pawnBehindBoulder = pawns[this.getMap().getHero().getX() + 2][this.getMap().getHero()
+							.getY()];
+					if (pawnBehindBoulder == null && caseBehindBoulder.getObjectType() == ObjectType.BACKGROUND) {
+						pawns[pawnRight.getX()][pawnRight.getY()] = null;
+						((NonHeroMobile) pawnRight).moveRight();
+						pawns[pawnRight.getX()][pawnRight.getY()] = pawnRight;
+						this.getMap().getHero().moveRight();
+					}
+				}
 			}
 			break;
 		case LEFT:
@@ -209,16 +230,35 @@ public final class Controller implements IController {
 				return;
 			} else if (caseLeft.getObjectType() == ObjectType.WALL) {
 				return;
-			} else {
-				this.getMap().getHero().moveLeft();
+			} else if (caseLeft.getObjectType() == ObjectType.BACKGROUND) {
+				Mobile pawnLeft = pawns[this.getMap().getHero().getX() - 1][this.getMap().getHero().getY()];
+				if (pawnLeft == null) {
+					this.getMap().getHero().moveLeft();
+				} else if (pawnLeft.getObjectType() == ObjectType.DIAMOND) {
+					this.getBoardFrame().removePawn(pawnLeft);
+					pawns[this.getMap().getHero().getX() - 1][this.getMap().getHero().getY()] = null;
+					// TODO update score
+					this.getMap().getHero().moveLeft();
+				} else if (pawnLeft.getObjectType() == ObjectType.BOULDER) {
+					IElement caseBehindBoulder = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() - 2,
+							this.getMap().getHero().getY());
+					Mobile pawnBehindBoulder = pawns[this.getMap().getHero().getX() - 2][this.getMap().getHero()
+							.getY()];
+					if (pawnBehindBoulder == null && caseBehindBoulder.getObjectType() == ObjectType.BACKGROUND) {
+						pawns[pawnLeft.getX()][pawnLeft.getY()] = null;
+						((NonHeroMobile) pawnLeft).moveLeft();
+						pawns[pawnLeft.getX()][pawnLeft.getY()] = pawnLeft;
+						this.getMap().getHero().moveLeft();
+					}
+				}
 			}
 			break;
 		case DOWN:
 			if (caseDown.getObjectType() == ObjectType.DIRT) {
 				this.getMap().setOnTheMapXY(MotionlessFactory.createBackground(), this.getMap().getHero().getX(),
-						this.getMap().getHero().getY()+1);
+						this.getMap().getHero().getY() + 1);
 				this.getBoardFrame().addSquare(MotionlessFactory.createBackground(), this.getMap().getHero().getX(),
-						this.getMap().getHero().getY()+1);
+						this.getMap().getHero().getY() + 1);
 				this.getMap().getHero().moveDown();
 				return;
 			} else if (caseDown.getObjectType() == ObjectType.WALL) {
@@ -230,9 +270,9 @@ public final class Controller implements IController {
 		case UP:
 			if (caseUp.getObjectType() == ObjectType.DIRT) {
 				this.getMap().setOnTheMapXY(MotionlessFactory.createBackground(), this.getMap().getHero().getX(),
-						this.getMap().getHero().getY()-1);
+						this.getMap().getHero().getY() - 1);
 				this.getBoardFrame().addSquare(MotionlessFactory.createBackground(), this.getMap().getHero().getX(),
-						this.getMap().getHero().getY()-1);
+						this.getMap().getHero().getY() - 1);
 				this.getMap().getHero().moveUp();
 				return;
 			} else if (caseUp.getObjectType() == ObjectType.WALL) {
