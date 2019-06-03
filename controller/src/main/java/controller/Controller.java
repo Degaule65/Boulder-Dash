@@ -70,6 +70,14 @@ public final class Controller implements IController {
 		}
 		if (!this.getMap().getHero().isAlive()) {
 			System.out.println("You've been crushed by something !");
+			/*try {
+				Thread.sleep(2000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			*/
+			System.exit(0);
 		} else if (this.getBoardFrame().getCountTime().getTime() <= 0) {
 			System.out.println("No time left !");
 		}
