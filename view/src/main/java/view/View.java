@@ -24,6 +24,7 @@ public final class View implements IView, Runnable, KeyListener {
 	private BoardFrame boardFrame;
 	private int currentKey;
 
+	//Initiate the view
 	public View(IMap map) {
 		this.setView(1);
 		this.setMap(map);
@@ -31,7 +32,7 @@ public final class View implements IView, Runnable, KeyListener {
 		this.setCloseView(new Rectangle(0, 0, 11, 11));
 		SwingUtilities.invokeLater(this);
 	}
-
+	//return the right key code to the control in function of the key used.
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
 		case KeyEvent.VK_RIGHT:
@@ -46,6 +47,7 @@ public final class View implements IView, Runnable, KeyListener {
 		return ControllerOrder.NONE;
 	}
 
+	// Run the game.
 	@Override
 	public void run() {
 		this.setBoardFrame(new BoardFrame("Rockford CESI version (free trial) (alpha)"));
@@ -74,6 +76,7 @@ public final class View implements IView, Runnable, KeyListener {
 		this.boardFrame.setVisible(true);
 	}
 
+	//View of the map that follows the hero.
 	public void followHero() {
 		if (this.getHero().getY() < 5) {
 			this.getCloseView().y = 0;
@@ -91,6 +94,7 @@ public final class View implements IView, Runnable, KeyListener {
 		}
 	}
 
+	//Permits to display a message on the screen, out of the window game.
 	public void displayMessage(String message) {
 		JOptionPane.showMessageDialog(null, message);
 	}
@@ -103,7 +107,7 @@ public final class View implements IView, Runnable, KeyListener {
 	public void setController(final IController controller) {
 		this.orderPerformer = controller;
 	}
-
+	//Getters and setters of the view and the map.
 	public int getView() {
 		return this.view;
 	}
@@ -119,7 +123,7 @@ public final class View implements IView, Runnable, KeyListener {
 	private void setMap(IMap map) {
 		this.map = map;
 	}
-
+	//Methods that listen to the keys typed, pressed and released.
 	public void keyTyped(KeyEvent keyEvent) {
 
 	}
@@ -135,11 +139,11 @@ public final class View implements IView, Runnable, KeyListener {
 			this.currentKey = 0;
 		}
 	}
-
+	//Get the order performer.
 	private IController getOrderPerformer() {
 		return this.orderPerformer;
 	}
-
+	//Getter and setter parameters for the hero.
 	public IHero getHero() {
 		return this.hero;
 	}
@@ -147,15 +151,15 @@ public final class View implements IView, Runnable, KeyListener {
 	public void setHero(IHero hero) {
 		this.hero = hero;
 	}
-
+	//Getter and setter for the close of the view.
 	public Rectangle getCloseView() {
 		return this.closeView;
 	}
-
+	
 	public void setCloseView(final Rectangle closeView) {
 		this.closeView = closeView;
 	}
-
+	//Getter and setter for the BoardFrame.
 	@Override
 	public BoardFrame getBoardFrame() {
 		return boardFrame;
