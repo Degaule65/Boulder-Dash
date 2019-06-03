@@ -109,7 +109,9 @@ public final class Controller implements IController {
 	}
 
 	/**
-	 * Apply gravity to elements like boulders and diamonds.
+	 * Apply gravity to elements like boulders and diamonds. It checks for elements
+	 * under the boulder and if it can, move the boulder downward. It then check if
+	 * the boulder can go diagonally and move it in consequences.
 	 * 
 	 * @param element the element to apply gravity to
 	 * @param pawns   the list of pawns
@@ -163,21 +165,16 @@ public final class Controller implements IController {
 	}
 
 	/**
-	 * Used to move the hero.
+	 * Moves the hero. Gets the order and then realizes the check need to ensure the
+	 * hero move where it can, collect diamonds and push boulders.
 	 * 
 	 * @param pawns the list of pawns
 	 */
 	public void moveHero(Mobile[][] pawns) {
-		IElement caseUp = this.getMap().getOnTheMapXY(this.getMap().getHero().getX(),
-				this.getMap().getHero().getY() - 1);
-		IElement caseLeft = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() - 1,
-				this.getMap().getHero().getY());
-		IElement caseRight = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() + 1,
-				this.getMap().getHero().getY());
-		IElement caseDown = this.getMap().getOnTheMapXY(this.getMap().getHero().getX(),
-				this.getMap().getHero().getY() + 1);
 		switch (this.getOrder()) {
 		case RIGHT:
+			IElement caseRight = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() + 1,
+					this.getMap().getHero().getY());
 			if (caseRight.getObjectType() == ObjectType.DIRT) {
 				this.getMap().setOnTheMapXY(MotionlessFactory.createBackground(), this.getMap().getHero().getX() + 1,
 						this.getMap().getHero().getY());
@@ -225,6 +222,8 @@ public final class Controller implements IController {
 			}
 			break;
 		case LEFT:
+			IElement caseLeft = this.getMap().getOnTheMapXY(this.getMap().getHero().getX() - 1,
+					this.getMap().getHero().getY());
 			if (caseLeft.getObjectType() == ObjectType.DIRT) {
 				this.getMap().setOnTheMapXY(MotionlessFactory.createBackground(), this.getMap().getHero().getX() - 1,
 						this.getMap().getHero().getY());
@@ -270,6 +269,8 @@ public final class Controller implements IController {
 			}
 			break;
 		case DOWN:
+			IElement caseDown = this.getMap().getOnTheMapXY(this.getMap().getHero().getX(),
+					this.getMap().getHero().getY() + 1);
 			if (caseDown.getObjectType() == ObjectType.DIRT) {
 				this.getMap().setOnTheMapXY(MotionlessFactory.createBackground(), this.getMap().getHero().getX(),
 						this.getMap().getHero().getY() + 1);
@@ -301,6 +302,8 @@ public final class Controller implements IController {
 			}
 			break;
 		case UP:
+			IElement caseUp = this.getMap().getOnTheMapXY(this.getMap().getHero().getX(),
+					this.getMap().getHero().getY() - 1);
 			if (caseUp.getObjectType() == ObjectType.DIRT) {
 				this.getMap().setOnTheMapXY(MotionlessFactory.createBackground(), this.getMap().getHero().getX(),
 						this.getMap().getHero().getY() - 1);
