@@ -72,7 +72,7 @@ public class Sprite {
 	}
 
 	/**
-	 *  Load the image
+	 * Load the image
 	 */
 	public final void loadImage() {
 		this.image = (new ImageIcon(this.getImageName())).getImage();

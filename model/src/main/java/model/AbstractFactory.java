@@ -20,8 +20,10 @@ public abstract class AbstractFactory {
 	private final static IFactory motionlessFactory = new MotionlessFactory();
 
 	/**
-	 * @param symbol
-	 * @return
+	 * Gets the factory corresponding to an element.
+	 * 
+	 * @param symbol the symbol to evaluate
+	 * @return the factory
 	 */
 	public static IFactory getFactory(final char symbol) {
 		List<Character> mobileElement = new ArrayList<Character>();

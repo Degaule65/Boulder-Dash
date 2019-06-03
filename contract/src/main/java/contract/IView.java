@@ -12,7 +12,7 @@ public interface IView {
 	 * @return the BoardFrame
 	 */
 	BoardFrame getBoardFrame();
-	
+
 	/**
 	 * @param message The message to display
 	 */
