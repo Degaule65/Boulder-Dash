@@ -9,6 +9,8 @@ import fr.exia.showboard.BoardFrame;
  */
 public interface IView {
 	BoardFrame getBoardFrame();
+	
+	void displayMessage(String message);
 
 	void followHero();
 }

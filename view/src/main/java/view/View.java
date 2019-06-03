@@ -46,15 +46,6 @@ public final class View implements IView, Runnable, KeyListener {
 		return ControllerOrder.NONE;
 	}
 
-	/**
-	 * Sets the controller.
-	 *
-	 * @param controller the new controller
-	 */
-	public void setController(final IController controller) {
-		this.orderPerformer = controller;
-	}
-
 	@Override
 	public void run() {
 		this.setBoardFrame(new BoardFrame("Rockford CESI version (free trial) (alpha)"));
@@ -90,6 +81,15 @@ public final class View implements IView, Runnable, KeyListener {
 
 	public void displayMessage(String message) {
 		JOptionPane.showMessageDialog(null, message);
+	}
+
+	/**
+	 * Sets the controller.
+	 *
+	 * @param controller the new controller
+	 */
+	public void setController(final IController controller) {
+		this.orderPerformer = controller;
 	}
 
 	public int getView() {

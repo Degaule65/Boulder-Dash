@@ -69,18 +69,16 @@ public final class Controller implements IController {
 			}
 		}
 		if (!this.getMap().getHero().isAlive()) {
-			System.out.println("You've been crushed by something !");
-			/*try {
-				Thread.sleep(2000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			*/
-			System.exit(0);
+			this.getView().displayMessage("You have been crushed by something");
 		} else if (this.getBoardFrame().getCountTime().getTime() <= 0) {
-			System.out.println("No time left !");
+			this.getView().displayMessage("No time left !");
 		}
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		System.exit(0);
 	}
 
 	private void gravity(NonHeroMobile element, Mobile[][] pawns) {
