@@ -10,7 +10,7 @@ public class DBCall {
 	/**
 	 * Get the map from the stored procedure
 	 * @param id
-	 * @return
+	 * @return 
 	 * @throws SQLException
 	 */
 	public Map getMap(int id) throws SQLException {
