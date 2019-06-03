@@ -1,20 +1,49 @@
 package model;
 
-
 import java.sql.*;
 
+
+/**
+ *
+ * 
+ */
 public class DBCall {
-	public static void main(String[] args) throws Exception {
 
-		Class.forName("com.mysql.cj.jdbc.Driver");
-		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/jpublankproject?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false", "root", "");
-
-		CallableStatement stmt = con.prepareCall("{CALL test(?,?)}");
-		stmt.setInt(1,3);
-	
+	/**
+	 * Get skills by candidate id
+	 *
+	 * 
+	 */
+	public static void test(int IDmap) {
 		
-		stmt.execute();
+		//
+		String query = "{ call test(?) }";
+		ResultSet rs;
+		String url = "jdbc:mysql://localhost:3306/jpublankproject?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC&useSSL=false";
+		String user = "root";
+		String password = "";
+		try (Connection conn = DriverManager.getConnection(url, user, password);
 
-		System.out.println("success i guess");
+				CallableStatement stmt = conn.prepareCall(query)) {
+
+			stmt.setInt(IDmap, 1);
+
+			rs = stmt.executeQuery();
+			if (rs.first()) {
+				System.out.println(String.format("Style " + rs.getString("style") +"\nContent "+ rs.getString("content")+ " ") + "\nwidth " + rs.getString("width") + "\nheight " + rs.getString("height"));
+			}
+					
+
+		} catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
+
+	/**
+	 *
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		test(1);
 	}
 }
