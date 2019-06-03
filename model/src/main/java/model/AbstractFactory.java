@@ -2,7 +2,6 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import model.mobile.Boulder;
 import model.mobile.Diamond;
 import model.mobile.Hero;
@@ -20,6 +19,10 @@ public abstract class AbstractFactory {
 	private static char[] motionless = { Background.fileSym, Wall.fileSym, Dirt.fileSym, Exit.fileSym };
 	private final static IFactory motionlessFactory = new MotionlessFactory();
 
+	/**
+	 * @param symbol
+	 * @return
+	 */
 	public static IFactory getFactory(final char symbol) {
 		List<Character> mobileElement = new ArrayList<Character>();
 		for (char c : mobile) {

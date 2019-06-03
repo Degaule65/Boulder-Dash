@@ -8,7 +8,8 @@ import model.Map;
 /**
  * @author Tanguy
  * 
- * This class initiates the Diamond with is fileSym used to construct the map and it Sprite and initiates the coords of the diamonds.
+ *         This class initiates the Diamond with is fileSym used to construct
+ *         the map and it Sprite and initiates the coords of the diamonds.
  *
  */
 public class Diamond extends NonHeroMobile {
@@ -18,11 +19,6 @@ public class Diamond extends NonHeroMobile {
 
 	public Diamond(final int x, final int y, final IMap map) {
 		super(SPRITE, ObjectType.DIAMOND, x, y, map);
-	}
-
-	public static void setVisible(boolean b) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

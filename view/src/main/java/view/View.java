@@ -75,8 +75,20 @@ public final class View implements IView, Runnable, KeyListener {
 	}
 
 	public void followHero() {
-		this.getCloseView().y = this.getHero().getY() - 5;
-		this.getCloseView().x = this.getHero().getX() - 5;
+		if (this.getHero().getY() < 5) {
+			this.getCloseView().y = 0;
+		} else if (this.getHero().getY() > this.getMap().getHeigth() - 7) {
+			this.getCloseView().y = this.getMap().getHeigth() - 12;
+		} else {
+			this.getCloseView().y = this.getHero().getY() - 5;
+		}
+		if (this.getHero().getX() < 5) {
+			this.getCloseView().x = 0;
+		} else if (this.getHero().getX() >= this.getMap().getWidth() - 7) {
+			this.getCloseView().x = this.getMap().getWidth() - 13;
+		} else {
+			this.getCloseView().x = this.getHero().getX() - 5;
+		}
 	}
 
 	public void displayMessage(String message) {
