@@ -143,6 +143,8 @@ public final class Controller implements IController {
 
 	/**
 	 * Return the view.
+	 * 
+	 * @return the view
 	 */
 	public IView getView() {
 		return this.view;
