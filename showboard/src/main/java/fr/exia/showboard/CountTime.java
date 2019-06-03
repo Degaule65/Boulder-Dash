@@ -8,10 +8,10 @@ public class CountTime implements Runnable {
 
 	/** The time between two update */
 	private final int STOP = 1000;
-	
+
 	/** The time */
 	private int compteurTemps;
-	
+
 	/* The string */
 	private String str;
 
