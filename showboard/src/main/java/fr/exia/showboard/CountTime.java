@@ -7,7 +7,7 @@ public class CountTime implements Runnable {
 	private String str;
 	
 	public CountTime() {
-		this.compteurTemps = 10;
+		this.compteurTemps = 120;
 		this.str = "Remaining time : " + this.getTime();
 
 		Thread Compte = new Thread(this);
