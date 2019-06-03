@@ -7,16 +7,24 @@ import model.Map;
 /**
  * @author Degaule65
  * 
- *         Configuration of the dirt which is a traversable element, it is
- *         configured with a single sprite. In addition, we have assigned it
- *         a"/" symbol which will later allow us to make the conversion between
- *         the symbol and the sprite. It has its own permissions
+ *         Configuration of the Dirt which isn't a traversable element you have
+ *         to dig it out , it is configured with a single sprite. In addition,
+ *         It has its own permissions
  */
 public class Dirt extends MotionlessElement {
-
+	/**
+	 * we have assigned it a "+" symbol that will later allow us to associate the
+	 * symbol and the image
+	 */
 	public static final char fileSym = '+';
-	private static final Sprite SPRITE = new Sprite(Dirt.fileSym, "images/" + Map.getStyle() + "/dirt.gif");
 
+	/**
+	 * representation of the path to find the GIF in the MVC files.
+	 */
+	private static final Sprite SPRITE = new Sprite(Dirt.fileSym, "images/" + Map.getStyle() + "/dirt.gif");
+	/**
+	 * Dirt configuration (with its sprite and permability)
+	 */
 	public Dirt() {
 		super(SPRITE, ObjectType.DIRT);
 	}

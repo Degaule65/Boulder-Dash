@@ -14,13 +14,12 @@ import model.Map;
 public class Wall extends MotionlessElement {
 
 	/**
-	 * 
-	 * we have assigned it a"=" symbol which will later allow us to make the
-	 * conversion between the symbol and the sprite.
+	 * we have assigned it a "=" symbol that will later allow us to associate the
+	 * symbol and the image
 	 */
 	public static final char fileSym = '=';
+
 	/**
-	 * 
 	 * representation of the path to find the GIF in the MVC files.
 	 */
 	private static final Sprite SPRITE = new Sprite(Wall.fileSym, "images/" + Map.getStyle() + "/wall.gif");
