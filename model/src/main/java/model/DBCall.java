@@ -8,10 +8,10 @@ import java.sql.SQLException;
 public class DBCall {
 
 	/**
-	 * Get skills by candidate id
-	 * @throws SQLException 
-	 *
-	 * 
+	 * Get the map from the stored procedure
+	 * @param id
+	 * @return
+	 * @throws SQLException
 	 */
 	public Map getMap(int id) throws SQLException {
 		String query = "{ call getMap(?) }";
