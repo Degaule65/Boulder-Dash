@@ -15,7 +15,7 @@ import view.View;
 public abstract class Main {
 
 	/** The number of the map to use */
-	private final static int idMap = 1;
+	private final static int idMap = 4;
 
 	public static void main(final String[] args) throws SQLException {
 		final IMap map = new DBCall().getMap(idMap);
