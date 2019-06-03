@@ -14,25 +14,51 @@ import contract.IView;
 import fr.exia.showboard.BoardFrame;
 import model.IMap;
 
+/**
+ * View is the class that create the window and is in charge of displaying
+ * everything.
+ * 
+ * @author Benoît Perriguet
+ *
+ */
 public final class View implements IView, Runnable, KeyListener {
 
+	/** The map. */
 	private IMap map;
+
+	/** The hero. */
 	private IHero hero;
-	private int view;
+
+	/** The rectangle representing the view */
 	private Rectangle closeView;
+
+	/** The controller */
 	private IController orderPerformer;
+
+	/** The boardFrame */
 	private BoardFrame boardFrame;
+
+	/** The key being pressed */
 	private int currentKey;
 
-	//Initiate the view
+	/**
+	 * Initializes the view.
+	 * 
+	 * @param map the map
+	 */
 	public View(IMap map) {
-		this.setView(1);
 		this.setMap(map);
 		this.setHero(map.getHero());
 		this.setCloseView(new Rectangle(0, 0, 11, 11));
 		SwingUtilities.invokeLater(this);
 	}
-	//return the right key code to the control in function of the key used.
+
+	/**
+	 * Turns a key into an order.
+	 * 
+	 * @param keyCode the KeyCode
+	 * @return the corresponding order
+	 */
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
 		switch (keyCode) {
 		case KeyEvent.VK_RIGHT:
@@ -47,7 +73,9 @@ public final class View implements IView, Runnable, KeyListener {
 		return ControllerOrder.NONE;
 	}
 
-	// Run the game.
+	/**
+	 * Initializes the window and fill the pawn and square lists.
+	 */
 	@Override
 	public void run() {
 		this.setBoardFrame(new BoardFrame("BoulderDash"));
@@ -76,7 +104,9 @@ public final class View implements IView, Runnable, KeyListener {
 		this.boardFrame.setVisible(true);
 	}
 
-	//View of the map that follows the hero.
+	/**
+	 * Centers the view on the hero except when near the walls.
+	 */
 	public void followHero() {
 		if (this.getHero().getY() <= 5) {
 			this.getCloseView().y = 0;
@@ -94,7 +124,11 @@ public final class View implements IView, Runnable, KeyListener {
 		}
 	}
 
-	//Permits to display a message on the screen, out of the window game.
+	/**
+	 * Opens a pop-up with the specified message.
+	 * 
+	 * @param message The message to be displayed
+	 */
 	public void displayMessage(String message) {
 		JOptionPane.showMessageDialog(null, message);
 	}
@@ -107,64 +141,108 @@ public final class View implements IView, Runnable, KeyListener {
 	public void setController(final IController controller) {
 		this.orderPerformer = controller;
 	}
-	//Getters and setters of the view and the map.
-	public int getView() {
-		return this.view;
-	}
 
-	public void setView(int view) {
-		this.view = view;
-	}
-
+	/**
+	 * Gets the map.
+	 * 
+	 * @return the map
+	 */
 	public IMap getMap() {
 		return this.map;
 	}
 
+	/**
+	 * Sets a new map.
+	 * 
+	 * @param map the new map
+	 */
 	private void setMap(IMap map) {
 		this.map = map;
 	}
-	//Methods that listen to the keys typed, pressed and released.
+
 	public void keyTyped(KeyEvent keyEvent) {
 
 	}
 
+	/**
+	 * When a key is pressed, gets the order and sends it to the controller.
+	 */
 	public void keyPressed(KeyEvent keyEvent) {
 		this.currentKey = keyEvent.getKeyCode();
 		this.getOrderPerformer().setOrder(keyCodeToControllerOrder(keyEvent.getKeyCode()));
 	}
 
+	/**
+	 * When a key is released, checks that the key is the same as the one being
+	 * pushed the last.
+	 */
 	public void keyReleased(KeyEvent keyEvent) {
 		if (keyEvent.getKeyCode() == this.currentKey) {
 			this.getOrderPerformer().setOrder(ControllerOrder.NONE);
 			this.currentKey = 0;
 		}
 	}
-	//Get the order performer.
+
+	/**
+	 * Gets the controller to send the orders to.
+	 * 
+	 * @return the controller
+	 */
 	private IController getOrderPerformer() {
 		return this.orderPerformer;
 	}
-	//Getter and setter parameters for the hero.
+
+	/**
+	 * Gets the hero.
+	 * 
+	 * @return the hero
+	 */
 	public IHero getHero() {
 		return this.hero;
 	}
 
+	/**
+	 * Sets a new hero.
+	 * 
+	 * @param hero the new hero
+	 */
 	public void setHero(IHero hero) {
 		this.hero = hero;
 	}
-	//Getter and setter for the close of the view.
+
+	/**
+	 * Gets the rectangle representing the window.
+	 * 
+	 * @return the rectangle representing the window
+	 */
 	public Rectangle getCloseView() {
 		return this.closeView;
 	}
-	
+
+	/**
+	 * Sets the new rectangle representing the view.
+	 * 
+	 * @param closeView the new rectangle
+	 */
 	public void setCloseView(final Rectangle closeView) {
 		this.closeView = closeView;
 	}
-	//Getter and setter for the BoardFrame.
+
+	/**
+	 * Gets the boardFrame.
+	 * 
+	 * @return the boardFrame
+	 */
 	@Override
 	public BoardFrame getBoardFrame() {
 		return boardFrame;
 	}
 
+	/**
+	 * Sets the new boardFrame.
+	 * 
+	 * @param boardFrame the new BoardFrame
+	 */
 	public void setBoardFrame(BoardFrame boardFrame) {
 		this.boardFrame = boardFrame;
 	}
