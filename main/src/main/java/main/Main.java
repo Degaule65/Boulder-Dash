@@ -1,22 +1,28 @@
 /**
- * @author Jean-Aymeric DIET jadiet@cesi.fr
+ * @author Groupe 1
  * @version 1.0
  */
 package main;
 
-import contract.ControllerOrder;
+import contract.IController;
 import controller.Controller;
-import model.IModel;
-import model.Model;
-import model.ObjectType;
-import model.Sprite;
+import model.IMap;
+import model.Map;
 import view.View;
+
 public abstract class Main {
 
 	public static void main(final String[] args) {
-		final IModel model = new IModel();
-		final View view = new View(Sprite sprite, ObjectType objectType);
-		final Controller controller = new Controller(view, model);
+		final IMap map = new Map("============;=o/////oo//=;=H/////oo//=;=//  o ////=;=== /$//  $=;=$  ///  //=;=//$ //  /E=;============", 12, 8, 1);
+		final View view = new View(map);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
+		final IController controller = new Controller(view, map);
 		view.setController(controller);
+
+		controller.play();
 	}
 }

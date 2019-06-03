@@ -4,44 +4,35 @@ import java.awt.Dimension;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
 import javax.swing.JOptionPane;
-import java.util.LinkedList;
+import javax.swing.SwingUtilities;
 import contract.ControllerOrder;
 import contract.IController;
 import contract.IHero;
-import contract.INonHeroMobile;
+import contract.IMobile;
 import contract.IView;
 import fr.exia.showboard.BoardFrame;
 import model.IMap;
-import model.IModel;
-import model.Map;
-import model.Model;
-import model.ObjectType;
-import model.Sprite;
-import model.mobile.Hero;
-import model.mobile.Mobile;
 
-public final class View extends Hero implements IView, Runnable, KeyListener {
-
-	public View(Sprite sprite, ObjectType objectType) {
-		super(sprite, objectType);
-		// TODO Auto-generated constructor stub
-	}
+public final class View implements IView, Runnable, KeyListener {
 
 	private IMap map;
 	private IHero hero;
 	private int view;
-	private INonHeroMobile boulder;
-	private INonHeroMobile diamond;
 	private Rectangle closeView;
+	private IController orderPerformer;
+	private BoardFrame boardFrame;
+	private int currentKey;
 
-	public void view(IModel model) {
-		return;
+	public View(IMap map) {
+		this.setView(1);
+		this.setMap(map);
+		this.setHero(map.getHero());
+		this.setCloseView(new Rectangle(0, 0, 11, 11));
+		SwingUtilities.invokeLater(this);
 	}
 
 	protected static ControllerOrder keyCodeToControllerOrder(final int keyCode) {
-
 		switch (keyCode) {
 		case KeyEvent.VK_RIGHT:
 			return ControllerOrder.RIGHT;
@@ -55,54 +46,52 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 		return ControllerOrder.NONE;
 	}
 
-	/**
-	 * Sets the controller.
-	 *
-	 * @param controller the new controller
-	 */
-	public void setController(final IController controller) {
-
-	}
-@Override
+	@Override
 	public void run() {
+		this.setBoardFrame(new BoardFrame("Rockford CESI version (free trial) (alpha)"));
+		this.boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeigth()));
+		this.boardFrame.setDisplayFrame(this.closeView);
+		this.boardFrame.setSize(this.closeView.width * 32, this.closeView.height * 32);
+		this.boardFrame.setHeightLooped(false);
+		this.boardFrame.addKeyListener(this);
+		this.boardFrame.setFocusable(true);
+		this.boardFrame.setFocusTraversalKeysEnabled(false);
 
-		final BoardFrame boardFrame = new BoardFrame("coucou");
-		boardFrame.setDimension(new Dimension(Map.width, Map.heigth));
-		boardFrame.setDisplayFrame(this.closeView);
-		boardFrame.setSize(this.closeView.width * view, this.closeView.height * view);
-		boardFrame.setHeightLooped(true);
-		boardFrame.addKeyListener(this);
-		boardFrame.setFocusable(true);
-		boardFrame.setFocusTraversalKeysEnabled(false);
-
-		for (int x = 0; x < this.getMap().width(); x++) {
-			for (int y = 0; y < this.getMap().height(); y++) {
-				boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
+		for (int x = 0; x < this.getMap().getWidth(); x++) {
+			for (int y = 0; y < this.getMap().getHeigth(); y++) {
+				this.boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
 			}
 		}
-		boardFrame.addPawn(this.getHero());
-		boardFrame.addPawn(this.getBoulders());
 
-		this.getMap().getObservable().addObserver(boardFrame.getObserver());
+		for (IMobile pawn : map.getBoulAndDia()) {
+			this.boardFrame.addPawn(pawn);
+		}
+		this.boardFrame.addPawn(this.getHero());
+
+		this.getMap().getObservable().addObserver(this.boardFrame.getObserver());
 		this.followHero();
 
-		boardFrame.setVisible(true);
-
-	}
-
-	public void boulderView(IMap Map, IHero Hero) {
-
+		this.boardFrame.setVisible(true);
 	}
 
 	public void followHero() {
-		this.view = (this.getHero()).getY() - 1;
+		this.getCloseView().y = this.getHero().getY() - 5;
+		this.getCloseView().x = this.getHero().getX() - 5;
 	}
 
 	public void displayMessage(String message) {
 		JOptionPane.showMessageDialog(null, message);
 	}
 
-//
+	/**
+	 * Sets the controller.
+	 *
+	 * @param controller the new controller
+	 */
+	public void setController(final IController controller) {
+		this.orderPerformer = controller;
+	}
+
 	public int getView() {
 		return this.view;
 	}
@@ -115,43 +104,36 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 		return this.map;
 	}
 
+	private void setMap(IMap map) {
+		this.map = map;
+	}
+
 	public void keyTyped(KeyEvent keyEvent) {
 
 	}
 
 	public void keyPressed(KeyEvent keyEvent) {
-		this.getOrderPerformer().orderPerform(keyCodeToControllerOrder(keyEvent.getKeyCode()));
-	}
-
-	private IController getOrderPerformer() {
-		return null;
+		this.currentKey = keyEvent.getKeyCode();
+		this.getOrderPerformer().setOrder(keyCodeToControllerOrder(keyEvent.getKeyCode()));
 	}
 
 	public void keyReleased(KeyEvent keyEvent) {
+		if (keyEvent.getKeyCode() == this.currentKey) {
+			this.getOrderPerformer().setOrder(ControllerOrder.NONE);
+			this.currentKey = 0;
+		}
+	}
+
+	private IController getOrderPerformer() {
+		return this.orderPerformer;
 	}
 
 	public IHero getHero() {
-		return null;
+		return this.hero;
 	}
 
 	public void setHero(IHero hero) {
-
-	}
-
-	public void setBoulders(INonHeroMobile boulder) {
-
-	}
-
-	public INonHeroMobile getBoulders() {
-		return null;
-	}
-
-	public void setDiamond(INonHeroMobile diamond) {
-
-	}
-
-	public INonHeroMobile getDiamond() {
-		return null;
+		this.hero = hero;
 	}
 
 	public Rectangle getCloseView() {
@@ -160,6 +142,15 @@ public final class View extends Hero implements IView, Runnable, KeyListener {
 
 	public void setCloseView(final Rectangle closeView) {
 		this.closeView = closeView;
+	}
+
+	@Override
+	public BoardFrame getBoardFrame() {
+		return boardFrame;
+	}
+
+	public void setBoardFrame(BoardFrame boardFrame) {
+		this.boardFrame = boardFrame;
 	}
 
 }

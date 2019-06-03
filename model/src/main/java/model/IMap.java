@@ -1,15 +1,30 @@
 package model;
 
+import java.util.List;
 import java.util.Observable;
+
+import contract.IElement;
+import contract.IHero;
+import contract.IMobile;
+import model.motionless.IExit;
 
 public interface IMap {
 
 	IElement getOnTheMapXY(int x, int y);
 
+	void setOnTheMapXY(final IElement element, final int x, final int y);
+
+	List<IMobile> getBoulAndDia();
+
 	void setMobileHasChanged();
+
+	IHero getHero();
 
 	Observable getObservable();
 
-	int height();
-	int width();
+	int getWidth();
+
+	int getHeigth();
+
+	IExit getExit();
 }

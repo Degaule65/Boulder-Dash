@@ -13,9 +13,9 @@ public interface IController {
 	public void play();
 
 	/**
-	 * Order perform.
+	 * Set order to be performed
 	 *
-	 * @param controllerOrder the controller order
+	 * @param order the controller order
 	 */
-	public void orderPerform(ControllerOrder controllerOrder);
+	void setOrder(ControllerOrder order);
 }

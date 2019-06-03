@@ -1,17 +1,25 @@
 package model.mobile;
 
-import java.io.IOException;
+import contract.ObjectType;
+import contract.Sprite;
+import model.IMap;
+import model.Map;
 
-import model.ObjectType;
-import model.Sprite;
-
+/**
+ * @author Tanguy
+ * 
+ * This class initiates the Boulder with is fileSym used to construct the map and it Sprite and initiates the coords of the boulders.
+ *
+ */
 public class Boulder extends NonHeroMobile {
 
-	private static final Sprite SPRITE = new Sprite('R', "main/images/pierre/ROCK.gif");
-	
-	public Boulder(Sprite sprite, ObjectType objectType) throws IOException {
-		super(SPRITE, ObjectType.BOULDER);
-		sprite.loadImage();
+	public static final char fileSym = 'o';
+	private static final Sprite SPRITE = new Sprite(Boulder.fileSym, "images/" + Map.getStyle() + "/boulder.gif");
+
+	public Boulder(final int x, final int y, final IMap map) {
+		super(SPRITE, ObjectType.BOULDER, x, y, map);
+		this.setX(x);
+		this.setY(y);
 	}
 
 }
