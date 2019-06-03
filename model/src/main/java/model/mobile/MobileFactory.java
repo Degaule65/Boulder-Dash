@@ -3,26 +3,33 @@ package model.mobile;
 import model.IFactory;
 import model.IMap;
 
-/**
- * @author Tanguy
- * 
- *  This class is a factory which creates mobile Elements of the game and converts map symbols into the sprites choose.
- *
- */
-public class MobileFactory implements IFactory {
 
+
+public class MobileFactory implements IFactory {
+	
+	/**
+	 * Creates the Hero.
+	 */
 	public static Mobile createHero(int x, int y, final IMap map) {
 		return new Hero(x, y, map);
 	}
-
+	/**
+	 * Creates a boulder.
+	 */
 	public static Mobile createBoulder(int x, int y, final IMap map) {
 		return new Boulder(x, y, map);
 	}
-
+	/**
+	 * Creates a diamond.
+	 */
 	public static Mobile createDiamond(int x, int y, final IMap map) {
 		return new Diamond(x, y, map);
 	}
 
+	/**
+	 * Compare symbols to sprites and then return the right mobile element.
+	 *
+	 */
 	public Mobile getFromFileSymbole(final char symbol, final int x, final int y, final IMap map) {
 		Hero hero = new Hero(x, y, map);
 		Boulder boulder = new Boulder(x, y, map);
