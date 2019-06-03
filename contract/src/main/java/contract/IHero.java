@@ -13,9 +13,9 @@ public interface IHero extends IMobile {
 
 	int getX();
 
-	boolean isAlive();
+	int getState();
 
-	void setAlive(boolean alive);
+	void setState(int state);
 
 	void changeSprite(ControllerOrder order);
 }

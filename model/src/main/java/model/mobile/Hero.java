@@ -1,7 +1,6 @@
 package model.mobile;
 
 import contract.ControllerOrder;
-import contract.IElement;
 import contract.IHero;
 import contract.ObjectType;
 import contract.Sprite;
@@ -20,7 +19,7 @@ public class Hero extends Mobile implements IHero {
 	private final String imageRight = "images/Hero/heroRight.gif";
 	private final static String imageNone = "images/Hero/heroStandby.gif";
 	public static final char fileSym = 'H';
-	private boolean alive = true;
+	private int state = 0;
 
 	private final static Sprite sprite = new Sprite(Hero.fileSym, imageNone);
 	private final Sprite spriteDown = new Sprite(Hero.fileSym, imageDown);
@@ -71,12 +70,12 @@ public class Hero extends Mobile implements IHero {
 		}
 	}
 
-	public void setAlive(boolean alive) {
-		this.alive = alive;
+	public void setState(int state) {
+		this.state = state;
 	}
 
 	@Override
-	public boolean isAlive() {
-		return this.alive;
+	public int getState() {
+		return this.state;
 	}
 }

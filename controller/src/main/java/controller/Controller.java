@@ -44,7 +44,7 @@ public final class Controller implements IController {
 
 	@Override
 	public void play() {
-		while (this.getMap().getHero().isAlive() && this.getBoardFrame().getCountTime().getTime() > 0) {
+		while (this.getMap().getHero().getState() == 0 && this.getBoardFrame().getCountTime().getTime() > 0) {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
@@ -68,8 +68,10 @@ public final class Controller implements IController {
 				}
 			}
 		}
-		if (!this.getMap().getHero().isAlive()) {
+		if (this.getMap().getHero().getState() == -1) {
 			this.getView().displayMessage("You have been crushed by something");
+		} else if (this.getMap().getHero().getState() == 1) {
+			this.getView().displayMessage("You won !");
 		} else if (this.getBoardFrame().getCountTime().getTime() <= 0) {
 			this.getView().displayMessage("No time left !");
 		}
@@ -99,7 +101,7 @@ public final class Controller implements IController {
 				element.moveDown();
 				pawns[element.getX()][element.getY()] = null;
 				pawns[element.getX()][element.getY() + 1] = element;
-				this.getMap().getHero().setAlive(false);
+				this.getMap().getHero().setState(-1);
 				return;
 			} else if (pawnDown.getObjectType() == ObjectType.DIAMOND || pawnDown.getObjectType() == ObjectType.BOULDER
 					|| pawnDown.getObjectType() == ObjectType.WALL) {
@@ -237,6 +239,7 @@ public final class Controller implements IController {
 			} else if (caseRight.getObjectType() == ObjectType.EXIT_OPEN) {
 				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 				this.getMap().getHero().moveRight();
+				this.getMap().getHero().setState(1);
 				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap()
 						.getHero();
 			}
@@ -281,6 +284,7 @@ public final class Controller implements IController {
 			} else if (caseLeft.getObjectType() == ObjectType.EXIT_OPEN) {
 				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 				this.getMap().getHero().moveLeft();
+				this.getMap().getHero().setState(1);
 				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap()
 						.getHero();
 			}
@@ -311,6 +315,7 @@ public final class Controller implements IController {
 			} else if (caseDown.getObjectType() == ObjectType.EXIT_OPEN) {
 				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 				this.getMap().getHero().moveDown();
+				this.getMap().getHero().setState(1);
 				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap()
 						.getHero();
 			}
@@ -341,6 +346,7 @@ public final class Controller implements IController {
 			} else if (caseUp.getObjectType() == ObjectType.EXIT_OPEN) {
 				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = null;
 				this.getMap().getHero().moveUp();
+				this.getMap().getHero().setState(1);
 				pawns[this.getMap().getHero().getX()][this.getMap().getHero().getY()] = (Mobile) this.getMap()
 						.getHero();
 			}
