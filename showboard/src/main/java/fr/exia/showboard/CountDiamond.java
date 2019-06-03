@@ -4,7 +4,7 @@ public class CountDiamond {
 
 	private int nbrDiamond = 1;
 
-	public int getNbrDiamond() {
+	public int getDiamondNbr() {
 		return nbrDiamond;
 	}
 
@@ -13,7 +13,7 @@ public class CountDiamond {
 	}
 
 	public void collectDiamond() {
-		if (this.getNbrDiamond() > 0) {
+		if (this.getDiamondNbr() > 0) {
 			this.nbrDiamond--;
 		}
 	}

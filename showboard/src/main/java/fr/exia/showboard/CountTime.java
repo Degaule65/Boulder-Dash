@@ -8,13 +8,13 @@ public class CountTime implements Runnable {
 	
 	public CountTime() {
 		this.compteurTemps = 100;
-		this.str = "Remaining time : " + this.getCompteurTemps();
+		this.str = "Remaining time : " + this.getTime();
 
 		Thread Compte = new Thread(this);
 		Compte.start();
 	}
 
-	public int getCompteurTemps() {
+	public int getTime() {
 		return compteurTemps;
 	}
 
@@ -30,9 +30,9 @@ public class CountTime implements Runnable {
 			} catch (InterruptedException e) {
 			}
 			this.compteurTemps--;
-			this.str = "Remaining time : " + this.getCompteurTemps();
+			this.str = "Remaining time : " + this.getTime();
 		}
-		this.str = "Vous avez perdu";
+		this.str = "No time left";
 		try {
 			Thread.sleep(STOP*3);
 		} catch (InterruptedException e) {

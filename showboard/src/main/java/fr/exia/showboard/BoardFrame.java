@@ -211,4 +211,8 @@ public class BoardFrame extends JFrame implements IBoard {
 	public CountDiamond getCountDiamond() {
 		return this.getBoardPanel().getCountDiamond();
 	}
+	
+	public CountTime getCountTime() {
+		return this.getBoardPanel().getCountTime();
+	}
 }

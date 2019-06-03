@@ -109,14 +109,14 @@ public final class View implements IView, Runnable, KeyListener {
 	}
 
 	public void keyTyped(KeyEvent keyEvent) {
-		
+
 	}
 
 	public void keyPressed(KeyEvent keyEvent) {
 		this.currentKey = keyEvent.getKeyCode();
 		this.getOrderPerformer().setOrder(keyCodeToControllerOrder(keyEvent.getKeyCode()));
 	}
-	
+
 	public void keyReleased(KeyEvent keyEvent) {
 		if (keyEvent.getKeyCode() == this.currentKey) {
 			this.getOrderPerformer().setOrder(ControllerOrder.NONE);
@@ -143,7 +143,7 @@ public final class View implements IView, Runnable, KeyListener {
 	public void setCloseView(final Rectangle closeView) {
 		this.closeView = closeView;
 	}
-	
+
 	@Override
 	public BoardFrame getBoardFrame() {
 		return boardFrame;
@@ -152,5 +152,5 @@ public final class View implements IView, Runnable, KeyListener {
 	public void setBoardFrame(BoardFrame boardFrame) {
 		this.boardFrame = boardFrame;
 	}
-	
+
 }
