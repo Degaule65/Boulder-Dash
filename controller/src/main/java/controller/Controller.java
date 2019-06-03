@@ -43,6 +43,30 @@ public final class Controller implements IController {
 		this.setMap(map);
 	}
 
+	/**
+	 * The loop that moves the hero, update the boulders and the cases. It stops
+	 * running when the hero is dead, has reached the exit or when the time has run
+	 * out. It displays the corresponding message.
+	 * 
+	 * A loop that fill a two-dimensional array with the boulders and the diamonds.
+	 * {@code
+	 * Mobile[][] pawns = new Mobile[this.getMap().getWidth()][this.getMap().getHeigth()];
+			for (IPawn pawn : this.getBoardFrame().getPawns()) {
+				if (pawn instanceof NonHeroMobile) { pawns[pawn.getX()][pawn.getY()]
+	 * = (NonHeroMobile) pawn; } if (pawn instanceof Hero) {
+	 * pawns[pawn.getX()][pawn.getY()] = (Hero) pawn; } } }
+	 * 
+	 * Move the hero and update the view {@code
+	 * this.getMap().getHero().changeSprite(this.getOrder());
+			this.moveHero(pawns);
+			this.getView().followHero();
+			}
+	 * 
+	 * Apply gravity to the boulders and the diamonds. {@code
+	 * for (IPawn pawn : this.getBoardFrame().getPawns()) {
+	 *			if (pawn instanceof NonHeroMobile) { this.gravity((NonHeroMobile)
+	 * pawn, pawns); } }}
+	 */
 	@Override
 	public void play() {
 		while (this.getMap().getHero().getState() == 0 && this.getBoardFrame().getCountTime().getTime() > 0) {
@@ -84,6 +108,12 @@ public final class Controller implements IController {
 		System.exit(0);
 	}
 
+	/**
+	 * Apply gravity to elements like boulders and diamonds.
+	 * 
+	 * @param element the element to apply gravity to
+	 * @param pawns   the list of pawns
+	 */
 	private void gravity(NonHeroMobile element, Mobile[][] pawns) {
 		IElement caseDown = this.getMap().getOnTheMapXY(element.getX(), element.getY() + 1);
 		IElement caseDownRight = this.getMap().getOnTheMapXY(element.getX() + 1, element.getY() + 1);
@@ -133,86 +163,10 @@ public final class Controller implements IController {
 	}
 
 	/**
-	 * Sets the view.
-	 *
-	 * @param view the new view
-	 */
-	private void setView(final IView view) {
-		this.view = view;
-	}
-
-	/**
-	 * Return the view.
+	 * Used to move the hero.
 	 * 
-	 * @return the view
+	 * @param pawns the list of pawns
 	 */
-	public IView getView() {
-		return this.view;
-	}
-
-	/**
-	 * Sets the map.
-	 *
-	 * @param map the new map
-	 */
-	private void setMap(final IMap map) {
-		this.map = map;
-	}
-
-	/**
-	 * Return the current map
-	 * 
-	 * @return the map
-	 */
-	private IMap getMap() {
-		return this.map;
-	}
-
-	/**
-	 * Return the controller
-	 * 
-	 * @return this controller instance
-	 */
-	public IController getOrderPerformer() {
-		return this;
-	}
-
-	/**
-	 * Return the order to execute
-	 * 
-	 * @return an order
-	 */
-	public ControllerOrder getOrder() {
-		return order;
-	}
-
-	/**
-	 * Set an order to execute
-	 * 
-	 * @param order the order to execute
-	 */
-	public void setOrder(ControllerOrder order) {
-		this.order = order;
-	}
-
-	/**
-	 * Return the BoardFrame
-	 * 
-	 * @return the BoardFrame
-	 */
-	public BoardFrame getBoardFrame() {
-		return boardFrame;
-	}
-
-	/**
-	 * Set a new BoardFrame
-	 * 
-	 * @param boardFrame the new BoardFrame
-	 */
-	public void setBoardFrame(BoardFrame boardFrame) {
-		this.boardFrame = boardFrame;
-	}
-
 	public void moveHero(Mobile[][] pawns) {
 		IElement caseUp = this.getMap().getOnTheMapXY(this.getMap().getHero().getX(),
 				this.getMap().getHero().getY() - 1);
@@ -380,6 +334,87 @@ public final class Controller implements IController {
 		default:
 			break;
 		}
+	}
+
+	/**
+	 * Sets the view.
+	 *
+	 * @param view the new view
+	 */
+	private void setView(final IView view) {
+		this.view = view;
+	}
+
+	/**
+	 * Return the view.
+	 * 
+	 * @return the view
+	 */
+	public IView getView() {
+		return this.view;
+	}
+
+	/**
+	 * Sets the map.
+	 *
+	 * @param map the new map
+	 */
+	private void setMap(final IMap map) {
+		this.map = map;
+	}
+
+	/**
+	 * Return the current map
+	 * 
+	 * @return the map
+	 */
+	private IMap getMap() {
+		return this.map;
+	}
+
+	/**
+	 * Return the controller
+	 * 
+	 * @return this controller instance
+	 */
+	public IController getOrderPerformer() {
+		return this;
+	}
+
+	/**
+	 * Return the order to execute
+	 * 
+	 * @return an order
+	 */
+	public ControllerOrder getOrder() {
+		return order;
+	}
+
+	/**
+	 * Set an order to execute
+	 * 
+	 * @param order the order to execute
+	 */
+	public void setOrder(ControllerOrder order) {
+		this.order = order;
+	}
+
+	/**
+	 * Return the BoardFrame
+	 * 
+	 * @return the BoardFrame
+	 */
+	public BoardFrame getBoardFrame() {
+		return boardFrame;
+	}
+
+	/**
+	 * Set a new BoardFrame
+	 * 
+	 * @param boardFrame the new BoardFrame
+	 */
+	public void setBoardFrame(BoardFrame boardFrame) {
+		this.boardFrame = boardFrame;
 	}
 
 	/**
