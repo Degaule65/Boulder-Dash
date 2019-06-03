@@ -75,7 +75,7 @@ public final class Controller implements IController {
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
-			Mobile[][] pawns = new Mobile[this.getMap().getWidth()][this.getMap().getHeigth()];
+			Mobile[][] pawns = new Mobile[this.getMap().getWidth()][this.getMap().getHeight()];
 			for (IPawn pawn : this.getBoardFrame().getPawns()) {
 				if (pawn instanceof NonHeroMobile) {
 					pawns[pawn.getX()][pawn.getY()] = (NonHeroMobile) pawn;

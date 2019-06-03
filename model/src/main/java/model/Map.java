@@ -17,39 +17,69 @@ import model.motionless.MotionlessFactory;
 
 /**
  * The Class Map.
- *
- * @author [enter name]
  */
 
 public class Map extends Observable implements IMap {
 
+	/** The width */
 	private int width;
-	private int heigth;
+
+	/** The height */
+	private int height;
+
+	/** The style */
 	private static int style;
-	private IElement[][] onMap = new IElement[width][heigth];
+
+	/** The map array */
+	private IElement[][] onMap;
+
+	/** The pawn list */
 	private List<IMobile> boulAndDia = new ArrayList<IMobile>();
+
+	/** The hero */
 	private IHero hero;
+
+	/** The exit */
 	private IExit exit;
 
-	public Map(final String content, final int width, final int heigth, final int style) {
+	/**
+	 * Initialize and build the map.
+	 * 
+	 * @param content the string representing the map
+	 * @param width   the width
+	 * @param height  the height
+	 * @param style   the style
+	 */
+	public Map(final String content, final int width, final int height, final int style) {
 		this.setWidth(width);
-		this.setHeigth(heigth);
+		this.setHeight(height);
 		Map.setStyle(style);
-		this.onMap = new IElement[width][heigth];
+		this.onMap = new IElement[width][height];
 		this.buildMap(content);
 	}
 
+	/**
+	 * Notify the observers.
+	 */
 	@Override
 	public void setMobileHasChanged() {
 		this.setChanged();
 		this.notifyObservers();
 	}
 
+	/**
+	 * Return this object as an observable.
+	 */
 	@Override
 	public Observable getObservable() {
 		return this;
 	}
 
+	/**
+	 * Builds the map from the string.
+	 * 
+	 * @param content the string representing the map
+	 */
 	private void buildMap(String content) {
 		List<String> rows = Arrays.asList(content.split(";"));
 		int x = 0;
@@ -77,63 +107,141 @@ public class Map extends Observable implements IMap {
 		}
 	}
 
+	/**
+	 * Gets the element on the specified coordinates.
+	 * 
+	 * @param x the x coordinate
+	 * @param y the y coordinate
+	 */
 	@Override
 	public IElement getOnTheMapXY(int x, int y) {
 		return onMap[x][y];
 	}
 
+	/**
+	 * Sets an element on the map to specified coordinates.
+	 * 
+	 * @param element the element
+	 * @param x       the x coordinate
+	 * @param y       the y coordinate
+	 */
 	public void setOnTheMapXY(final IElement element, final int x, final int y) {
 		this.onMap[x][y] = element;
 	}
 
+	/**
+	 * Gets the map's array.
+	 * 
+	 * @return the map
+	 */
 	public IElement[][] getOnMap() {
 		return onMap;
 	}
 
+	/**
+	 * Gets the boulders and diamonds list.
+	 * 
+	 * @return the list containing the boulders and diamonds
+	 */
 	public List<IMobile> getBoulAndDia() {
 		return boulAndDia;
 	}
 
+	/**
+	 * Gets the map.
+	 * 
+	 * @return the map
+	 */
 	public IMap getMap() {
 		return this;
 	}
 
+	/**
+	 * Gets the hero.
+	 * 
+	 * @return the hero
+	 */
 	public IHero getHero() {
 		return hero;
 	}
 
+	/**
+	 * Sets the hero.
+	 * 
+	 * @param hero the new hero
+	 */
 	public void setHero(IHero hero) {
 		this.hero = hero;
 	}
 
+	/**
+	 * Gets the width.
+	 * 
+	 * @return the width
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Sets the width.
+	 * 
+	 * @param width the new width
+	 */
 	public void setWidth(int width) {
 		this.width = width;
 	}
 
-	public int getHeigth() {
-		return heigth;
+	/**
+	 * Gets the height.
+	 * 
+	 * @return the height
+	 */
+	public int getHeight() {
+		return height;
 	}
 
-	public void setHeigth(int heigth) {
-		this.heigth = heigth;
+	/**
+	 * Sets the height.
+	 * 
+	 * @param heigth the new height
+	 */
+	public void setHeight(int heigth) {
+		this.height = heigth;
 	}
 
+	/**
+	 * Gets the style.
+	 * 
+	 * @return the style
+	 */
 	public static int getStyle() {
 		return style;
 	}
 
+	/**
+	 * Sets the style.
+	 * 
+	 * @param style the new style
+	 */
 	public static void setStyle(int style) {
 		Map.style = style;
 	}
 
+	/**
+	 * Gets the exit
+	 * 
+	 * @return the exit
+	 */
 	public IExit getExit() {
 		return exit;
 	}
 
+	/**
+	 * Sets the exit.
+	 * 
+	 * @param exit the new exit
+	 */
 	public void setExit(IExit exit) {
 		this.exit = exit;
 	}

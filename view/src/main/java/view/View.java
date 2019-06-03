@@ -79,7 +79,7 @@ public final class View implements IView, Runnable, KeyListener {
 	@Override
 	public void run() {
 		this.setBoardFrame(new BoardFrame("BoulderDash"));
-		this.boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeigth()));
+		this.boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeight()));
 		this.boardFrame.setDisplayFrame(this.closeView);
 		this.boardFrame.setSize(this.closeView.width * 32, this.closeView.height * 32);
 		this.boardFrame.setHeightLooped(false);
@@ -88,7 +88,7 @@ public final class View implements IView, Runnable, KeyListener {
 		this.boardFrame.setFocusTraversalKeysEnabled(false);
 
 		for (int x = 0; x < this.getMap().getWidth(); x++) {
-			for (int y = 0; y < this.getMap().getHeigth(); y++) {
+			for (int y = 0; y < this.getMap().getHeight(); y++) {
 				this.boardFrame.addSquare(this.map.getOnTheMapXY(x, y), x, y);
 			}
 		}
@@ -110,8 +110,8 @@ public final class View implements IView, Runnable, KeyListener {
 	public void followHero() {
 		if (this.getHero().getY() <= 5) {
 			this.getCloseView().y = 0;
-		} else if (this.getHero().getY() > this.getMap().getHeigth() - 7) {
-			this.getCloseView().y = this.getMap().getHeigth() - 11;
+		} else if (this.getHero().getY() > this.getMap().getHeight() - 7) {
+			this.getCloseView().y = this.getMap().getHeight() - 11;
 		} else {
 			this.getCloseView().y = this.getHero().getY() - 5;
 		}

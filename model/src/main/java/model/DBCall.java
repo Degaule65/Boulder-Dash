@@ -9,9 +9,10 @@ public class DBCall {
 
 	/**
 	 * Get the map from the stored procedure
-	 * @param id
-	 * @return 
-	 * @throws SQLException
+	 * 
+	 * @param id the map ID
+	 * @return a map
+	 * @throws SQLException when needed
 	 */
 	public Map getMap(int id) throws SQLException {
 		String query = "{ call getMap(?) }";
