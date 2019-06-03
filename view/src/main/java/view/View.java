@@ -78,7 +78,7 @@ public final class View implements IView, Runnable, KeyListener {
 
 	//View of the map that follows the hero.
 	public void followHero() {
-		if (this.getHero().getY() < 5) {
+		if (this.getHero().getY() <= 5) {
 			this.getCloseView().y = 0;
 		} else if (this.getHero().getY() > this.getMap().getHeigth() - 7) {
 			this.getCloseView().y = this.getMap().getHeigth() - 11;
@@ -88,7 +88,7 @@ public final class View implements IView, Runnable, KeyListener {
 		if (this.getHero().getX() <= 5) {
 			this.getCloseView().x = 0;
 		} else if (this.getHero().getX() >= this.getMap().getWidth() - 7) {
-			this.getCloseView().x = this.getMap().getWidth() - 13;
+			this.getCloseView().x = this.getMap().getWidth() - 11;
 		} else {
 			this.getCloseView().x = this.getHero().getX() - 5;
 		}
