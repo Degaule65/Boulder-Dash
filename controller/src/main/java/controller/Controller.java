@@ -28,13 +28,14 @@ public final class Controller implements IController {
 	/** The BoardFrame */
 	private BoardFrame boardFrame;
 
+	/** The order to execute, defaulted to nothing */
 	private ControllerOrder order = ControllerOrder.NONE;
 
 	/**
 	 * Instantiates a new controller.
 	 *
-	 * @param view  the view
-	 * @param model the model
+	 * @param view the view
+	 * @param map  the map
 	 */
 	public Controller(final IView view, final IMap map) {
 		this.setView(view);
@@ -134,7 +135,7 @@ public final class Controller implements IController {
 	/**
 	 * Sets the view.
 	 *
-	 * @param pview the new view
+	 * @param view the new view
 	 */
 	private void setView(final IView view) {
 		this.view = view;
@@ -142,8 +143,6 @@ public final class Controller implements IController {
 
 	/**
 	 * Return the view.
-	 *
-	 * @param pview the new view
 	 */
 	public IView getView() {
 		return this.view;
@@ -152,37 +151,62 @@ public final class Controller implements IController {
 	/**
 	 * Sets the map.
 	 *
-	 * @param model the new model
+	 * @param map the new map
 	 */
 	private void setMap(final IMap map) {
 		this.map = map;
 	}
 
 	/**
-	 * Return the map.
-	 *
-	 * @param pview the new view
+	 * Return the current map
+	 * 
+	 * @return the map
 	 */
 	private IMap getMap() {
 		return this.map;
 	}
 
+	/**
+	 * Return the controller
+	 * 
+	 * @return this controller instance
+	 */
 	public IController getOrderPerformer() {
 		return this;
 	}
 
+	/**
+	 * Return the order to execute
+	 * 
+	 * @return an order
+	 */
 	public ControllerOrder getOrder() {
 		return order;
 	}
 
+	/**
+	 * Set an order to execute
+	 * 
+	 * @param order the order to execute
+	 */
 	public void setOrder(ControllerOrder order) {
 		this.order = order;
 	}
 
+	/**
+	 * Return the BoardFrame
+	 * 
+	 * @return the BoardFrame
+	 */
 	public BoardFrame getBoardFrame() {
 		return boardFrame;
 	}
 
+	/**
+	 * Set a new BoardFrame
+	 * 
+	 * @param boardFrame the new BoardFrame
+	 */
 	public void setBoardFrame(BoardFrame boardFrame) {
 		this.boardFrame = boardFrame;
 	}
@@ -356,6 +380,12 @@ public final class Controller implements IController {
 		}
 	}
 
+	/**
+	 * Remove a diamond from the game and
+	 * 
+	 * @param diamond the diamond to collect
+	 * @param pawns   the list of pawns to edit
+	 */
 	private void collectDiamond(Mobile diamond, IPawn[][] pawns) {
 		this.getBoardFrame().removePawn(diamond);
 		pawns[diamond.getX()][diamond.getY()] = null;
