@@ -19,7 +19,7 @@ import model.Map;
  */
 public class Exit extends MotionlessElement implements IExit {
 	public static final char fileSym = 'E';
-	private static final Sprite SPRITE_CLOSE = new Sprite(Exit.fileSym, "images/" + Map.getStyle() + "/wall.png");
+	private static final Sprite SPRITE_CLOSE = new Sprite(Exit.fileSym, "images/" + Map.getStyle() + "/wall.gif");
 	private static final Sprite SPRITE_OPEN = new Sprite(Exit.fileSym, "images/" + Map.getStyle() + "/exit.gif");
 
 	public Exit() {
