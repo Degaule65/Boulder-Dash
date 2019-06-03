@@ -4,16 +4,21 @@
  */
 package main;
 
+import java.sql.SQLException;
+
 import contract.IController;
 import controller.Controller;
+import model.DBCall;
 import model.IMap;
-import model.Map;
 import view.View;
 
 public abstract class Main {
 
-	public static void main(final String[] args) {
-		final IMap map = new Map("============;=o/////oo//=;=H/////oo//=;=//  o ////=;=== /$//  $=;=$  ///  //=;=//$ //  /E=;============", 12, 8, 1);
+	/** The number of the map to use */
+	private final static int idMap = 1;
+
+	public static void main(final String[] args) throws SQLException {
+		final IMap map = new DBCall().getMap(idMap);
 		final View view = new View(map);
 		try {
 			Thread.sleep(1000);
