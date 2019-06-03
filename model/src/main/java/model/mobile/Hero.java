@@ -6,12 +6,11 @@ import contract.ObjectType;
 import contract.Sprite;
 import model.IMap;
 
-
-
 public class Hero extends Mobile implements IHero {
 
 	/**
-	 * Variables containing the gifs corresponding to the hero in alternative positions.
+	 * Variables containing the gifs corresponding to the hero in alternative
+	 * positions.
 	 *
 	 */
 	private final String imageUp = "images/Hero/heroUp.gif";
@@ -19,9 +18,10 @@ public class Hero extends Mobile implements IHero {
 	private final String imageLeft = "images/Hero/heroLeft.gif";
 	private final String imageRight = "images/Hero/heroRight.gif";
 	private final static String imageNone = "images/Hero/heroStandby.gif";
-	
+
 	/**
-	 * Variables for the Symbol representing the hero on the map source file and a state.
+	 * Variables for the Symbol representing the hero on the map source file and a
+	 * state.
 	 *
 	 */
 	public static final char fileSym = 'H';
@@ -46,33 +46,37 @@ public class Hero extends Mobile implements IHero {
 	 *
 	 */
 	public void moveUp() {
-			this.setY(this.getY() - 1);
-			this.setHasMoved();
+		this.setY(this.getY() - 1);
+		this.setHasMoved();
 	}
+
 	/**
 	 * When the hero moves down.
 	 *
 	 */
 	public void moveDown() {
-			this.setY(this.getY() + 1);
-			this.setHasMoved();
+		this.setY(this.getY() + 1);
+		this.setHasMoved();
 	}
+
 	/**
 	 * When the hero moves to the right.
 	 *
 	 */
 	public void moveRight() {
-			this.setX(this.getX() + 1);
-			this.setHasMoved();
+		this.setX(this.getX() + 1);
+		this.setHasMoved();
 	}
+
 	/**
 	 * When the hero moves to the left.
 	 *
 	 */
 	public void moveLeft() {
-			this.setX(this.getX() - 1);
-			this.setHasMoved();
+		this.setX(this.getX() - 1);
+		this.setHasMoved();
 	}
+
 	/**
 	 * Changes the sprite depending of the direction of the hero.
 	 *
@@ -95,6 +99,7 @@ public class Hero extends Mobile implements IHero {
 			break;
 		}
 	}
+
 	/**
 	 * Getter of the state.
 	 *
@@ -102,6 +107,7 @@ public class Hero extends Mobile implements IHero {
 	public void setState(int state) {
 		this.state = state;
 	}
+
 	/**
 	 * Setter of the state.
 	 *

@@ -6,7 +6,7 @@ import model.IMap;
 
 /**
  * 
- *  This class contains methods which are functions of diamonds and boulders.
+ * This class contains methods which are functions of diamonds and boulders.
  *
  */
 
@@ -15,13 +15,13 @@ public class NonHeroMobile extends Mobile {
 	public NonHeroMobile(Sprite sprite, ObjectType objectType, final int x, final int y, final IMap map) {
 		super(sprite, objectType, x, y, map);
 	}
-	
+
 	/**
 	 * Creation of the boolean variable isFalling.
 	 *
 	 */
 	private boolean isFalling;
-	
+
 	/**
 	 * Getter of isFalling.
 	 *
@@ -49,7 +49,7 @@ public class NonHeroMobile extends Mobile {
 	}
 
 	/**
-	 *  Moves to the left an element.
+	 * Moves to the left an element.
 	 *
 	 */
 	public void moveLeft() {
@@ -58,7 +58,7 @@ public class NonHeroMobile extends Mobile {
 	}
 
 	/**
-	 *  Moves to the right an element.
+	 * Moves to the right an element.
 	 *
 	 */
 	public void moveRight() {

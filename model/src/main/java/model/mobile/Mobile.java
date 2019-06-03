@@ -8,7 +8,6 @@ import contract.Sprite;
 import model.Element;
 import model.IMap;
 
-
 public class Mobile extends Element implements IMobile {
 	private Point position = new Point();
 	private IMap map;
@@ -23,6 +22,7 @@ public class Mobile extends Element implements IMobile {
 		this.setX(x);
 		this.setY(y);
 	}
+
 	/**
 	 * Getter of the map.
 	 *
@@ -30,6 +30,7 @@ public class Mobile extends Element implements IMobile {
 	public IMap getMap() {
 		return map;
 	}
+
 	/**
 	 * Setter of the map.
 	 *
@@ -37,6 +38,7 @@ public class Mobile extends Element implements IMobile {
 	public void setMap(IMap map) {
 		this.map = map;
 	}
+
 	/**
 	 * Getter of mobile X position.
 	 *
@@ -44,6 +46,7 @@ public class Mobile extends Element implements IMobile {
 	public int getX() {
 		return (int) this.position.getX();
 	}
+
 	/**
 	 * Setter of mobile X position.
 	 *
@@ -51,6 +54,7 @@ public class Mobile extends Element implements IMobile {
 	public void setX(final int x) {
 		this.position.x = x;
 	}
+
 	/**
 	 * Getter of mobile Y position.
 	 *
@@ -58,6 +62,7 @@ public class Mobile extends Element implements IMobile {
 	public int getY() {
 		return (int) this.position.getY();
 	}
+
 	/**
 	 * Setter of mobile Y position.
 	 *
@@ -65,6 +70,7 @@ public class Mobile extends Element implements IMobile {
 	public void setY(final int y) {
 		this.position.y = y;
 	}
+
 	/**
 	 * Getter of the position of a mobile element.
 	 *
@@ -72,6 +78,7 @@ public class Mobile extends Element implements IMobile {
 	public Point getPosition() {
 		return this.getPosition();
 	}
+
 	/**
 	 * Setter of the position of a mobile element.
 	 *
@@ -79,6 +86,7 @@ public class Mobile extends Element implements IMobile {
 	public void setPosition(Point position) {
 		this.position = position;
 	}
+
 	/**
 	 * Permits to take in count that an element has changed it position.
 	 *

@@ -3,10 +3,8 @@ package model.mobile;
 import model.IFactory;
 import model.IMap;
 
-
-
 public class MobileFactory implements IFactory {
-	
+
 	/**
 	 * Creates the Hero.
 	 * 
@@ -15,6 +13,7 @@ public class MobileFactory implements IFactory {
 	public static Mobile createHero(int x, int y, final IMap map) {
 		return new Hero(x, y, map);
 	}
+
 	/**
 	 * Creates a boulder.
 	 * 
@@ -23,6 +22,7 @@ public class MobileFactory implements IFactory {
 	public static Mobile createBoulder(int x, int y, final IMap map) {
 		return new Boulder(x, y, map);
 	}
+
 	/**
 	 * Creates a diamond.
 	 * 

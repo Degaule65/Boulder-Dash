@@ -5,11 +5,11 @@ import contract.Sprite;
 import model.IMap;
 import model.Map;
 
-
 public class Diamond extends NonHeroMobile {
 
 	/**
-	 * variables corresponding to the Diamond symbol on the source map and to the Sprite of the Diamond.
+	 * variables corresponding to the Diamond symbol on the source map and to the
+	 * Sprite of the Diamond.
 	 *
 	 */
 	public static final char fileSym = '$';
