@@ -50,7 +50,7 @@ public final class View implements IView, Runnable, KeyListener {
 	// Run the game.
 	@Override
 	public void run() {
-		this.setBoardFrame(new BoardFrame("Rockford CESI version (free trial) (alpha)"));
+		this.setBoardFrame(new BoardFrame("BoulderDash"));
 		this.boardFrame.setDimension(new Dimension(this.getMap().getWidth(), this.getMap().getHeigth()));
 		this.boardFrame.setDisplayFrame(this.closeView);
 		this.boardFrame.setSize(this.closeView.width * 32, this.closeView.height * 32);
